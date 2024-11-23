@@ -8,7 +8,7 @@
         Height="600" Width="920"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        >
 
     <Border Background="#272537"
             CornerRadius="20">
@@ -30,7 +30,35 @@
                        Margin="20,0,0,0"/>
             
             <StackPanel Grid.Row="1">
-                
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             />
+
+                <RadioButton Content="asaassa"
+             Height="50"
+             Foreground="White"
+             FontSize="14"
+             Style="{StaticResource MenuButtonTheme}"
+             />
+
+                <RadioButton Content="asd"
+             Height="50"
+             Foreground="White"
+             FontSize="14"
+             Style="{StaticResource MenuButtonTheme}"
+             />
+
+                <RadioButton Content="assasaas"
+             Height="50"
+             Foreground="White"
+             FontSize="14"
+             Style="{StaticResource MenuButtonTheme}"
+             />
+
+
             </StackPanel>
         </Grid>
             
