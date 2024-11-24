@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:realEstateDevelopment"
+        xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="600" Width="920"
+        Height="600" Width="950"
         ResizeMode="NoResize"
         Background="Transparent"
         >
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
 
     <Border Background="#272537"
             CornerRadius="20">
@@ -19,6 +24,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
+                <RowDefinition Height="10"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -28,8 +34,16 @@
                        Foreground="White"
                        FontSize="22"
                        Margin="20,0,0,0"/>
-            
-            <StackPanel Grid.Row="1">
+
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1">
+                <TextBlock Text="Tu bedą otwarte karty"
+                           Foreground="White"
+                           FontSize="8"/>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="White"
@@ -37,30 +51,85 @@
                              Style="{StaticResource MenuButtonTheme}"
                              />
 
-                <RadioButton Content="asaassa"
-             Height="50"
-             Foreground="White"
-             FontSize="14"
-             Style="{StaticResource MenuButtonTheme}"
-             />
+                <RadioButton Content="Budynki"
+                    Height="50"
+                     Foreground="White"
+                     FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                />
 
-                <RadioButton Content="asd"
-             Height="50"
-             Foreground="White"
-             FontSize="14"
-             Style="{StaticResource MenuButtonTheme}"
-             />
+                <RadioButton Content="Kontrakty"
+                     Height="50"
+                     Foreground="White"
+                     FontSize="14"
+                     Style="{StaticResource MenuButtonTheme}"
+                />
 
-                <RadioButton Content="assasaas"
-             Height="50"
-             Foreground="White"
-             FontSize="14"
-             Style="{StaticResource MenuButtonTheme}"
-             />
+
+                <RadioButton Content="Materiały"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+                <RadioButton Content="Rezerwacje"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+
+                <RadioButton Content="Płatności"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+                <RadioButton Content="Wymagane konserwacje"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+                <RadioButton Content="Kadra"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+
+
+                <RadioButton Content="Historia Sprzedarzy"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                />
+
+
 
 
             </StackPanel>
-        </Grid>
             
+            <TextBox Width="250"
+                Height="40"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="10"
+                Grid.Column="1"
+                Style="{StaticResource MyTextbox}"
+             />
+
+            <ContentControl Grid.Row="2"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+
     </Border>
 </Window>
