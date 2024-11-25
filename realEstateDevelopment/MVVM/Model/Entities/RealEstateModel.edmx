@@ -1,0 +1,1121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RealEstateDeveloperDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="ApartmentID" />
+          </Key>
+          <Property Name="ApartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuildingID" Type="int" />
+          <Property Name="ApartmentNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Area" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RoomCount" Type="int" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Buildings">
+          <Key>
+            <PropertyRef Name="BuildingID" />
+          </Key>
+          <Property Name="BuildingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="BuildingName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Floors" Type="int" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Preferences" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ConstructionSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ConstructionPhase" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ScopeOfWork" Type="nvarchar(max)" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Position" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ExpenseType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ExpenseDate" Type="date" />
+        </EntityType>
+        <EntityType Name="MaintenanceRequests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApartmentID" Type="int" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="RequestDate" Type="date" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Amount" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="PaymentDate" Type="date" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Location" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ApartmentID" Type="int" />
+          <Property Name="ReservationDate" Type="date" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ApartmentID" Type="int" />
+          <Property Name="SalePrice" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="SaleDate" Type="date" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Apartment__Build__3C69FB99">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="BuildingID" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="BuildingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Buildings__Proje__398D8EEE">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Buildings">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Construct__Proje__5BE2A6F2">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConstructionSchedule" Type="Self.ConstructionSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ConstructionSchedule">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Proje__59063A47">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Suppl__5812160E">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Proje__4D94879B">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Projec__5535A963">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__Apart__5EBF139D">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="MaintenanceRequests" Type="Self.MaintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="MaintenanceRequests">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__Clien__5FB337D6">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MaintenanceRequests" Type="Self.MaintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="MaintenanceRequests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Materials__Suppl__52593CB8">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Materials">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Client__48CFD27E">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Apart__4222D4EF">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Clien__412EB0B6">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Apartment__45F365D3">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__ClientID__44FF419A">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RealEstateDeveloperDBModelStoreContainer">
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConstructionSchedule" EntityType="Self.ConstructionSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MaintenanceRequests" EntityType="Self.MaintenanceRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Apartment__Build__3C69FB99" Association="Self.FK__Apartment__Build__3C69FB99">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Buildings__Proje__398D8EEE" Association="Self.FK__Buildings__Proje__398D8EEE">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Buildings" EntitySet="Buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Construct__Proje__5BE2A6F2" Association="Self.FK__Construct__Proje__5BE2A6F2">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ConstructionSchedule" EntitySet="ConstructionSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Proje__59063A47" Association="Self.FK__Contracts__Proje__59063A47">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Suppl__5812160E" Association="Self.FK__Contracts__Suppl__5812160E">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Proje__4D94879B" Association="Self.FK__Employees__Proje__4D94879B">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Projec__5535A963" Association="Self.FK__Expenses__Projec__5535A963">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__Apart__5EBF139D" Association="Self.FK__Maintenan__Apart__5EBF139D">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="MaintenanceRequests" EntitySet="MaintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__Clien__5FB337D6" Association="Self.FK__Maintenan__Clien__5FB337D6">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="MaintenanceRequests" EntitySet="MaintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Materials__Suppl__52593CB8" Association="Self.FK__Materials__Suppl__52593CB8">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Materials" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Client__48CFD27E" Association="Self.FK__Payments__Client__48CFD27E">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Apart__4222D4EF" Association="Self.FK__Reservati__Apart__4222D4EF">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Clien__412EB0B6" Association="Self.FK__Reservati__Clien__412EB0B6">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Apartment__45F365D3" Association="Self.FK__Sales__Apartment__45F365D3">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__ClientID__44FF419A" Association="Self.FK__Sales__ClientID__44FF419A">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealEstateDeveloperDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apartments">
+          <Key>
+            <PropertyRef Name="ApartmentID" />
+          </Key>
+          <Property Name="ApartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuildingID" Type="Int32" />
+          <Property Name="ApartmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RoomCount" Type="Int32" />
+          <Property Name="Floor" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Buildings" Relationship="Self.FK__Apartment__Build__3C69FB99" FromRole="Apartments" ToRole="Buildings" />
+          <NavigationProperty Name="MaintenanceRequests" Relationship="Self.FK__Maintenan__Apart__5EBF139D" FromRole="Apartments" ToRole="MaintenanceRequests" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Apart__4222D4EF" FromRole="Apartments" ToRole="Reservations" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__Apartment__45F365D3" FromRole="Apartments" ToRole="Sales" />
+        </EntityType>
+        <EntityType Name="Buildings">
+          <Key>
+            <PropertyRef Name="BuildingID" />
+          </Key>
+          <Property Name="BuildingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="BuildingName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Floors" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__Build__3C69FB99" FromRole="Buildings" ToRole="Apartments" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Buildings__Proje__398D8EEE" FromRole="Buildings" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Preferences" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MaintenanceRequests" Relationship="Self.FK__Maintenan__Clien__5FB337D6" FromRole="Clients" ToRole="MaintenanceRequests" />
+          <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__Client__48CFD27E" FromRole="Clients" ToRole="Payments" />
+          <NavigationProperty Name="Reservations" Relationship="Self.FK__Reservati__Clien__412EB0B6" FromRole="Clients" ToRole="Reservations" />
+          <NavigationProperty Name="Sales" Relationship="Self.FK__Sales__ClientID__44FF419A" FromRole="Clients" ToRole="Sales" />
+        </EntityType>
+        <EntityType Name="ConstructionSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ConstructionPhase" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Construct__Proje__5BE2A6F2" FromRole="ConstructionSchedule" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractID" />
+          </Key>
+          <Property Name="ContractID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ScopeOfWork" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Contracts__Proje__59063A47" FromRole="Contracts" ToRole="Projects" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Contracts__Suppl__5812160E" FromRole="Contracts" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Employees__Proje__4D94879B" FromRole="Employees" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="Expenses">
+          <Key>
+            <PropertyRef Name="ExpenseID" />
+          </Key>
+          <Property Name="ExpenseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ExpenseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ExpenseDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK__Expenses__Projec__5535A963" FromRole="Expenses" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="MaintenanceRequests">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApartmentID" Type="Int32" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Maintenan__Apart__5EBF139D" FromRole="MaintenanceRequests" ToRole="Apartments" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Maintenan__Clien__5FB337D6" FromRole="MaintenanceRequests" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Materials">
+          <Key>
+            <PropertyRef Name="MaterialID" />
+          </Key>
+          <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="MaterialName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Suppliers" Relationship="Self.FK__Materials__Suppl__52593CB8" FromRole="Materials" ToRole="Suppliers" />
+        </EntityType>
+        <EntityType Name="Payments">
+          <Key>
+            <PropertyRef Name="PaymentID" />
+          </Key>
+          <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Amount" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="0" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Payments__Client__48CFD27E" FromRole="Payments" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Location" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Buildings" Relationship="Self.FK__Buildings__Proje__398D8EEE" FromRole="Projects" ToRole="Buildings" />
+          <NavigationProperty Name="ConstructionSchedule" Relationship="Self.FK__Construct__Proje__5BE2A6F2" FromRole="Projects" ToRole="ConstructionSchedule" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK__Contracts__Proje__59063A47" FromRole="Projects" ToRole="Contracts" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employees__Proje__4D94879B" FromRole="Projects" ToRole="Employees" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Projec__5535A963" FromRole="Projects" ToRole="Expenses" />
+        </EntityType>
+        <EntityType Name="Reservations">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ApartmentID" Type="Int32" />
+          <Property Name="ReservationDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Reservati__Apart__4222D4EF" FromRole="Reservations" ToRole="Apartments" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Reservati__Clien__412EB0B6" FromRole="Reservations" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="SaleID" />
+          </Key>
+          <Property Name="SaleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ApartmentID" Type="Int32" />
+          <Property Name="SalePrice" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="SaleDate" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Apartments" Relationship="Self.FK__Sales__Apartment__45F365D3" FromRole="Sales" ToRole="Apartments" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Sales__ClientID__44FF419A" FromRole="Sales" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupplierID" />
+          </Key>
+          <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaterialType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contracts" Relationship="Self.FK__Contracts__Suppl__5812160E" FromRole="Suppliers" ToRole="Contracts" />
+          <NavigationProperty Name="Materials" Relationship="Self.FK__Materials__Suppl__52593CB8" FromRole="Suppliers" ToRole="Materials" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Apartment__Build__3C69FB99">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="BuildingID" />
+            </Principal>
+            <Dependent Role="Apartments">
+              <PropertyRef Name="BuildingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__Apart__5EBF139D">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="MaintenanceRequests" Type="Self.MaintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="MaintenanceRequests">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Apart__4222D4EF">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__Apartment__45F365D3">
+          <End Role="Apartments" Type="Self.Apartments" Multiplicity="0..1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartments">
+              <PropertyRef Name="ApartmentID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="ApartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Buildings__Proje__398D8EEE">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Buildings">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Maintenan__Clien__5FB337D6">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MaintenanceRequests" Type="Self.MaintenanceRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="MaintenanceRequests">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payments__Client__48CFD27E">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Payments">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__Clien__412EB0B6">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Reservations">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sales__ClientID__44FF419A">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Construct__Proje__5BE2A6F2">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConstructionSchedule" Type="Self.ConstructionSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="ConstructionSchedule">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Proje__59063A47">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Contracts__Suppl__5812160E">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employees__Proje__4D94879B">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Expenses__Projec__5535A963">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Expenses" Type="Self.Expenses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Expenses">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Materials__Suppl__52593CB8">
+          <End Role="Suppliers" Type="Self.Suppliers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Materials" Type="Self.Materials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Suppliers">
+              <PropertyRef Name="SupplierID" />
+            </Principal>
+            <Dependent Role="Materials">
+              <PropertyRef Name="SupplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RealEstateDeveloperDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apartments" EntityType="Self.Apartments" />
+          <EntitySet Name="Buildings" EntityType="Self.Buildings" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="ConstructionSchedule" EntityType="Self.ConstructionSchedule" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Expenses" EntityType="Self.Expenses" />
+          <EntitySet Name="MaintenanceRequests" EntityType="Self.MaintenanceRequests" />
+          <EntitySet Name="Materials" EntityType="Self.Materials" />
+          <EntitySet Name="Payments" EntityType="Self.Payments" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Apartment__Build__3C69FB99" Association="Self.FK__Apartment__Build__3C69FB99">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="Apartments" EntitySet="Apartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__Apart__5EBF139D" Association="Self.FK__Maintenan__Apart__5EBF139D">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="MaintenanceRequests" EntitySet="MaintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Apart__4222D4EF" Association="Self.FK__Reservati__Apart__4222D4EF">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__Apartment__45F365D3" Association="Self.FK__Sales__Apartment__45F365D3">
+            <End Role="Apartments" EntitySet="Apartments" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Buildings__Proje__398D8EEE" Association="Self.FK__Buildings__Proje__398D8EEE">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Buildings" EntitySet="Buildings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Maintenan__Clien__5FB337D6" Association="Self.FK__Maintenan__Clien__5FB337D6">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="MaintenanceRequests" EntitySet="MaintenanceRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payments__Client__48CFD27E" Association="Self.FK__Payments__Client__48CFD27E">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__Clien__412EB0B6" Association="Self.FK__Reservati__Clien__412EB0B6">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sales__ClientID__44FF419A" Association="Self.FK__Sales__ClientID__44FF419A">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Construct__Proje__5BE2A6F2" Association="Self.FK__Construct__Proje__5BE2A6F2">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="ConstructionSchedule" EntitySet="ConstructionSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Proje__59063A47" Association="Self.FK__Contracts__Proje__59063A47">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Contracts__Suppl__5812160E" Association="Self.FK__Contracts__Suppl__5812160E">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employees__Proje__4D94879B" Association="Self.FK__Employees__Proje__4D94879B">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Expenses__Projec__5535A963" Association="Self.FK__Expenses__Projec__5535A963">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Expenses" EntitySet="Expenses" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Materials__Suppl__52593CB8" Association="Self.FK__Materials__Suppl__52593CB8">
+            <End Role="Suppliers" EntitySet="Suppliers" />
+            <End Role="Materials" EntitySet="Materials" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RealEstateDeveloperDBModelStoreContainer" CdmEntityContainer="RealEstateDeveloperDBEntities">
+          <EntitySetMapping Name="Apartments">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Apartments">
+              <MappingFragment StoreEntitySet="Apartments">
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="ApartmentNumber" ColumnName="ApartmentNumber" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buildings">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Buildings">
+              <MappingFragment StoreEntitySet="Buildings">
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="BuildingName" ColumnName="BuildingName" />
+                <ScalarProperty Name="Floors" ColumnName="Floors" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Preferences" ColumnName="Preferences" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConstructionSchedule">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.ConstructionSchedule">
+              <MappingFragment StoreEntitySet="ConstructionSchedule">
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ConstructionPhase" ColumnName="ConstructionPhase" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Contracts">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="ContractID" ColumnName="ContractID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ScopeOfWork" ColumnName="ScopeOfWork" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Expenses">
+              <MappingFragment StoreEntitySet="Expenses">
+                <ScalarProperty Name="ExpenseID" ColumnName="ExpenseID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MaintenanceRequests">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.MaintenanceRequests">
+              <MappingFragment StoreEntitySet="MaintenanceRequests">
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materials">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Materials">
+              <MappingFragment StoreEntitySet="Materials">
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Payments">
+              <MappingFragment StoreEntitySet="Payments">
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Projects">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservations">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Reservations">
+              <MappingFragment StoreEntitySet="Reservations">
+                <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Sales">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="SaleID" ColumnName="SaleID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Suppliers">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="MaterialType" ColumnName="MaterialType" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
