@@ -49,14 +49,17 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"
                              />
 
                 <RadioButton Content="Budynki"
-                    Height="50"
+                     Height="50"
                      Foreground="White"
                      FontSize="14"
-                    Style="{StaticResource MenuButtonTheme}"
-                />
+                     Style="{StaticResource MenuButtonTheme}"
+                     Command="{Binding BuildingsViewCommand}"
+                 />
 
                 <RadioButton Content="Kontrakty"
                      Height="50"

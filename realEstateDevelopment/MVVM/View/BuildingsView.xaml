@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.HomeView"
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.BuildingsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,66 +6,19 @@
              xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <TextBlock Text="Budynki"
-                       Foreground="White"
-                       FontSize="28"
-                       HorizontalAlignment="Left"
-                       Margin="0,0,0,20"/>
-        <StackPanel Orientation="Horizontal">
-            <Border Width="400"
-                    Height="200">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#FF7ACCFB" Offset="0.0"/>
-                        <GradientStop Color="#FF0080F7" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,200"/>
-                </Border.Clip>
-
-                <Grid>
-                    <TextBlock Text="Co dziś budujemy?"
-                               Foreground="White"
-                               FontSize="28"
-                               HorizontalAlignment="Left"
-                               Margin="10,0,0,0"/>
-                    <Image
-                           Source="/Images/apartment_3938871.png" Margin="210,64,-34,0"/>
-                </Grid>
-            </Border>
-            <Border Width="250"
-                    Height="200"
-                    CornerRadius="10"
-                    Margin="45,0,0,0">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#FF7ACCFB" Offset="0.0"/>
-                        <GradientStop Color="#FF0080F7" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Grid>
-
-                    <TextBlock Text="Zysk/Strata w tym miesiącu"
-                               HorizontalAlignment="Center"
-                               FontSize="20"
-                               Foreground="White"/>
-                    <TextBlock Text="12 380"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="40"
-                               Foreground="White"/>
-
-                </Grid>
-
-            </Border>
-        </StackPanel>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id"/>
+                <DataGridTextColumn Header="Id projektu"/>
+                <DataGridTextColumn Header="Nazwa budynku"/>
+                <DataGridTextColumn Header="Liczba pienter"/>
+                <DataGridTextColumn Header="Czy ukonczony"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </UserControl>

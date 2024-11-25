@@ -11,9 +11,12 @@
                 <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Powiązanie HomeViewModel z HomeView -->
+            <!-- Powiązanie ViewModel z View -->
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:BuildingsViewModel}">
+                <view:BuildingsView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

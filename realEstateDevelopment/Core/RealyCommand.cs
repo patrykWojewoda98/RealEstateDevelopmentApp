@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace realEstateDevelopment.Core
 {
-    class RealyCommand : ICommand
+    public class RealyCommand : ICommand
     {
         private Action<object> _execute;
         private Func<object, bool> _canExecute;
@@ -19,6 +19,12 @@ namespace realEstateDevelopment.Core
             _execute = execute;
             _canExecute = canExecute;
         }
+
+        public RealyCommand(Action<object> execute)
+        : this(execute, null)
+        {
+        }
+
 
         public bool CanExecute(object parameter)
         {
