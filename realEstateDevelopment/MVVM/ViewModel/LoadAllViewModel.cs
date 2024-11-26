@@ -1,6 +1,7 @@
 ﻿using MVVMFirma.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
@@ -19,7 +20,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             get
             {
                 if (_LoadCommand == null)
-                    _LoadCommand = new BaseCommand(() => load());
+                    _LoadCommand = new BaseCommand(() => LoadAsync());
                 return _LoadCommand;
             }
         }
@@ -29,7 +30,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             get
             {
                 if (_List == null)
-                    load();
+                    LoadAsync();
                 return _List;
             }
             set
@@ -48,7 +49,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #endregion
 
         #region Helpers
-        public abstract void load();
+        public abstract Task LoadAsync(); 
         #endregion
     }
 

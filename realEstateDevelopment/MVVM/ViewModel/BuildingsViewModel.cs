@@ -18,10 +18,12 @@ namespace realEstateDevelopment.MVVM.ViewModel
         }
         #endregion
 
+        
         #region Helpers
-        public override void load()
+        public override async Task LoadAsync()
         {
-            List = new ObservableCollection<Buildings>(realEstateEntities.Buildings.ToList());
+            var buildings = await Task.Run(() => realEstateEntities.Buildings.ToList());
+            List = new ObservableCollection<Buildings>(buildings); 
         }
         #endregion
     }
