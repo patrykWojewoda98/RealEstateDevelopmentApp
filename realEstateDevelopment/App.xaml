@@ -7,16 +7,21 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
+                <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/TextboxTheme.xaml"/>
+                <ResourceDictionary Source="Themes/Generic.xaml" />
+                <ResourceDictionary Source="Themes/ButtonTheme.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Powiązanie ViewModel z View -->
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:BuildingsViewModel}">
                 <view:BuildingsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewBuildingViewModel}">
+                <view:AddNewBuildingView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

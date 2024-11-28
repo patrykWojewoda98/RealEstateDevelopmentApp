@@ -67,6 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
+    <Compile Include="Themes\AddEntityTemplate.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,10 +80,15 @@
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RealyCommand.cs" />
     <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Helper\BaseDatabaseAdder.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\AddNewBuildingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\BuildingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -90,11 +97,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\MenuButtonTheme.xaml">
+    <Page Include="Themes\ButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Theme\TextboxTheme.xaml">
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MenuButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextboxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +181,9 @@
     <Compile Include="MVVM\ViewModel\LoadAllViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\ViewModel\WorkspaceViewModel.cs" />
+    <Compile Include="MVVM\View\AddNewBuildingView.xaml.cs">
+      <DependentUpon>AddNewBuildingView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\BuildingsView.xaml.cs">
       <DependentUpon>BuildingsView.xaml</DependentUpon>
     </Compile>

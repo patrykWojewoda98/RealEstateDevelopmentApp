@@ -1,0 +1,33 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style BasedOn="{StaticResource {x:Type Button}}"
+       TargetType="{x:Type Button}"
+       x:Key="CommonNormalButtonTheme">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Background="{TemplateBinding Background}">
+                            <!-- ContentPresenter odpowiada za wyświetlanie zawartości przycisku -->
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Obsługa stanu wciśnięcia przycisku -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#1a1a1a"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Ustawienia domyślne dla przycisku -->
+            <Setter Property="Background" Value="#22202f"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10,5"/>
+        </Style.Setters>
+    </Style>
+</ResourceDictionary>

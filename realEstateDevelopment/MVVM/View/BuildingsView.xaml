@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="380"/>
@@ -27,6 +29,9 @@
                 Grid.Column="1"
                 Content="Dodaj nowy budynek"
                 Width="150"
-                Height="50"/>
+                Height="50"
+                Command="{Binding OpenAddNewBuildingCommand}"
+                Style="{StaticResource CommonNormalButtonTheme}"
+                />
     </Grid>
 </UserControl>

@@ -24,11 +24,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public MainViewModel()
         {
-            // Tworzenie instancji 
             HomeVM = new HomeViewModel();
             BuildingsVM = new BuildingsViewModel();
 
-            // Ustawienie CurrentView na HomeVM
+            BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
+
             CurrentView = HomeVM;
 
             HomeViewCommand = new RealyCommand(o =>
@@ -41,5 +41,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = BuildingsVM;
             });
         }
+
+        #region Helpers
+        private void OnAddNewBuildingRequested()
+        {
+            var addNewBuildingVM = new AddNewBuildingViewModel();
+            CurrentView = addNewBuildingVM;
+        }
+        #endregion
     }
 }

@@ -24,7 +24,6 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
-                <RowDefinition Height="10"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -35,15 +34,9 @@
                        FontSize="22"
                        Margin="20,0,0,0"/>
 
-            <StackPanel Grid.Row="1"
-                        Grid.Column="1">
-                <TextBlock Text="Tu bedą otwarte karty"
-                           Foreground="White"
-                           FontSize="8"/>
+            
 
-            </StackPanel>
-
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="1">
                 <RadioButton Content="Home"
                              Height="50"
                              Foreground="White"
