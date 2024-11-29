@@ -77,12 +77,7 @@
                     Command="{Binding ProjectViewCommand}"
                 />
 
-                <RadioButton Content="Kontrakty"
-                     Height="50"
-                     Foreground="White"
-                     FontSize="14"
-                     Style="{StaticResource MenuButtonTheme}"
-                />
+                
 
 
                 <RadioButton Content="Materiały"
@@ -119,6 +114,15 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
+                />
+
+                <RadioButton Content="Dostawcy"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding SuppliersViewCommand}"
+                             
                 />
 
 

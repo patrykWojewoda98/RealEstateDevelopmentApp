@@ -13,26 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace realEstateDevelopment
+namespace realEstateDevelopment.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SuppliersView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SuppliersView : UserControl
     {
-        public MainWindow()
+        public SuppliersView()
         {
             InitializeComponent();
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

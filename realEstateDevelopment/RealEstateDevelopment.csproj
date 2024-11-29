@@ -129,12 +129,20 @@
     </Compile>
     <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewClientViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\SuppliersViewModel.cs" />
     <Compile Include="MVVM\View\AddNewClientView.xaml.cs">
       <DependentUpon>AddNewClientView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\AddNewSupplierView.xaml.cs">
+      <DependentUpon>AddNewSupplierView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\SuppliersView.xaml.cs">
+      <DependentUpon>SuppliersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Themes\AddEntityTemplate.cs" />
     <Page Include="MainWindow.xaml">
@@ -161,6 +169,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\AddNewSupplierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\BuildingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -170,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\SuppliersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

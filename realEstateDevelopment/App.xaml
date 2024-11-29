@@ -29,6 +29,12 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewClientViewModel}">
                 <view:AddNewClientView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SuppliersViewModel}">
+                <view:SuppliersView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewSupplierViewModel}">
+                <view:AddNewSupplierView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -11,5 +11,6 @@ namespace realEstateDevelopment.Core
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

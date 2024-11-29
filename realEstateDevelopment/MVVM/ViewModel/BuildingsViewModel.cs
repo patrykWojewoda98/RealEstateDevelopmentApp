@@ -1,10 +1,8 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
@@ -24,10 +22,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public BuildingsViewModel()
             :base() 
         {
-            base.DisplayName = "Budynki";
             OpenAddNewBuildingCommand = new RealyCommand(o =>
             {
-                // Wywołanie zdarzenia
                 AddNewBuildingRequested?.Invoke();
             });
         }

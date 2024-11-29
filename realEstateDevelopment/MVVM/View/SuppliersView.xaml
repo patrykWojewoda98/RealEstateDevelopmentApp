@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.SuppliersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="380"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding SupplierID}"/>
+                <DataGridTextColumn Header="Nazwa Firmy" Binding="{Binding CompanyName}"/>
+                <DataGridTextColumn Header="Numer Telefonu" Binding="{Binding Contact}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Addres}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Tu będą filtry"
+           Grid.Column="1"
+           Foreground="White"/>
+        <Button x:Name="AddNewBuildind"
+        Grid.Column="1"
+        Content="Dodaj nowego Dostawcę"
+        Command="{Binding OpenAddNewSupplierCommand}"
+        Style="{StaticResource CommonNormalButtonTheme}"
+        />
+    </Grid>
+</UserControl>
