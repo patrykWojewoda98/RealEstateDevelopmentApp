@@ -74,7 +74,7 @@
                     Foreground="White"
                     FontSize="14"
                     Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding ProjectViewCommand}"
+                    Command="{Binding ProjectsViewCommand}"
                 />
 
                 

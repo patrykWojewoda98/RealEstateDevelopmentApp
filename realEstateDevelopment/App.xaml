@@ -35,6 +35,12 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewSupplierViewModel}">
                 <view:AddNewSupplierView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ProjectsViewModel}">
+                <view:ProjectsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewProjectViewModel}">
+                <view:AddNewProjectView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

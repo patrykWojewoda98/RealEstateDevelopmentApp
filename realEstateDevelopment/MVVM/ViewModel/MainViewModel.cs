@@ -10,6 +10,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public RealyCommand BuildingsViewCommand { get; set; }
         public RealyCommand ClientsViewCommand { get; set; }
         public RealyCommand SuppliersViewCommand { get; set; }
+        public RealyCommand ProjectsViewCommand { get; set; }
         #endregion
 
 
@@ -18,6 +19,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public BuildingsViewModel BuildingsVM { get; set; }
         public ClientViewModel ClientVM { get; set; }
         public SuppliersViewModel SuppliersVM { get; set; }
+        public ProjectsViewModel ProjectsVM { get; set; }
         private object _currentView;
         #endregion
 
@@ -38,10 +40,12 @@ namespace realEstateDevelopment.MVVM.ViewModel
             BuildingsVM = new BuildingsViewModel();
             ClientVM = new ClientViewModel();
             SuppliersVM = new SuppliersViewModel();
+            ProjectsVM = new ProjectsViewModel();
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
             ClientVM.AddNewClientRequested += OnAddNewClientRequested;
             SuppliersVM.AddNewSupplierRequest += OnAddNewSupplierRequested;
+            ProjectsVM.AddNewProjectRequested += OnAddNewProjectRequested;
 
 
 
@@ -67,6 +71,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 CurrentView = SuppliersVM;
             });
+
+            ProjectsViewCommand = new RealyCommand(o =>
+            {
+                CurrentView = ProjectsVM;
+            });
         }
 
         #region Helpers
@@ -85,7 +94,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewClientVM = new AddNewClientViewModel();
             addNewClientVM.RequestClose += (sender, args) =>
             {
-                CurrentView = BuildingsVM;
+                CurrentView = ClientVM;
             };
             CurrentView = addNewClientVM;
         }
@@ -95,9 +104,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewSupplierVM = new AddNewSupplierViewModel();
             addNewSupplierVM.RequestClose += (sender, args) =>
             {
-                CurrentView = BuildingsVM;
+                CurrentView = SuppliersVM;
             };
             CurrentView = addNewSupplierVM;
+        }
+
+        private void OnAddNewProjectRequested()
+        {
+            var addNewProjectVM = new AddNewProjectViewModel();
+            addNewProjectVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = ProjectsVM;
+            };
+            CurrentView = addNewProjectVM;
         }
         #endregion
     }
