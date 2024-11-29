@@ -28,8 +28,6 @@
         <Button x:Name="AddNewBuildind"
                 Grid.Column="1"
                 Content="Dodaj nowy budynek"
-                Width="150"
-                Height="50"
                 Command="{Binding OpenAddNewBuildingCommand}"
                 Style="{StaticResource CommonNormalButtonTheme}"
                 />
