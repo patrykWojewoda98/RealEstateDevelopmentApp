@@ -15,8 +15,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class MaintenanceRequests
     {
         public int RequestID { get; set; }
-        public Nullable<int> ApartmentID { get; set; }
-        public Nullable<int> ClientID { get; set; }
+        public int ApartmentID { get; set; }
+        public int ClientID { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> RequestDate { get; set; }
         public string Status { get; set; }

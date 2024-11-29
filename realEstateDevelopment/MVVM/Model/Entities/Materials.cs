@@ -15,10 +15,10 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class Materials
     {
         public int MaterialID { get; set; }
-        public Nullable<int> SupplierID { get; set; }
+        public int SupplierID { get; set; }
         public string MaterialName { get; set; }
         public string Type { get; set; }
-        public Nullable<decimal> UnitPrice { get; set; }
+        public decimal UnitPrice { get; set; }
     
         public virtual Suppliers Suppliers { get; set; }
     }

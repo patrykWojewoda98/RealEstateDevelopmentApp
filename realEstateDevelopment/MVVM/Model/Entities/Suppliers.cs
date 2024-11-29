@@ -17,7 +17,6 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Suppliers()
         {
-            this.Contracts = new HashSet<Contracts>();
             this.Materials = new HashSet<Materials>();
         }
     
@@ -27,8 +26,6 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public string Contact { get; set; }
         public string Address { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contracts> Contracts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Materials> Materials { get; set; }
     }

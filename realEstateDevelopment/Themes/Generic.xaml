@@ -4,14 +4,14 @@
     xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View">
 
 
-    <ControlTemplate x:Key="AddNewBuildingTemplate" TargetType="{x:Type ContentControl}">
+    <ControlTemplate x:Key="AddButtonTemplate" TargetType="{x:Type ContentControl}">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <ContentPresenter Content="{TemplateBinding Content}"/>
-            <Button Grid.Row="1" Content="Zapisz i zamknij" Style="{DynamicResource CommonNormalButtonTheme}"/>
+            <Button Grid.Row="1" Content="Zapisz i zamknij" Style="{DynamicResource CommonNormalButtonTheme}" Command="{Binding SaveCommand}"/>
         </Grid>
     </ControlTemplate>
     

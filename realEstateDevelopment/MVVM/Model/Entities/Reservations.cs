@@ -15,12 +15,9 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class Reservations
     {
         public int ReservationID { get; set; }
-        public Nullable<int> ClientID { get; set; }
-        public Nullable<int> ApartmentID { get; set; }
-        public Nullable<System.DateTime> ReservationDate { get; set; }
+        public int ClientID { get; set; }
+        public int ApartmentID { get; set; }
+        public System.DateTime ReservationDate { get; set; }
         public string Status { get; set; }
-    
-        public virtual Apartments Apartments { get; set; }
-        public virtual Clients Clients { get; set; }
     }
 }

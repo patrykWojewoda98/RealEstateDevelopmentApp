@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.BuildingsView"
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.ClientView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,8 +6,6 @@
              xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="380"/>
@@ -15,21 +13,21 @@
         </Grid.ColumnDefinitions>
         <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding BuildingID}"/>
-                <DataGridTextColumn Header="Id projektu" Binding="{Binding ProjectID}"/>
-                <DataGridTextColumn Header="Nazwa budynku" Binding="{Binding BuildingName}"/>
-                <DataGridTextColumn Header="Liczba pienter" Binding="{Binding Floors}"/>
-                <DataGridTextColumn Header="Ukończono" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding ClientID}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Numer Telefonu" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="AdresEmail" Binding="{Binding Email}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="Tu będą filtry"
-                   Grid.Column="1"
-                   Foreground="White"/>
+               Grid.Column="1"
+               Foreground="White"/>
         <Button x:Name="AddNewBuildind"
-                Grid.Column="1"
-                Content="Dodaj nowy budynek"
-                Command="{Binding OpenAddNewBuildingCommand}"
-                Style="{StaticResource CommonNormalButtonTheme}"
-                />
+            Grid.Column="1"
+            Content="Dodaj nowego klienta"
+            Command="{Binding OpenAddNewClientCommand}"
+            Style="{StaticResource CommonNormalButtonTheme}"
+            />
     </Grid>
 </UserControl>

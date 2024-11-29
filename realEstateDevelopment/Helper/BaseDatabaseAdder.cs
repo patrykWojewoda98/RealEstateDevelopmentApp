@@ -8,7 +8,7 @@ namespace realEstateDevelopment.Helper
     public abstract class BaseDatabaseAdder<T> : WorkspaceViewModel
     {
         #region Db
-        protected RealEstateEntities estateEntities;
+        protected RealEstateDeveloperDBEntities estateEntities;
         #endregion
 
         #region Item
@@ -32,7 +32,7 @@ namespace realEstateDevelopment.Helper
         #region Constructor
         public BaseDatabaseAdder()
         {
-            estateEntities = new RealEstateEntities();
+            estateEntities = new RealEstateDeveloperDBEntities();
         }
         #endregion
 

@@ -7,16 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 namespace realEstateDevelopment.MVVM.Model.Entities
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RealEstateEntities : DbContext
+    public partial class RealEstateDeveloperDBEntities : DbContext
     {
-        public RealEstateEntities()
+        public RealEstateDeveloperDBEntities()
             : base("name=RealEstateDeveloperDBEntities")
         {
         }
@@ -30,13 +29,13 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public virtual DbSet<Buildings> Buildings { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<ConstructionSchedule> ConstructionSchedule { get; set; }
-        public virtual DbSet<Contracts> Contracts { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Expenses> Expenses { get; set; }
         public virtual DbSet<MaintenanceRequests> MaintenanceRequests { get; set; }
         public virtual DbSet<Materials> Materials { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Rental> Rental { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }

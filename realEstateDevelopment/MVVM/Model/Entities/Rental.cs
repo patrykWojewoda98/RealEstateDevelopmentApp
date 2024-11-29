@@ -12,16 +12,17 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Contracts
+    public partial class Rental
     {
-        public int ContractID { get; set; }
-        public Nullable<int> SupplierID { get; set; }
-        public Nullable<int> ProjectID { get; set; }
-        public string ScopeOfWork { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public int RentId { get; set; }
+        public int ApartmentId { get; set; }
+        public int ClientId { get; set; }
+        public decimal Amount { get; set; }
+        public System.DateTime StartOfRental { get; set; }
+        public Nullable<System.DateTime> EndOfRental { get; set; }
     
-        public virtual Projects Projects { get; set; }
-        public virtual Suppliers Suppliers { get; set; }
+        public virtual Apartments Apartments { get; set; }
+        public virtual Clients Clients { get; set; }
+        public virtual Clients Clients1 { get; set; }
     }
 }

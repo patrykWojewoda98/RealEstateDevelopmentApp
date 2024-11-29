@@ -15,10 +15,10 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class Expenses
     {
         public int ExpenseID { get; set; }
-        public Nullable<int> ProjectID { get; set; }
+        public int ProjectID { get; set; }
         public string ExpenseType { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public Nullable<System.DateTime> ExpenseDate { get; set; }
+        public decimal Amount { get; set; }
+        public System.DateTime ExpenseDate { get; set; }
     
         public virtual Projects Projects { get; set; }
     }

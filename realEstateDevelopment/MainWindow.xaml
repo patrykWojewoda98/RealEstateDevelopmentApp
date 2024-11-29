@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:realEstateDevelopment"
         xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="600" Width="950"
+        Height="800" Width="950"
         ResizeMode="NoResize"
         Background="Transparent"
         >
@@ -53,6 +53,29 @@
                      Style="{StaticResource MenuButtonTheme}"
                      Command="{Binding BuildingsViewCommand}"
                  />
+                <RadioButton Content="Mieszkania"
+                     Height="50"
+                     Foreground="White"
+                     FontSize="14"
+                     Style="{StaticResource MenuButtonTheme}"
+                     Command="{Binding ApartmentsViewCommand}"
+                 />
+
+                <RadioButton Content="Klient"
+                    Height="50"
+                    Foreground="White"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding ClientsViewCommand}"
+                />
+
+                <RadioButton Content="Projekt"
+                    Height="50"
+                    Foreground="White"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonTheme}"
+                    Command="{Binding ProjectViewCommand}"
+                />
 
                 <RadioButton Content="Kontrakty"
                      Height="50"

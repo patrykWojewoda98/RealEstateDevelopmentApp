@@ -21,9 +21,9 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         }
     
         public int BuildingID { get; set; }
-        public Nullable<int> ProjectID { get; set; }
+        public int ProjectID { get; set; }
         public string BuildingName { get; set; }
-        public Nullable<int> Floors { get; set; }
+        public int Floors { get; set; }
         public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

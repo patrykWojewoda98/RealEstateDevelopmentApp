@@ -67,54 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
-    <Compile Include="Themes\AddEntityTemplate.cs" />
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ObservableObject.cs" />
-    <Compile Include="Core\RealyCommand.cs" />
-    <Compile Include="Helper\BaseCommand.cs" />
-    <Compile Include="Helper\BaseDatabaseAdder.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="MVVM\View\AddNewBuildingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\BuildingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MVVM\View\HomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\ButtonTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\MenuButtonTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Themes\TextboxTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MVVM\Model\Entities\Apartments.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -125,9 +77,6 @@
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\ConstructionSchedule.cs">
-      <DependentUpon>RealEstateModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MVVM\Model\Entities\Contracts.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\Employees.cs">
@@ -163,6 +112,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Model\Entities\Rental.cs">
+      <DependentUpon>RealEstateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\Entities\Reservations.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -175,6 +127,70 @@
     <Compile Include="MVVM\Model\Entities\sysdiagrams.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewClientViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
+    <Compile Include="MVVM\View\AddNewClientView.xaml.cs">
+      <DependentUpon>AddNewClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ClientView.xaml.cs">
+      <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\AddEntityTemplate.cs" />
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ObservableObject.cs" />
+    <Compile Include="Core\RealyCommand.cs" />
+    <Compile Include="Helper\BaseCommand.cs" />
+    <Compile Include="Helper\BaseDatabaseAdder.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MVVM\View\AddNewBuildingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AddNewClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\BuildingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\MenuButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextboxTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="MVVM\ViewModel\BaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\BuildingsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HomeViewModel.cs" />
@@ -230,6 +246,9 @@
     <Resource Include="Images\apartment_3938871.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>
@@ -240,9 +259,6 @@
       <DependentUpon>RealEstateModel.edmx</DependentUpon>
       <LastGenOutput>RealEstateModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

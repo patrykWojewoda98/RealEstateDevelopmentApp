@@ -20,6 +20,7 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public string LastName { get; set; }
         public string Position { get; set; }
         public string Department { get; set; }
+        public Nullable<decimal> Salary { get; set; }
     
         public virtual Projects Projects { get; set; }
     }

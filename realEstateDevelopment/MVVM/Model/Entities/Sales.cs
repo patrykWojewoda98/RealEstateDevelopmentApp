@@ -15,10 +15,10 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class Sales
     {
         public int SaleID { get; set; }
-        public Nullable<int> ClientID { get; set; }
-        public Nullable<int> ApartmentID { get; set; }
-        public Nullable<decimal> SalePrice { get; set; }
-        public Nullable<System.DateTime> SaleDate { get; set; }
+        public int ClientID { get; set; }
+        public int ApartmentID { get; set; }
+        public decimal SalePrice { get; set; }
+        public System.DateTime SaleDate { get; set; }
         public string Status { get; set; }
     
         public virtual Apartments Apartments { get; set; }

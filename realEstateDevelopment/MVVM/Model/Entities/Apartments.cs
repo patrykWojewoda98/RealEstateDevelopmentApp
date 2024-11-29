@@ -18,23 +18,23 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public Apartments()
         {
             this.MaintenanceRequests = new HashSet<MaintenanceRequests>();
-            this.Reservations = new HashSet<Reservations>();
+            this.Rental = new HashSet<Rental>();
             this.Sales = new HashSet<Sales>();
         }
     
         public int ApartmentID { get; set; }
-        public Nullable<int> BuildingID { get; set; }
+        public int BuildingID { get; set; }
         public string ApartmentNumber { get; set; }
-        public Nullable<decimal> Area { get; set; }
-        public Nullable<int> RoomCount { get; set; }
-        public Nullable<int> Floor { get; set; }
+        public decimal Area { get; set; }
+        public int RoomCount { get; set; }
+        public int Floor { get; set; }
         public string Status { get; set; }
     
         public virtual Buildings Buildings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MaintenanceRequests> MaintenanceRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservations> Reservations { get; set; }
+        public virtual ICollection<Rental> Rental { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales> Sales { get; set; }
     }

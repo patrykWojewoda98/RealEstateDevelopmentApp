@@ -15,9 +15,9 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     public partial class ConstructionSchedule
     {
         public int ScheduleID { get; set; }
-        public Nullable<int> ProjectID { get; set; }
+        public int ProjectID { get; set; }
         public string ConstructionPhase { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Status { get; set; }
     
