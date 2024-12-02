@@ -16,7 +16,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding SupplierID}"/>
                 <DataGridTextColumn Header="Nazwa Firmy" Binding="{Binding CompanyName}"/>
                 <DataGridTextColumn Header="Numer Telefonu" Binding="{Binding Contact}"/>
-                <DataGridTextColumn Header="Adres" Binding="{Binding Addres}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="Tu będą filtry"
