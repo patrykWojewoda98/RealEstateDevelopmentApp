@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
+             xmlns:modalViewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel.Modals"
              xmlns:view="clr-namespace:realEstateDevelopment.MVVM.View"
+             xmlns:modalView="clr-namespace:realEstateDevelopment.MVVM.View.Modals"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -40,6 +42,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:AddNewProjectViewModel}">
                 <view:AddNewProjectView/>
+            </DataTemplate>
+
+
+
+            <DataTemplate DataType="{x:Type modalViewModel:ErrorModalViewModel}">
+                <modalView:ErrorModalView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

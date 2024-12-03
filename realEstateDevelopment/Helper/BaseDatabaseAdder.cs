@@ -7,6 +7,11 @@ namespace realEstateDevelopment.Helper
 {
     public abstract class BaseDatabaseAdder<T> : WorkspaceViewModel
     {
+        #region Properties
+        protected bool isDataCorrect;
+        protected string potentialErrors;
+        #endregion
+
         #region Db
         protected RealEstateDeveloperDBEntities estateEntities;
         #endregion

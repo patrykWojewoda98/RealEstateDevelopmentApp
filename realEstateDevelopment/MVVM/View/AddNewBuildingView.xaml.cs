@@ -1,11 +1,11 @@
 ﻿using realEstateDevelopment.Themes;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for AddNewBuildingView.xaml
-    /// </summary>
+    
     public partial class AddNewBuildingView : UserControl
     {
         public AddNewBuildingView()

@@ -1,5 +1,8 @@
 ﻿using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
+using System.Collections.Generic;
+using System;
+using realEstateDevelopment.MVVM.View.Modals;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -79,12 +82,53 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         #endregion
 
+        #region Validation
+        public void Validate()
+        {
+            isDataCorrect = true;
+            var errors = new List<string>();
+            if (ProjectID <= 0)
+            {
+                errors.Add("Numer projektu nie może być mniejszy lub równy 0");
+                isDataCorrect = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BuildingName))
+            {
+                errors.Add("Nazwa budynku jest wymagana.");
+                isDataCorrect = false;
+            }
+
+            if (Floors < 0)
+            {
+                errors.Add("Liczba pięter musi być większa bądź równa 0.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(Status))
+            {
+                errors.Add("Status budynku jest wymagany.");
+                isDataCorrect = false;
+            }
+            potentialErrors = string.Join(Environment.NewLine, errors);
+        }
+        #endregion
+
+
         #region Helpers
 
         public override void Save()
         {
-            estateEntities.Buildings.Add(item);
-            estateEntities.SaveChanges();
+            Validate();
+            if (isDataCorrect)
+            {
+                estateEntities.Buildings.Add(item);
+                estateEntities.SaveChanges();
+            }
+            else
+            {
+                var errorModal = new ErrorModalView(potentialErrors);
+                errorModal.ShowDialog();
+            }
         }
         #endregion
     }

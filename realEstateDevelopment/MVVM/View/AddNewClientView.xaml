@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.AddNewClientView"
+             xmlns:helper="clr-namespace:realEstateDevelopment.Helper"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -26,7 +27,9 @@
         <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Numer telefonu" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+                 Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                 helper:NumericValidationHelper.NumericOnly="True"/>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Adres Email" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
