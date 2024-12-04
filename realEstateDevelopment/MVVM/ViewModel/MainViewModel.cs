@@ -11,6 +11,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public RealyCommand ClientsViewCommand { get; set; }
         public RealyCommand SuppliersViewCommand { get; set; }
         public RealyCommand ProjectsViewCommand { get; set; }
+        public RealyCommand ApartmentsViewCommand { get; set; }
         #endregion
 
 
@@ -20,6 +21,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public ClientViewModel ClientVM { get; set; }
         public SuppliersViewModel SuppliersVM { get; set; }
         public ProjectsViewModel ProjectsVM { get; set; }
+        public ApartmentsViewModel ApartmentsVM { get; set; }
         private object _currentView;
         #endregion
 
@@ -41,11 +43,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
             ClientVM = new ClientViewModel();
             SuppliersVM = new SuppliersViewModel();
             ProjectsVM = new ProjectsViewModel();
+            ApartmentsVM = new ApartmentsViewModel();
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
             ClientVM.AddNewClientRequested += OnAddNewClientRequested;
             SuppliersVM.AddNewSupplierRequest += OnAddNewSupplierRequested;
             ProjectsVM.AddNewProjectRequested += OnAddNewProjectRequested;
+            ApartmentsVM.AddNewApartmentRequested += OnAddNewApartmentRequested;
 
 
 
@@ -75,6 +79,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             ProjectsViewCommand = new RealyCommand(o =>
             {
                 CurrentView = ProjectsVM;
+            });
+
+            ApartmentsViewCommand = new RealyCommand(o =>
+            {
+                CurrentView = ApartmentsVM;
             });
         }
 
@@ -117,6 +126,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = ProjectsVM;
             };
             CurrentView = addNewProjectVM;
+        }
+
+        private void OnAddNewApartmentRequested()
+        {
+            var addNewApartmentVM = new AddNewApartmentViewModel();
+            addNewApartmentVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = ProjectsVM;
+            };
+            CurrentView = addNewApartmentVM;
         }
         #endregion
     }

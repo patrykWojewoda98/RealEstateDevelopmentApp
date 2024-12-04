@@ -43,6 +43,13 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewProjectViewModel}">
                 <view:AddNewProjectView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ApartmentsViewModel}">
+                <view:ApartmentsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewApartmentViewModel}">
+                <view:AddNewApartmentView/>
+            </DataTemplate>
+
 
 
 

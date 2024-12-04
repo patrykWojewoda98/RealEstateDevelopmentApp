@@ -132,14 +132,19 @@
     <Compile Include="MVVM\Model\Entities\sysdiagrams.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\ViewModel\AddNewApartmentViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewProjectViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SuppliersViewModel.cs" />
+    <Compile Include="MVVM\View\AddNewApartmentView.xaml.cs">
+      <DependentUpon>AddNewApartmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\AddNewClientView.xaml.cs">
       <DependentUpon>AddNewClientView.xaml</DependentUpon>
     </Compile>
@@ -148,6 +153,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewSupplierView.xaml.cs">
       <DependentUpon>AddNewSupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ApartmentsView.xaml.cs">
+      <DependentUpon>ApartmentsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ClientView.xaml.cs">
       <DependentUpon>ClientView.xaml</DependentUpon>
@@ -178,6 +186,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MVVM\View\AddNewApartmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\AddNewBuildingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewSupplierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ApartmentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
