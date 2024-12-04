@@ -21,9 +21,10 @@
                 <DataGridTextColumn Header="Numer Budynku" Binding="{Binding BuildingNumber}"/>
                 <DataGridTextColumn Header="Liczba Pięter" Binding="{Binding Floors}"/>
                 <DataGridTextColumn Header="Liczba Mieszkań" Binding="{Binding NumberOfApartments}"/>
-                <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
                 <DataGridTextColumn Header="Data rozpoczecia" Binding="{Binding StartDate}"/>
                 <DataGridTextColumn Header="Data zakończenia" Binding="{Binding EndDate}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="Tu będą filtry"

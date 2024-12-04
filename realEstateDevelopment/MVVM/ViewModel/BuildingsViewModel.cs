@@ -1,5 +1,6 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class BuildingsViewModel : LoadAllViewModel<Buildings>
+    public class BuildingsViewModel : LoadAllViewModel<BuildingsEntityForView>
     {
         #region Commands
         public RealyCommand OpenAddNewBuildingCommand { get; set; }
@@ -33,11 +34,27 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var buildings = await Task.Run(() => realEstateEntities.Buildings.ToList());
-            List = new ObservableCollection<Buildings>(buildings); 
-        }
+            var buildings = realEstateEntities.Buildings;
+            var project = realEstateEntities.Projects;
 
-        
+            List = new ObservableCollection<BuildingsEntityForView>(buildings.Join(project,
+                                                                                            b => b.ProjectID,
+                                                                                            p => p.ProjectID,
+                                                                                            (b,p) => new BuildingsEntityForView
+                                                                                            {
+                                                                                                BuildingID = b.BuildingID,
+                                                                                                BuildingName = b.BuildingName,
+                                                                                                ProjectID = b.ProjectID,
+                                                                                                BuildingNumber = b.BuildingNumber,
+                                                                                                Floors = b.Floors,
+                                                                                                Status = b.Status,
+                                                                                                Address = p.Location,
+                                                                                            })
+                .ToList());
+
+
+
+        }
         #endregion
     }
 }

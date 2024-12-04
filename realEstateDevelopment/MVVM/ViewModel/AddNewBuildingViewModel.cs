@@ -3,6 +3,8 @@ using realEstateDevelopment.MVVM.Model.Entities;
 using System.Collections.Generic;
 using System;
 using realEstateDevelopment.MVVM.View.Modals;
+using System.Linq;
+
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -60,18 +62,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
         }
 
-        public string Adres
-        {
-            get
-            {
-                return item.Adres;
-            }
-            set
-            {
-                item.Adres = value;
-                OnPropertyChanged(() => Adres);
-            }
-        }
+        
         public int Floors
         {
             get
@@ -113,6 +104,15 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             isDataCorrect = true;
             var errors = new List<string>();
+            var db = new RealEstateEntities();
+            
+            if(db.Buildings.Any(b => b.BuildingNumber == item.BuildingNumber))
+            {
+                errors.Add("Budynek o podanym Numerze już istnieje.");
+                isDataCorrect=false;
+            }
+
+
             if (ProjectID <= 0)
             {
                 errors.Add("Numer projektu nie może być mniejszy lub równy 0");
@@ -128,12 +128,6 @@ namespace realEstateDevelopment.MVVM.ViewModel
             if (string.IsNullOrWhiteSpace(BuildingNumber))
             {
                 errors.Add("Numer budynku jest wymagany.");
-                isDataCorrect = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(Adres))
-            {
-                errors.Add("Adres budynku jest wymagany.");
                 isDataCorrect = false;
             }
 

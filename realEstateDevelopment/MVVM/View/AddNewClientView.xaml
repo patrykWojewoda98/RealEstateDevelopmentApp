@@ -17,6 +17,9 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
 
         </Grid.RowDefinitions>
@@ -26,14 +29,27 @@
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko klienta" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Numer telefonu" Foreground="White"/>
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Pesel" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+         Text="{Binding Path=Pesel, UpdateSourceTrigger=PropertyChanged}"
+         helper:NumericValidationHelper.NumericOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Numer dowodu osobistego" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
+         Text="{Binding Path=IdCardNumber, UpdateSourceTrigger=PropertyChanged}"
+         helper:NumericValidationHelper.NumericOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Seria dowodu osobistego" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=IdCardSeries, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Numer telefonu" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
                  Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
                  helper:NumericValidationHelper.NumericOnly="True"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Adres Email" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Adres Email" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
         
-        <ContentControl Grid.Column="1" Grid.Row="5" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="7" Template="{StaticResource AddButtonTemplate}"/>
     </Grid>
 </UserControl>

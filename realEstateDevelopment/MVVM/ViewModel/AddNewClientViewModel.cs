@@ -61,6 +61,45 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
         }
 
+        public string Pesel
+        {
+            get
+            {
+                return item.Pesel;
+            }
+            set
+            {
+                item.Pesel = value;
+                OnPropertyChanged(() => Pesel);
+            }
+        }
+
+        public int IdCardNumber
+        {
+            get
+            {
+                return item.IdCardNumber;
+            }
+            set
+            {
+                item.IdCardNumber = value;
+                OnPropertyChanged(() => IdCardNumber);
+            }
+        }
+
+        public string IdCardSeries
+        {
+            get
+            {
+                return item.IdCardSeries;
+            }
+            set
+            {
+                item.IdCardSeries = value;
+                OnPropertyChanged(() => IdCardSeries);
+            }
+        }
+
 
         #endregion
 
@@ -89,6 +128,26 @@ namespace realEstateDevelopment.MVVM.ViewModel
             if (string.IsNullOrWhiteSpace(PhoneNumber))
             {
                 errors.Add("Numer telefonu jest wymagany.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(Pesel))
+            {
+                errors.Add("Pesel jest wymagany.");
+                isDataCorrect = false;
+            }
+            if (99999>IdCardNumber)
+            {
+                errors.Add("Numer dowodu osobistego nie może być liczbą 5cyfrową lub mniej.");
+                isDataCorrect = false;
+            }
+            if (999999 < IdCardNumber)
+            {
+                errors.Add("Numer dowodu osobistego nie może być liczbą 7cyfrową lub wiecej.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(IdCardSeries) || IdCardSeries.Length != 3)
+            {
+                errors.Add("Seria dowodu osobistego musi zawierać dokładnie 3 znaki\"");
                 isDataCorrect = false;
             }
 
