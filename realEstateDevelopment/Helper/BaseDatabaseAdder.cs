@@ -13,7 +13,7 @@ namespace realEstateDevelopment.Helper
         #endregion
 
         #region Db
-        protected RealEstateDeveloperDBEntities estateEntities;
+        protected RealEstateEntities estateEntities;
         #endregion
 
         #region Item
@@ -37,7 +37,7 @@ namespace realEstateDevelopment.Helper
         #region Constructor
         public BaseDatabaseAdder()
         {
-            estateEntities = new RealEstateDeveloperDBEntities();
+            estateEntities = new RealEstateEntities();
         }
         #endregion
 

@@ -22,7 +22,6 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     
         public int SupplierID { get; set; }
         public string CompanyName { get; set; }
-        public string MaterialType { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
     

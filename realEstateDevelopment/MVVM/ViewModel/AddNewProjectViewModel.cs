@@ -1,6 +1,8 @@
 ﻿using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using System;
+using realEstateDevelopment.MVVM.View.Modals;
+using System.Collections.Generic;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -83,27 +85,41 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         #endregion
 
+        #region Validation
+        public void Validate()
+        {
+            isDataCorrect = true;
+            var errors = new List<string>();
+
+
+            if (string.IsNullOrWhiteSpace(ProjectName))
+            {
+                errors.Add("Nazwa projektu jest wymagana.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(Location))
+            {
+                errors.Add("Lokalizacja projektu jest wymagana.");
+                isDataCorrect = false;
+            }
+            potentialErrors = string.Join(Environment.NewLine, errors);
+        }
+        #endregion
+
         #region Helpers
 
         public override void Save()
         {
-            try
+            Validate();
+            if (isDataCorrect)
             {
                 estateEntities.Projects.Add(item);
                 estateEntities.SaveChanges();
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            else
             {
-                foreach (var validationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        Console.WriteLine($"Property: {validationError.PropertyName}, Error: {validationError.ErrorMessage}");
-                    }
-                }
-
-                // Możesz rzucić wyjątek ponownie, aby debugować dalej
-                throw;
+                var errorModal = new ErrorModalView(potentialErrors);
+                errorModal.ShowDialog();
             }
         }
         #endregion

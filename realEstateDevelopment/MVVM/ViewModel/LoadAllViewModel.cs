@@ -9,7 +9,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public abstract class LoadAllViewModel<T> : WorkspaceViewModel 
     {
         #region Fields
-        protected readonly RealEstateDeveloperDBEntities realEstateEntities;
+        protected readonly RealEstateEntities realEstateEntities;
         private BaseCommand _LoadCommand;
         private ObservableCollection<T> _List;
         #endregion
@@ -44,7 +44,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             #region Constructor
             public LoadAllViewModel()
             {
-                realEstateEntities = new RealEstateDeveloperDBEntities();
+                realEstateEntities = new RealEstateEntities();
             }
         #endregion
 

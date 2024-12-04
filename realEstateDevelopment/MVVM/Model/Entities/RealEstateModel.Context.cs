@@ -13,10 +13,10 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RealEstateDeveloperDBEntities : DbContext
+    public partial class RealEstateEntities : DbContext
     {
-        public RealEstateDeveloperDBEntities()
-            : base("name=RealEstateDeveloperDBEntities")
+        public RealEstateEntities()
+            : base("name=RealEstateEntities")
         {
         }
     
@@ -40,5 +40,6 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<EmployeeProjects> EmployeeProjects { get; set; }
     }
 }

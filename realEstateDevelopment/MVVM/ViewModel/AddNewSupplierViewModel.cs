@@ -1,5 +1,8 @@
 ﻿using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
+using System.Collections.Generic;
+using System;
+using realEstateDevelopment.MVVM.View.Modals;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -43,18 +46,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => Address);
             }
         }
-        public string MaterialType
-        {
-            get
-            {
-                return item.MaterialType;
-            }
-            set
-            {
-                item.MaterialType = value;
-                OnPropertyChanged(() => MaterialType);
-            }
-        }
+      
 
         #endregion
 
@@ -64,10 +56,45 @@ namespace realEstateDevelopment.MVVM.ViewModel
             item = new Suppliers();
         }
         #endregion
+
+        #region Validation
+        public void Validate()
+        {
+            isDataCorrect = true;
+            var errors = new List<string>();
+            if (string.IsNullOrWhiteSpace(CompanyName))
+            {
+                errors.Add("Nazwa firmy jest wymagana.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(Contact))
+            {
+                errors.Add("Kontakt jest wymagany.");
+                isDataCorrect = false;
+            }
+            if (string.IsNullOrWhiteSpace(Address))
+            {
+                errors.Add("Adres jest wymagany.");
+                isDataCorrect = false;
+            }
+            potentialErrors = string.Join(Environment.NewLine, errors);
+        }
+        #endregion
+        #region Helpers
         public override void Save()
         {
-            estateEntities.Suppliers.Add(item);
-            estateEntities.SaveChanges();
+            Validate();
+            if (isDataCorrect)
+            {
+                estateEntities.Suppliers.Add(item);
+                estateEntities.SaveChanges();
+            }
+            else
+            {
+                var errorModal = new ErrorModalView(potentialErrors);
+                errorModal.ShowDialog();
+            }
         }
+        #endregion
     }
 }

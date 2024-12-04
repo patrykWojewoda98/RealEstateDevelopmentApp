@@ -14,14 +14,20 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     
     public partial class Employees
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employees()
+        {
+            this.EmployeeProjects = new HashSet<EmployeeProjects>();
+        }
+    
         public int EmployeeID { get; set; }
-        public Nullable<int> ProjectID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Position { get; set; }
         public string Department { get; set; }
         public Nullable<decimal> Salary { get; set; }
     
-        public virtual Projects Projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
     }
 }

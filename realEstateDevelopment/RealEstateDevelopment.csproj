@@ -81,6 +81,9 @@
     <Compile Include="MVVM\Model\Entities\ConstructionSchedule.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Model\Entities\EmployeeProjects.cs">
+      <DependentUpon>RealEstateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\Entities\Employees.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>

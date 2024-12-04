@@ -25,6 +25,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public string BuildingName { get; set; }
         public int Floors { get; set; }
         public string Status { get; set; }
+        public string Adres { get; set; }
+        public string BuildingNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apartments> Apartments { get; set; }

@@ -19,8 +19,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         {
             this.Buildings = new HashSet<Buildings>();
             this.ConstructionSchedule = new HashSet<ConstructionSchedule>();
-            this.Employees = new HashSet<Employees>();
             this.Expenses = new HashSet<Expenses>();
+            this.EmployeeProjects = new HashSet<EmployeeProjects>();
         }
     
         public int ProjectID { get; set; }
@@ -35,8 +35,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ConstructionSchedule> ConstructionSchedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employees> Employees { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expenses> Expenses { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
     }
 }
