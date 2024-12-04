@@ -49,6 +49,9 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewApartmentViewModel}">
                 <view:AddNewApartmentView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ConstructionScheduleViewModel}">
+                <view:ConstructionScheduleView/>
+            </DataTemplate>
 
 
 

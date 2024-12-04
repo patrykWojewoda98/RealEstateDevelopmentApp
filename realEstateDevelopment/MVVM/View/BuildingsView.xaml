@@ -10,7 +10,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="480"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
@@ -18,6 +18,8 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding BuildingID}"/>
                 <DataGridTextColumn Header="Id projektu" Binding="{Binding ProjectID}"/>
                 <DataGridTextColumn Header="Nazwa budynku" Binding="{Binding BuildingName}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Numer budynku" Binding="{Binding BuildingNumber}"/>
                 <DataGridTextColumn Header="Liczba pienter" Binding="{Binding Floors}"/>
                 <DataGridTextColumn Header="Ukończono" Binding="{Binding Status}"/>
             </DataGrid.Columns>

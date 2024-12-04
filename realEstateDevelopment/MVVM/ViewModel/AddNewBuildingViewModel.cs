@@ -22,6 +22,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
         }
 
+        public string BuildingNumber
+        {
+            get
+            {
+                return item.BuildingNumber;
+            }
+            set
+            {
+                item.BuildingNumber = value;
+                OnPropertyChanged(() => BuildingNumber);
+            }
+        }
+
         public int ProjectID
         {
             get
@@ -44,6 +57,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 item.BuildingName = value;
                 OnPropertyChanged(() => BuildingName);
+            }
+        }
+
+        public string Adres
+        {
+            get
+            {
+                return item.Adres;
+            }
+            set
+            {
+                item.Adres = value;
+                OnPropertyChanged(() => Adres);
             }
         }
         public int Floors
@@ -96,6 +122,18 @@ namespace realEstateDevelopment.MVVM.ViewModel
             if (string.IsNullOrWhiteSpace(BuildingName))
             {
                 errors.Add("Nazwa budynku jest wymagana.");
+                isDataCorrect = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(BuildingNumber))
+            {
+                errors.Add("Numer budynku jest wymagany.");
+                isDataCorrect = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Adres))
+            {
+                errors.Add("Adres budynku jest wymagany.");
                 isDataCorrect = false;
             }
 

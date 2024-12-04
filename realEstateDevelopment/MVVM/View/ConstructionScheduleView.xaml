@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.ConstructionScheduleView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
+         mc:Ignorable="d" 
+         d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding ScheduleID}"/>
+                <DataGridTextColumn Header="Nazwa Budynku" Binding="{Binding BuildingName}"/>
+                <DataGridTextColumn Header="Numer Budynku" Binding="{Binding BuildingNumber}"/>
+                <DataGridTextColumn Header="Liczba Pięter" Binding="{Binding Floors}"/>
+                <DataGridTextColumn Header="Liczba Mieszkań" Binding="{Binding NumberOfApartments}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Adres}"/>
+                <DataGridTextColumn Header="Data rozpoczecia" Binding="{Binding StartDate}"/>
+                <DataGridTextColumn Header="Data zakończenia" Binding="{Binding EndDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Tu będą filtry"
+           Grid.Row="0"
+           Foreground="White"/>
+        
+    </Grid>
+</UserControl>
