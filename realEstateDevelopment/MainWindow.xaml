@@ -115,6 +115,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding MaintenanceRequestsCommand}"
                 />
 
                 <RadioButton Content="Kadra"
