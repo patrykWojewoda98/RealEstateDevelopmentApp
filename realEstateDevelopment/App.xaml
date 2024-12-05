@@ -5,6 +5,7 @@
              xmlns:modalViewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel.Modals"
              xmlns:view="clr-namespace:realEstateDevelopment.MVVM.View"
              xmlns:modalView="clr-namespace:realEstateDevelopment.MVVM.View.Modals"
+             
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -22,32 +23,17 @@
             <DataTemplate DataType="{x:Type viewModel:BuildingsViewModel}">
                 <view:BuildingsView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AddNewBuildingViewModel}">
-                <view:AddNewBuildingView />
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ClientViewModel}">
                 <view:ClientView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AddNewClientViewModel}">
-                <view:AddNewClientView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:SuppliersViewModel}">
                 <view:SuppliersView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AddNewSupplierViewModel}">
-                <view:AddNewSupplierView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ProjectsViewModel}">
                 <view:ProjectsView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AddNewProjectViewModel}">
-                <view:AddNewProjectView/>
-            </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ApartmentsViewModel}">
                 <view:ApartmentsView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:AddNewApartmentViewModel}">
-                <view:AddNewApartmentView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ConstructionScheduleViewModel}">
                 <view:ConstructionScheduleView/>
@@ -55,7 +41,27 @@
             <DataTemplate DataType="{x:Type viewModel:EmployeesViewModel}">
                 <view:EmployeesView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MaterialsViewModel}">
+                <view:MaterialsView/>
+            </DataTemplate>
 
+
+
+            <DataTemplate DataType="{x:Type viewModel:AddNewBuildingViewModel}">
+                <view:AddNewBuildingView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewApartmentViewModel}">
+                <view:AddNewApartmentView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewProjectViewModel}">
+                <view:AddNewProjectView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewSupplierViewModel}">
+                <view:AddNewSupplierView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewClientViewModel}">
+                <view:AddNewClientView/>
+            </DataTemplate>
 
 
             <DataTemplate DataType="{x:Type modalViewModel:ErrorModalViewModel}">
