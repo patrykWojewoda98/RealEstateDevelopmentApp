@@ -71,6 +71,7 @@
     <Compile Include="Helper\NumericValidationHelper.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ConstructionScheduleEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\EmployeesEntityForView.cs" />
     <Compile Include="MVVM\Model\Entities\Apartments.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -142,6 +143,7 @@
     <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ConstructionScheduleViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\EmployeesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SuppliersViewModel.cs" />
@@ -165,6 +167,9 @@
     </Compile>
     <Compile Include="MVVM\View\ConstructionScheduleView.xaml.cs">
       <DependentUpon>ConstructionScheduleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\EmployeesView.xaml.cs">
+      <DependentUpon>EmployeesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Modals\ErrorModalView.xaml.cs">
       <DependentUpon>ErrorModalView.xaml</DependentUpon>
@@ -225,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\ConstructionScheduleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\EmployeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

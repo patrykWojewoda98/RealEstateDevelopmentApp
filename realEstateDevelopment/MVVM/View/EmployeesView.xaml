@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.EmployeesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding EmployeeId}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName }"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="Pozycja" Binding="{Binding Position}"/>
+                <DataGridTextColumn Header="Departament" Binding="{Binding Department}"/>
+                <DataGridTextColumn Header="Wypłata" Binding="{Binding Salary}"/>
+                <DataGridComboBoxColumn Header="Lista projektów-do naprawy"
+                        SelectedItemBinding="{Binding SelectedProject}"
+                        ItemsSource="{Binding Projects}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Tu będą filtry"
+                   Grid.Row="0"
+                   Foreground="White"/>
+        <Button x:Name="AddNewBuildind"
+                Grid.Column="1"
+                Content="Dodaj nowego pracownika"
+                Command="{Binding OpenAddNewEmployeeCommand}"
+                Style="{StaticResource CommonNormalButtonTheme}"/>
+                
+    </Grid>
+</UserControl>

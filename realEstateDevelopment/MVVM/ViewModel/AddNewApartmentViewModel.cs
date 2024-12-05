@@ -124,7 +124,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 isDataCorrect = false;
             }
 
-            if (Floor <= 0)
+            if (Floor < 0)
             {
                 errors.Add("Piętro nie może być liczbą ujemną.");
                 isDataCorrect = false;
