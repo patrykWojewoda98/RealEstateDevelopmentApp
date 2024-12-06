@@ -18,6 +18,7 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public Employees()
         {
             this.EmployeeProjects = new HashSet<EmployeeProjects>();
+            this.HistoryOfChanges = new HashSet<HistoryOfChanges>();
         }
     
         public int EmployeeID { get; set; }
@@ -26,8 +27,11 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public string Position { get; set; }
         public string Department { get; set; }
         public Nullable<decimal> Salary { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeProjects> EmployeeProjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryOfChanges> HistoryOfChanges { get; set; }
     }
 }

@@ -1,6 +1,10 @@
-﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
+﻿using realEstateDevelopment.MVVM.Model.Entities;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
@@ -41,7 +45,6 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             ClientName = c.FirstName,
                             ClientSurname = c.LastName,
                             ClientPhoneNumber = c.PhoneNumber,
-                            Status = r.Status
                         };
 
             List = new ObservableCollection<ReservationsEntityForView>(query.ToList());

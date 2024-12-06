@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\NumericValidationHelper.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\ApartmentsEntitiesForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ConstructionScheduleEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\EmployeesEntityForView.cs" />
@@ -96,6 +97,9 @@
     <Compile Include="MVVM\Model\Entities\Expenses.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\Model\Entities\HistoryOfChanges.cs">
+      <DependentUpon>RealEstateModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\Model\Entities\MaintenanceRequests.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -106,6 +110,9 @@
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\Projects.cs">
+      <DependentUpon>RealEstateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\Entities\Purchases.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\RealEstateModel.Context.cs">
@@ -127,6 +134,9 @@
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\Reservations.cs">
+      <DependentUpon>RealEstateModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\Model\Entities\Revenues.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MVVM\Model\Entities\Sales.cs">

@@ -24,7 +24,6 @@
                 <DataGridTextColumn Header="Imię " Binding="{Binding ClientName}"/>
                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding ClientSurname}"/>
                 <DataGridTextColumn Header="Kontakt" Binding="{Binding ClientPhoneNumber}"/>
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="Tu będą filtry"

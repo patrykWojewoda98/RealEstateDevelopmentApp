@@ -16,8 +16,7 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     {
         public int EmployeeID { get; set; }
         public int ProjectID { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public int Id { get; set; }
     
         public virtual Employees Employees { get; set; }
         public virtual Projects Projects { get; set; }

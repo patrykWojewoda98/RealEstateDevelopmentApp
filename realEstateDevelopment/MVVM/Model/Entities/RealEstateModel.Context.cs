@@ -29,17 +29,20 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public virtual DbSet<Buildings> Buildings { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<ConstructionSchedule> ConstructionSchedule { get; set; }
+        public virtual DbSet<EmployeeProjects> EmployeeProjects { get; set; }
         public virtual DbSet<Employees> Employees { get; set; }
         public virtual DbSet<Expenses> Expenses { get; set; }
+        public virtual DbSet<HistoryOfChanges> HistoryOfChanges { get; set; }
         public virtual DbSet<MaintenanceRequests> MaintenanceRequests { get; set; }
         public virtual DbSet<Materials> Materials { get; set; }
         public virtual DbSet<Payments> Payments { get; set; }
         public virtual DbSet<Projects> Projects { get; set; }
+        public virtual DbSet<Purchases> Purchases { get; set; }
         public virtual DbSet<Rental> Rental { get; set; }
         public virtual DbSet<Reservations> Reservations { get; set; }
+        public virtual DbSet<Revenues> Revenues { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<EmployeeProjects> EmployeeProjects { get; set; }
     }
 }

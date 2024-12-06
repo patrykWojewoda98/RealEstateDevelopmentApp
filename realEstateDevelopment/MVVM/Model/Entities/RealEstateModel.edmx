@@ -52,19 +52,13 @@
           <Property Name="EndDate" Type="date" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EmployeeProjects">
           <Key>
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="ProjectID" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
+            <PropertyRef Name="Id" />
           </Key>
           <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="ProjectID" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -76,6 +70,7 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Salary" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Expenses">
           <Key>
@@ -86,6 +81,15 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="ExpenseType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Amount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
           <Property Name="ExpenseDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoryOfChanges">
+          <Key>
+            <PropertyRef Name="IdOfChange" />
+          </Key>
+          <Property Name="IdOfChange" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Operation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateAndTimeOfChange" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MaintenanceRequests">
           <Key>
@@ -130,6 +134,15 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="EndDate" Type="date" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeOfPurchase" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="Rental">
           <Key>
             <PropertyRef Name="RentId" />
@@ -149,7 +162,16 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="ClientID" Type="int" Nullable="false" />
           <Property Name="ApartmentID" Type="int" Nullable="false" />
           <Property Name="ReservationDate" Type="date" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Revenues">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="RevenueType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="RevenueDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -289,6 +311,18 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HistoryOfChanges_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="HistoryOfChanges" Type="Self.HistoryOfChanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="HistoryOfChanges">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MaintenanceRequests_Apartments">
           <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
           <End Role="MaintenanceRequests" Type="Self.MaintenanceRequests" Multiplicity="*" />
@@ -385,6 +419,18 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Revenues_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="Revenues" Type="Self.Revenues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="Revenues">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sales_Apartments">
           <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
@@ -414,25 +460,21 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConstructionSchedule" EntityType="Self.ConstructionSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeProjects" EntityType="Self.EmployeeProjects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expenses" EntityType="Self.Expenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryOfChanges" EntityType="Self.HistoryOfChanges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MaintenanceRequests" EntityType="Self.MaintenanceRequests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Materials" EntityType="Self.Materials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rental" EntityType="Self.Rental" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Revenues" EntityType="Self.Revenues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EmployeeProjects" EntityType="Self.EmployeeProjects" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [EmployeeProjects].[EmployeeID] AS [EmployeeID], 
-    [EmployeeProjects].[ProjectID] AS [ProjectID], 
-    [EmployeeProjects].[StartDate] AS [StartDate], 
-    [EmployeeProjects].[EndDate] AS [EndDate]
-    FROM [dbo].[EmployeeProjects] AS [EmployeeProjects]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Apartment__Build__3C69FB99" Association="Self.FK__Apartment__Build__3C69FB99">
             <End Role="Buildings" EntitySet="Buildings" />
             <End Role="Apartments" EntitySet="Apartments" />
@@ -465,6 +507,10 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             <End Role="Projects" EntitySet="Projects" />
             <End Role="EmployeeProjects" EntitySet="EmployeeProjects" />
           </AssociationSet>
+          <AssociationSet Name="FK_HistoryOfChanges_Employees" Association="Self.FK_HistoryOfChanges_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="HistoryOfChanges" EntitySet="HistoryOfChanges" />
+          </AssociationSet>
           <AssociationSet Name="FK_MaintenanceRequests_Apartments" Association="Self.FK_MaintenanceRequests_Apartments">
             <End Role="Apartments" EntitySet="Apartments" />
             <End Role="MaintenanceRequests" EntitySet="MaintenanceRequests" />
@@ -496,6 +542,10 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <AssociationSet Name="FK_Reservations_Clients" Association="Self.FK_Reservations_Clients">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Reservations" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenues_Projects" Association="Self.FK_Revenues_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="Revenues" EntitySet="Revenues" />
           </AssociationSet>
           <AssociationSet Name="FK_Sales_Apartments" Association="Self.FK_Sales_Apartments">
             <End Role="Apartments" EntitySet="Apartments" />
@@ -573,6 +623,16 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Projects" Relationship="Self.FK__Construct__Proje__5BE2A6F2" FromRole="ConstructionSchedule" ToRole="Projects" />
         </EntityType>
+        <EntityType Name="EmployeeProjects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_EmployeeProjects_Employees" FromRole="EmployeeProjects" ToRole="Employees" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_EmployeeProjects_Projects" FromRole="EmployeeProjects" ToRole="Projects" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -583,7 +643,9 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="EmployeeProjects" Relationship="Self.FK_EmployeeProjects_Employees" FromRole="Employees" ToRole="EmployeeProjects" />
+          <NavigationProperty Name="HistoryOfChanges" Relationship="Self.FK_HistoryOfChanges_Employees" FromRole="Employees" ToRole="HistoryOfChanges" />
         </EntityType>
         <EntityType Name="Expenses">
           <Key>
@@ -595,6 +657,16 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="Amount" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
           <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Projects" Relationship="Self.FK__Expenses__Projec__5535A963" FromRole="Expenses" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="HistoryOfChanges">
+          <Key>
+            <PropertyRef Name="IdOfChange" />
+          </Key>
+          <Property Name="IdOfChange" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Operation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateAndTimeOfChange" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_HistoryOfChanges_Employees" FromRole="HistoryOfChanges" ToRole="Employees" />
         </EntityType>
         <EntityType Name="MaintenanceRequests">
           <Key>
@@ -645,8 +717,18 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK__Buildings__Proje__398D8EEE" FromRole="Projects" ToRole="Buildings" />
           <NavigationProperty Name="ConstructionSchedule" Relationship="Self.FK__Construct__Proje__5BE2A6F2" FromRole="Projects" ToRole="ConstructionSchedule" />
-          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Projec__5535A963" FromRole="Projects" ToRole="Expenses" />
           <NavigationProperty Name="EmployeeProjects" Relationship="Self.FK_EmployeeProjects_Projects" FromRole="Projects" ToRole="EmployeeProjects" />
+          <NavigationProperty Name="Expenses" Relationship="Self.FK__Expenses__Projec__5535A963" FromRole="Projects" ToRole="Expenses" />
+          <NavigationProperty Name="Revenues" Relationship="Self.FK_Revenues_Projects" FromRole="Projects" ToRole="Revenues" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurchaseID" />
+          </Key>
+          <Property Name="PurchaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeOfPurchase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="Rental">
           <Key>
@@ -670,9 +752,19 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="ApartmentID" Type="Int32" Nullable="false" />
           <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Apartments" Relationship="Self.FK_Reservations_Apartments" FromRole="Reservations" ToRole="Apartments" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Reservations_Clients" FromRole="Reservations" ToRole="Clients" />
+        </EntityType>
+        <EntityType Name="Revenues">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="RevenueType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="RevenueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Revenues_Projects" FromRole="Revenues" ToRole="Projects" />
         </EntityType>
         <EntityType Name="Sales">
           <Key>
@@ -706,20 +798,6 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="EmployeeProjects">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="ProjectID" />
-            <PropertyRef Name="StartDate" />
-            <PropertyRef Name="EndDate" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="ProjectID" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Employees" Relationship="Self.FK_EmployeeProjects_Employees" FromRole="EmployeeProjects" ToRole="Employees" />
-          <NavigationProperty Name="Projects" Relationship="Self.FK_EmployeeProjects_Projects" FromRole="EmployeeProjects" ToRole="Projects" />
         </EntityType>
         <Association Name="FK__Apartment__Build__3C69FB99">
           <End Role="Buildings" Type="Self.Buildings" Multiplicity="1">
@@ -909,6 +987,30 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmployeeProjects_Projects">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="EmployeeProjects" Type="Self.EmployeeProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="EmployeeProjects">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HistoryOfChanges_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="HistoryOfChanges" Type="Self.HistoryOfChanges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="HistoryOfChanges">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Expenses__Projec__5535A963">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -937,14 +1039,14 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EmployeeProjects_Projects">
+        <Association Name="FK_Revenues_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
-          <End Role="EmployeeProjects" Type="Self.EmployeeProjects" Multiplicity="*" />
+          <End Role="Revenues" Type="Self.Revenues" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projects">
               <PropertyRef Name="ProjectID" />
             </Principal>
-            <Dependent Role="EmployeeProjects">
+            <Dependent Role="Revenues">
               <PropertyRef Name="ProjectID" />
             </Dependent>
           </ReferentialConstraint>
@@ -954,18 +1056,21 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
           <EntitySet Name="Buildings" EntityType="Self.Buildings" />
           <EntitySet Name="Clients" EntityType="Self.Clients" />
           <EntitySet Name="ConstructionSchedule" EntityType="Self.ConstructionSchedule" />
+          <EntitySet Name="EmployeeProjects" EntityType="Self.EmployeeProjects" />
           <EntitySet Name="Employees" EntityType="Self.Employees" />
           <EntitySet Name="Expenses" EntityType="Self.Expenses" />
+          <EntitySet Name="HistoryOfChanges" EntityType="Self.HistoryOfChanges" />
           <EntitySet Name="MaintenanceRequests" EntityType="Self.MaintenanceRequests" />
           <EntitySet Name="Materials" EntityType="Self.Materials" />
           <EntitySet Name="Payments" EntityType="Self.Payments" />
           <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" />
           <EntitySet Name="Rental" EntityType="Self.Rental" />
           <EntitySet Name="Reservations" EntityType="Self.Reservations" />
+          <EntitySet Name="Revenues" EntityType="Self.Revenues" />
           <EntitySet Name="Sales" EntityType="Self.Sales" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="EmployeeProjects" EntityType="Self.EmployeeProjects" />
           <AssociationSet Name="FK__Apartment__Build__3C69FB99" Association="Self.FK__Apartment__Build__3C69FB99">
             <End Role="Buildings" EntitySet="Buildings" />
             <End Role="Apartments" EntitySet="Apartments" />
@@ -1026,6 +1131,14 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             <End Role="Employees" EntitySet="Employees" />
             <End Role="EmployeeProjects" EntitySet="EmployeeProjects" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmployeeProjects_Projects" Association="Self.FK_EmployeeProjects_Projects">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="EmployeeProjects" EntitySet="EmployeeProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HistoryOfChanges_Employees" Association="Self.FK_HistoryOfChanges_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="HistoryOfChanges" EntitySet="HistoryOfChanges" />
+          </AssociationSet>
           <AssociationSet Name="FK__Expenses__Projec__5535A963" Association="Self.FK__Expenses__Projec__5535A963">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Expenses" EntitySet="Expenses" />
@@ -1034,9 +1147,9 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
             <End Role="Suppliers" EntitySet="Suppliers" />
             <End Role="Materials" EntitySet="Materials" />
           </AssociationSet>
-          <AssociationSet Name="FK_EmployeeProjects_Projects" Association="Self.FK_EmployeeProjects_Projects">
+          <AssociationSet Name="FK_Revenues_Projects" Association="Self.FK_Revenues_Projects">
             <End Role="Projects" EntitySet="Projects" />
-            <End Role="EmployeeProjects" EntitySet="EmployeeProjects" />
+            <End Role="Revenues" EntitySet="Revenues" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1096,6 +1209,15 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeProjects">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.EmployeeProjects">
+              <MappingFragment StoreEntitySet="EmployeeProjects">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Employees">
               <MappingFragment StoreEntitySet="Employees">
@@ -1105,6 +1227,7 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
                 <ScalarProperty Name="Position" ColumnName="Position" />
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1116,6 +1239,16 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
                 <ScalarProperty Name="ExpenseType" ColumnName="ExpenseType" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryOfChanges">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.HistoryOfChanges">
+              <MappingFragment StoreEntitySet="HistoryOfChanges">
+                <ScalarProperty Name="IdOfChange" ColumnName="IdOfChange" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Operation" ColumnName="Operation" />
+                <ScalarProperty Name="DateAndTimeOfChange" ColumnName="DateAndTimeOfChange" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1166,6 +1299,16 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Purchases">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
+                <ScalarProperty Name="TypeOfPurchase" ColumnName="TypeOfPurchase" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Rental">
             <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Rental">
               <MappingFragment StoreEntitySet="Rental">
@@ -1185,7 +1328,17 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
                 <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Revenues">
+            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Revenues">
+              <MappingFragment StoreEntitySet="Revenues">
+                <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="RevenueType" ColumnName="RevenueType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RevenueDate" ColumnName="RevenueDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1219,16 +1372,6 @@ warning 6002: The table/view 'RealEstateDeveloperDB.dbo.EmployeeProjects' does n
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeProjects">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.EmployeeProjects">
-              <MappingFragment StoreEntitySet="EmployeeProjects">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

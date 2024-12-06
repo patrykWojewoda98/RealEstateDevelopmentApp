@@ -12,14 +12,14 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Reservations
+    public partial class Revenues
     {
-        public int ReservationID { get; set; }
-        public int ClientID { get; set; }
-        public int ApartmentID { get; set; }
-        public System.DateTime ReservationDate { get; set; }
+        public int RevenueID { get; set; }
+        public int ProjectID { get; set; }
+        public string RevenueType { get; set; }
+        public decimal Amount { get; set; }
+        public System.DateTime RevenueDate { get; set; }
     
-        public virtual Apartments Apartments { get; set; }
-        public virtual Clients Clients { get; set; }
+        public virtual Projects Projects { get; set; }
     }
 }

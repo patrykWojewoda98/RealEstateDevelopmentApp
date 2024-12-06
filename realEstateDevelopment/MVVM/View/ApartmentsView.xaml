@@ -15,7 +15,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id mieszkania" Binding="{Binding ApartmentID}"/>
                 <DataGridTextColumn Header="Id Budynku" Binding="{Binding BuildingID}"/>
-                <DataGridTextColumn Header="Adres"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
                 <DataGridTextColumn Header="Numer mieszkania" Binding="{Binding ApartmentNumber}"/>
                 <DataGridTextColumn Header="Piętro" Binding="{Binding Floor}"/>
                 <DataGridTextColumn Header="Powieszchnia" Binding="{Binding Area}"/>
