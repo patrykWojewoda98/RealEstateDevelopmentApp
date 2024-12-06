@@ -76,6 +76,7 @@
     <Compile Include="MVVM\Model\EntitiesForView\MaintenanceRequestsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\MaterialsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ReservationsEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\RevenuesEntityForView.cs" />
     <Compile Include="MVVM\Model\Entities\Apartments.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -157,11 +158,13 @@
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ConstructionScheduleViewModel.cs" />
     <Compile Include="MVVM\ViewModel\EmployeesViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\FinancesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ReservationsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\RevenuesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SuppliersViewModel.cs" />
     <Compile Include="MVVM\View\AddNewApartmentView.xaml.cs">
       <DependentUpon>AddNewApartmentView.xaml</DependentUpon>
@@ -187,6 +190,9 @@
     <Compile Include="MVVM\View\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\FinancesView.xaml.cs">
+      <DependentUpon>FinancesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\MaintenanceRequestsView.xaml.cs">
       <DependentUpon>MaintenanceRequestsView.xaml</DependentUpon>
     </Compile>
@@ -201,6 +207,9 @@
     </Compile>
     <Compile Include="MVVM\View\ReservationsView.xaml.cs">
       <DependentUpon>ReservationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\RevenuesView.xaml.cs">
+      <DependentUpon>RevenuesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\SuppliersView.xaml.cs">
       <DependentUpon>SuppliersView.xaml</DependentUpon>
@@ -262,6 +271,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\FinancesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,11 +299,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\RevenuesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\SuppliersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\ButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\FinanceMenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

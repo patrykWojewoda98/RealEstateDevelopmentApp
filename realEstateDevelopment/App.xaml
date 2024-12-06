@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Themes/TextboxTheme.xaml"/>
                 <ResourceDictionary Source="Themes/Generic.xaml" />
                 <ResourceDictionary Source="Themes/ButtonTheme.xaml"/>
+                <ResourceDictionary Source="Themes/FinanceMenuButtonTheme.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -49,6 +50,12 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">
                 <view:ReservationsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:FinancesViewModel}">
+                <view:FinancesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:RevenuesViewModel}">
+                <view:RevenuesView/>
             </DataTemplate>
 
 
