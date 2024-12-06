@@ -16,6 +16,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public RealyCommand EmployeesViewCommand {  get; set; }
         public RealyCommand MaterialViewCommand { get; set; }
         public RealyCommand MaintenanceRequestsCommand {  get; set; }
+        public RealyCommand ReservationRequestCommand { get; set; }
 
         #endregion
 
@@ -31,6 +32,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public EmployeesViewModel EmployeesVM { get; set; }
         public MaterialsViewModel MaterialsVM { get; set; }
         public MaintenanceRequestsViewModel MaintenanceRequestsVM {  get; set; }
+        public ReservationsViewModel ReservationsVM { get; set; }
         
         private object _currentView;
         #endregion
@@ -58,6 +60,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             EmployeesVM = new EmployeesViewModel();
             MaterialsVM = new MaterialsViewModel();
             MaintenanceRequestsVM = new MaintenanceRequestsViewModel();
+            ReservationsVM = new ReservationsViewModel();
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
             ClientVM.AddNewClientRequested += OnAddNewClientRequested;
@@ -118,6 +121,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
             MaintenanceRequestsCommand = new RealyCommand(o =>
             {
                 CurrentView = MaintenanceRequestsVM;
+            });
+            ReservationRequestCommand = new RealyCommand(o =>
+            {
+                CurrentView = ReservationsVM;
             });
         }
 

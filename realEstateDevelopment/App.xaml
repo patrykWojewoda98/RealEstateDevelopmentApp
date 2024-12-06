@@ -47,6 +47,9 @@
             <DataTemplate DataType="{x:Type viewModel:MaintenanceRequestsViewModel}">
                 <view:MaintenanceRequestsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ReservationsViewModel}">
+                <view:ReservationsView/>
+            </DataTemplate>
 
 
 

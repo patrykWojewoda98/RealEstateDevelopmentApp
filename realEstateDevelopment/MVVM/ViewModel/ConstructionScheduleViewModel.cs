@@ -18,7 +18,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             
         }
+        #endregion
 
+        #region Helpers
         public override async Task LoadAsync()
         {
             var constructionSchedules = realEstateEntities.ConstructionSchedule;
