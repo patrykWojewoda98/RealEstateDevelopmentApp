@@ -78,6 +78,7 @@
     <Compile Include="MVVM\Model\EntitiesForView\MaterialsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ReservationsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\RevenuesEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\SalesEntityForView.cs" />
     <Compile Include="MVVM\Model\Entities\Apartments.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>
@@ -167,6 +168,7 @@
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ReservationsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\RevenuesViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\SalesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\SuppliersViewModel.cs" />
     <Compile Include="MVVM\View\AddNewApartmentView.xaml.cs">
       <DependentUpon>AddNewApartmentView.xaml</DependentUpon>
@@ -215,6 +217,9 @@
     </Compile>
     <Compile Include="MVVM\View\RevenuesView.xaml.cs">
       <DependentUpon>RevenuesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\SalesView.xaml.cs">
+      <DependentUpon>SalesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\SuppliersView.xaml.cs">
       <DependentUpon>SuppliersView.xaml</DependentUpon>
@@ -309,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\RevenuesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\SalesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

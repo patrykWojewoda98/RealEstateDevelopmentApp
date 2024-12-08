@@ -60,6 +60,9 @@
             <DataTemplate DataType="{x:Type viewModel:ExpensesViewModel}">
                 <view:ExpensesView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SalesViewModel}">
+                <view:SalesView/>
+            </DataTemplate>
 
 
 
