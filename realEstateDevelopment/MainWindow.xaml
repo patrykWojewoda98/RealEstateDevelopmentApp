@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:realEstateDevelopment"
         xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="800" Width="950"
+        Height="950" Width="950"
         ResizeMode="NoResize"
         Background="Transparent"
         >
@@ -145,6 +145,14 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding SalesRequestCommand}"
+                />
+
+                <RadioButton Content="Zakup"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding PurchasesRequestCommand}"
                 />
 
                 <RadioButton Content="Historia Zmian"
