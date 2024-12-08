@@ -3,6 +3,7 @@ using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +24,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var reservations = realEstateEntities.Reservations;
-            var buildings = realEstateEntities.Buildings;
-            var apartments = realEstateEntities.Apartments;
-            var projects = realEstateEntities.Projects;
-            var clients = realEstateEntities.Clients;
-
-
-            var query = from r in reservations
-                        join c in clients on r.ClientID equals c.ClientID
-                        join a in apartments on r.ApartmentID equals a.ApartmentID
-                        join b in buildings on a.BuildingID equals b.BuildingID
-                        join p in projects on b.ProjectID equals p.ProjectID
+            var query = from r in realEstateEntities.Reservations
+                        join c in realEstateEntities.Clients on r.ClientID equals c.ClientID
+                        join a in realEstateEntities.Apartments on r.ApartmentID equals a.ApartmentID
+                        join b in realEstateEntities.Buildings on a.BuildingID equals b.BuildingID
+                        join p in realEstateEntities.Projects on b.ProjectID equals p.ProjectID
                         select new ReservationsEntityForView
                         {
                             Id = r.ReservationID,
@@ -47,10 +41,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             ClientPhoneNumber = c.PhoneNumber,
                         };
 
-            List = new ObservableCollection<ReservationsEntityForView>(query.ToList());
-
-
-
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<ReservationsEntityForView>(result);
         }
         #endregion
     }

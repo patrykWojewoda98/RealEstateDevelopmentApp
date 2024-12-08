@@ -1,5 +1,6 @@
 ﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,17 +11,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var maintenanceRequests = realEstateEntities.MaintenanceRequests;
-            var clients = realEstateEntities.Clients;
-            var buildings = realEstateEntities.Buildings;
-            var project = realEstateEntities.Projects;
-            var apartments = realEstateEntities.Apartments;
-
-            var query = from m in maintenanceRequests
-                        join c in clients on m.ClientID equals c.ClientID
-                        join a in apartments on m.ApartmentID equals a.ApartmentID
-                        join b in buildings on a.BuildingID equals b.BuildingID
-                        join p in project on b.ProjectID equals p.ProjectID
+            var query = from m in realEstateEntities.MaintenanceRequests
+                        join c in realEstateEntities.Clients on m.ClientID equals c.ClientID
+                        join a in realEstateEntities.Apartments on m.ApartmentID equals a.ApartmentID
+                        join b in realEstateEntities.Buildings on a.BuildingID equals b.BuildingID
+                        join p in realEstateEntities.Projects on b.ProjectID equals p.ProjectID
                         select new MaintenanceRequestsEntityForView
                         {
                             Id = m.RequestID,
@@ -35,13 +30,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             Status = m.Status
                         };
 
-
-            List = new ObservableCollection<MaintenanceRequestsEntityForView>(query.ToList());
-            
-                
-
-
-
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<MaintenanceRequestsEntityForView>(result);
         }
         #endregion
     }

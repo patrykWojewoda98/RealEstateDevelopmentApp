@@ -3,6 +3,7 @@ using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         #region Constructor
         public BuildingsViewModel()
-            :base() 
+            : base()
         {
             OpenAddNewBuildingCommand = new RealyCommand(o =>
             {
@@ -30,30 +31,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
         }
         #endregion
 
-        
+
         #region Helpers
         public override async Task LoadAsync()
         {
-            var buildings = realEstateEntities.Buildings;
-            var project = realEstateEntities.Projects;
-
-            List = new ObservableCollection<BuildingsEntityForView>(buildings.Join(project,
-                                                                                            b => b.ProjectID,
-                                                                                            p => p.ProjectID,
-                                                                                            (b,p) => new BuildingsEntityForView
-                                                                                            {
-                                                                                                BuildingID = b.BuildingID,
-                                                                                                BuildingName = b.BuildingName,
-                                                                                                ProjectID = b.ProjectID,
-                                                                                                BuildingNumber = b.BuildingNumber,
-                                                                                                Floors = b.Floors,
-                                                                                                Status = b.Status,
-                                                                                                Address = p.Location,
-                                                                                            })
-                .ToList());
-
-
-
+            var query = from b in realEstateEntities.Buildings
+                        join p in realEstateEntities.Projects on b.ProjectID equals p.ProjectID
+                        select new BuildingsEntityForView
+                        {
+                            BuildingID = b.BuildingID,
+                            BuildingName = b.BuildingName,
+                            ProjectID = b.ProjectID,
+                            BuildingNumber = b.BuildingNumber,
+                            Floors = b.Floors,
+                            Status = b.Status,
+                            Address = p.Location,
+                        };
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<BuildingsEntityForView>(result);
         }
         #endregion
     }

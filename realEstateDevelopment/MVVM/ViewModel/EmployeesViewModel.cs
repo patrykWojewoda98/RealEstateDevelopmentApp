@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.Model.Entities;
+using System.Data.Entity;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -27,31 +28,32 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var employees = realEstateEntities.Employees;
-            var employeeProjects = realEstateEntities.EmployeeProjects;
-            var projects = realEstateEntities.Projects;
-            List = new ObservableCollection<EmployeesEntityForView>(employees.Join(employeeProjects,
-                                                                                    e => e.EmployeeID,
-                                                                                    ep => ep.EmployeeID,
-                                                                                    (e, ep) => new EmployeesEntityForView
-                                                                                    {
-                                                                                        EmployeeId = e.EmployeeID,
-                                                                                        FirstName = e.FirstName,
-                                                                                        LastName = e.LastName,
-                                                                                        Position = e.Position,
-                                                                                        Department = e.Department,
-                                                                                        Salary = e.Salary,
-                                                                                        Projects = employeeProjects.Where(epr => ep.EmployeeID == e.EmployeeID)
-                                                                                                                   .Join(projects,
-                                                                                                                         epr => ep.ProjectID,
-                                                                                                                         p => p.ProjectID,
-                                                                                                                         (epr, p) => p.ProjectName).ToList(),
-                                                                                        SelectedProject = employeeProjects.Where(epr => ep.EmployeeID == e.EmployeeID)
-                                                                                                                   .Join(projects,
-                                                                                                                         epr => ep.ProjectID,
-                                                                                                                         p => p.ProjectID,
-                                                                                                                         (epr, p) => p.ProjectName).FirstOrDefault()
-                                                                                    }));
+            var query = from e in realEstateEntities.Employees
+                        join ep in realEstateEntities.EmployeeProjects on e.EmployeeID equals ep.EmployeeID
+                        join p in realEstateEntities.Projects on ep.ProjectID equals p.ProjectID
+                        group p by new
+                        {
+                            e.EmployeeID,
+                            e.FirstName,
+                            e.LastName,
+                            e.Position,
+                            e.Department,
+                            e.Salary
+                        } into g
+                        select new EmployeesEntityForView
+                        {
+                            EmployeeId = g.Key.EmployeeID,
+                            FirstName = g.Key.FirstName,
+                            LastName = g.Key.LastName,
+                            Position = g.Key.Position,
+                            Department = g.Key.Department,
+                            Salary = g.Key.Salary,
+                            Projects = g.Select(proj => proj.ProjectName).ToList(),
+                            SelectedProject = g.Select(proj => proj.ProjectName).FirstOrDefault()
+                        };
+
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<EmployeesEntityForView>(result);
             foreach (var employee in List)
             {
                 for (int i = 0; i <= 20; i++) {

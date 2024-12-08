@@ -1,6 +1,7 @@
 ﻿using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -23,31 +24,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var constructionSchedules = realEstateEntities.ConstructionSchedule;
-            var buildings = realEstateEntities.Buildings;
-            var apartments = realEstateEntities.Apartments;
-            var project = realEstateEntities.Projects;
+            var query = from c in realEstateEntities.ConstructionSchedule
+                        join b in realEstateEntities.Buildings on c.ProjectID equals b.ProjectID
+                        join p in realEstateEntities.Projects on c.ProjectID equals p.ProjectID
+                        select new ConstructionScheduleEntityForView
+                        {
+                            ScheduleID = c.ScheduleID,
+                            BuildingName = b.BuildingName,
+                            BuildingNumber = b.BuildingNumber,
+                            Floors = b.Floors,
+                            NumberOfApartments = realEstateEntities.Apartments.Count(a => a.BuildingID == b.BuildingID),
+                            StartDate = c.StartDate,
+                            EndDate = c.EndDate,
+                            Address = p.Location ,
+                            Status = c.Status
+                        };
 
-
-            List = new ObservableCollection<ConstructionScheduleEntityForView>(constructionSchedules.Join(buildings,
-                                                                                            c => c.ProjectID,
-                                                                                            b => b.ProjectID,
-                                                                                            (c, b) => new ConstructionScheduleEntityForView
-                                                                                            {
-                                                                                                ScheduleID = c.ScheduleID,
-                                                                                                BuildingName = b.BuildingName,
-                                                                                                BuildingNumber = b.BuildingNumber,
-                                                                                                Floors = b.Floors,
-                                                                                                NumberOfApartments = apartments.Count(a => a.BuildingID == b.BuildingID),
-                                                                                                StartDate = c.StartDate,
-                                                                                                EndDate = c.EndDate,
-                                                                                                Address = project.Where(p => p.ProjectID == c.ProjectID).Select(p => p.Location).FirstOrDefault()??"Adresu nie znaleziono",
-                                                                                                Status = c.Status
-                                                                                            })
-                .ToList());
-
-
-            
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<ConstructionScheduleEntityForView>(result);
         }
         #endregion
     }

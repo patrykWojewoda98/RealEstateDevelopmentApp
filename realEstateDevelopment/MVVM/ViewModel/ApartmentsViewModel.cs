@@ -3,6 +3,7 @@
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 namespace realEstateDevelopment.MVVM.ViewModel
@@ -27,30 +28,23 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-            var apartments = realEstateEntities.Apartments;
-            var buildings = realEstateEntities.Buildings;
-            var project = realEstateEntities.Projects;
+            var query = from a in realEstateEntities.Apartments
+                        join b in realEstateEntities.Buildings on a.BuildingID equals b.BuildingID
+                        join p in realEstateEntities.Projects on b.ProjectID equals p.ProjectID
+                        select new ApartmentsEntitiesForView
+                        {
+                            ApartmentID = a.ApartmentID,
+                            BuildingID = b.BuildingID,
+                            Address = p.Location,
+                            ApartmentNumber = a.ApartmentNumber,
+                            Floor = a.Floor,
+                            Area = a.Area,
+                            Status = a.Status,
+                            RoomCount = a.RoomCount
+                        };
 
-            List = new ObservableCollection<ApartmentsEntitiesForView>(apartments.Join(buildings,
-                                                                                            a => a.BuildingID,
-                                                                                            b => b.BuildingID,
-                                                                                            (a, b) => new ApartmentsEntitiesForView
-                                                                                            {
-                                                                                                ApartmentID = a.ApartmentID,
-                                                                                                BuildingID = b.BuildingID,
-                                                                                                Address = buildings.Join(project,
-                                                                                                                         bu => bu.ProjectID,
-                                                                                                                         p => p.ProjectID,
-                                                                                                                         (bu, p) => new { bu, p })
-                                                                                                                         .Select(bp => bp.p.Location)
-                                                                                                                         .FirstOrDefault(),
-                                                                                                ApartmentNumber = a.ApartmentNumber,
-                                                                                                Floor = a.Floor,
-                                                                                                Area = a.Area,
-                                                                                                Status = a.Status,
-                                                                                                RoomCount = a.RoomCount
-                                                                                            })
-                .ToList());
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<ApartmentsEntitiesForView>(result);
 
 
 
