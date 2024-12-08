@@ -66,6 +66,9 @@
             <DataTemplate DataType="{x:Type viewModel:PurchasesViewModel}">
                 <view:PurchasesView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HistoryOfChangesViewModel}">
+                <view:HistoryOfChangesView/>
+            </DataTemplate>
 
 
 

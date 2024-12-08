@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:realEstateDevelopment"
         xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="950" Width="950"
+        Height="860" Width="950"
         ResizeMode="NoResize"
         Background="Transparent"
         >
@@ -160,6 +160,7 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding HistoryOfChangesViewCommand}"
                 />
 
 

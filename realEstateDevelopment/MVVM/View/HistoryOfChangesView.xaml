@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.HistoryOfChangesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Imię pracownika" Binding="{Binding EmployeeName}"/>
+                <DataGridTextColumn Header="Nazwisko pracownika" Binding="{Binding EmployeeSurname}"/>
+                <DataGridTextColumn Header="Operacja" Binding="{Binding Operation}"/>
+                <DataGridTextColumn Header="Data i czas zmiany" Binding="{Binding DateAndTimeOfChange}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Tu będą filtry"
+                   Grid.Row="0"
+                   Foreground="White"/>
+    </Grid>
+</UserControl>
