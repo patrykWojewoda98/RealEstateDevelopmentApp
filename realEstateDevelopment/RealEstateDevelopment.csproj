@@ -73,6 +73,7 @@
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ConstructionScheduleEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\EmployeesEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\ExpensesEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\MaintenanceRequestsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\MaterialsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ReservationsEntityForView.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ConstructionScheduleViewModel.cs" />
     <Compile Include="MVVM\ViewModel\EmployeesViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\ExpensesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\FinancesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
@@ -189,6 +191,9 @@
     </Compile>
     <Compile Include="MVVM\View\EmployeesView.xaml.cs">
       <DependentUpon>EmployeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\ExpensesView.xaml.cs">
+      <DependentUpon>ExpensesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\FinancesView.xaml.cs">
       <DependentUpon>FinancesView.xaml</DependentUpon>
@@ -268,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\EmployeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\ExpensesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,10 +1,4 @@
 ﻿using realEstateDevelopment.Core;
-using realEstateDevelopment.MVVM.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -12,12 +6,14 @@ namespace realEstateDevelopment.MVVM.ViewModel
     {
         #region Commands
         public RealyCommand RevenueViewCommand { get; set; }
+        public RealyCommand ExpenseViewCommand { get; set; }
 
         #endregion
 
 
         #region Properties
         public RevenuesViewModel RevenuesVM { get; set; }
+        public ExpensesViewModel ExpensesVM { get; set; }
         
 
         private object _currentView;
@@ -36,11 +32,17 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public FinancesViewModel()
         {
             RevenuesVM = new RevenuesViewModel();
+            ExpensesVM = new ExpensesViewModel();
             
 
             RevenueViewCommand = new RealyCommand(o =>
             {
                 CurrentView = RevenuesVM;
+            });
+
+            ExpenseViewCommand = new RealyCommand(o =>
+            {
+                CurrentView = ExpensesVM;
             });
 
             

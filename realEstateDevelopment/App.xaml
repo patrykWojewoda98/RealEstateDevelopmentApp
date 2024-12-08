@@ -57,6 +57,9 @@
             <DataTemplate DataType="{x:Type viewModel:RevenuesViewModel}">
                 <view:RevenuesView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ExpensesViewModel}">
+                <view:ExpensesView/>
+            </DataTemplate>
 
 
 

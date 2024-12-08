@@ -35,7 +35,7 @@
                  Foreground="White"
                  FontSize="14"
                  Style="{StaticResource FinanceMenuButtonTheme}"
-                 Command="{Binding HomeViewCommand}" />
+                 Command="{Binding ExpenseViewCommand}" />
         </StackPanel>
         <ContentControl Grid.Row="1"
                 Margin="10"
