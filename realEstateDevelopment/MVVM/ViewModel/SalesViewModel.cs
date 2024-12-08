@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Data.Entity;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -10,19 +11,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Helpers
         public override async Task LoadAsync()
         {
-
-            var sales = realEstateEntities.Sales;
-            var buildings = realEstateEntities.Buildings;
-            var apartments = realEstateEntities.Apartments;
-            var projects = realEstateEntities.Projects;
-            var clients = realEstateEntities.Clients;
-
-
-            var query = from s in sales
-                        join c in clients on s.ClientID equals c.ClientID
-                        join a in apartments on s.ApartmentID equals a.ApartmentID
-                        join b in buildings on a.BuildingID equals b.BuildingID
-                        join p in projects on b.ProjectID equals p.ProjectID
+            var query = from s in realEstateEntities.Sales
+                        join c in realEstateEntities.Clients on s.ClientID equals c.ClientID
+                        join a in realEstateEntities.Apartments on s.ApartmentID equals a.ApartmentID
+                        join b in realEstateEntities.Buildings on a.BuildingID equals b.BuildingID
+                        join p in realEstateEntities.Projects on b.ProjectID equals p.ProjectID
                         select new SalesEntityForView
                         {
                             Id = s.SaleID,
@@ -34,12 +27,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             ClientSurname = c.LastName,
                             SalePrice = s.SalePrice,
                             Status = s.Status,
-                            
                         };
-
-            List = new ObservableCollection<SalesEntityForView>(query.ToList());
-
-
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<SalesEntityForView>(result);
         }
         #endregion
     }
