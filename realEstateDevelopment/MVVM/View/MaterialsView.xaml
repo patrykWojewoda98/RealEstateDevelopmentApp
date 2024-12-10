@@ -16,7 +16,7 @@
             </Grid.RowDefinitions>
             <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id" Binding="{Binding MaterialID}"/>
+                    <DataGridTextColumn Header="Id" Binding="{Binding MaterialId}"/>
                     <DataGridTextColumn Header="Nazwa Materiału" Binding="{Binding MaterialName }"/>
                     <DataGridTextColumn Header="Typ materiału" Binding="{Binding Type}"/>
                     <DataGridTextColumn Header="Cena" Binding="{Binding UnitPrice}"/>

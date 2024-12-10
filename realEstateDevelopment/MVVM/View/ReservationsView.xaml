@@ -31,7 +31,7 @@
                Foreground="White"/>
         <Button Grid.Column="1"
                 Content="Dodaj nową rezerwację"
-                Command="{Binding OpenAddNewClientCommand}"
+                Command="{Binding OpenAddNewReservationCommand}"
                 Style="{StaticResource CommonNormalButtonTheme}"
         />
     </Grid>

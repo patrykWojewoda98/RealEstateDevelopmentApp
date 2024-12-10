@@ -1,4 +1,5 @@
-﻿using realEstateDevelopment.MVVM.Model.Entities;
+﻿using realEstateDevelopment.Core;
+using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ReservationsViewModel :LoadAllViewModel<ReservationsEntityForView>
     {
+        #region Commands
+        public RealyCommand OpenAddNewReservationCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewReservationRequested;
+        #endregion
+
         #region Constructor
         public ReservationsViewModel()
             :base()
         {
-            
+            OpenAddNewReservationCommand = new RealyCommand(o =>
+            {
+                AddNewReservationRequested?.Invoke();
+            });
         }
         #endregion
-
 
         #region Helpers
         public override async Task LoadAsync()

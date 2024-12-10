@@ -81,6 +81,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             ApartmentsVM.AddNewApartmentRequested += OnAddNewApartmentRequested;
             ConstructionScheduleVM.ScheduleNewConstructionRequested += OnScheduleNewConstructionRequested;
             MaterialsVM.AddNewMaterialRequested += OnAddNewMaterialRequested;
+            ReservationsVM.AddNewReservationRequested += OnAddNewReservationRequested;
 
 
 
@@ -212,7 +213,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var scheduleBuildingConstructionVM = new ScheduleBuildingConstructionViewModel();
             scheduleBuildingConstructionVM.RequestClose += (sender, args) =>
             {
-                CurrentView = ConstructionScheduleVM; // Powrót do poprzedniego widoku po zamknięciu
+                CurrentView = ConstructionScheduleVM; 
             };
             CurrentView = scheduleBuildingConstructionVM;
         }
@@ -222,9 +223,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewmaterialVM = new AddNewMaterialViewModel();
             addNewmaterialVM.RequestClose += (sender, args) =>
             {
-                CurrentView = MaterialsVM; // Powrót do poprzedniego widoku po zamknięciu
+                CurrentView = MaterialsVM; 
             };
             CurrentView = addNewmaterialVM;
+        }
+
+        private void OnAddNewReservationRequested()
+        {
+            var addNewReservationVM = new AddNewReservationsViewModel();
+            addNewReservationVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = ReservationsVM; 
+            };
+            CurrentView = addNewReservationVM;
         }
         #endregion
     }
