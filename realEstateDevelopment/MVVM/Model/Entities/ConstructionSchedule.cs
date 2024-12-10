@@ -20,7 +20,9 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public string Status { get; set; }
+        public int BuildingId { get; set; }
     
+        public virtual Buildings Buildings { get; set; }
         public virtual Projects Projects { get; set; }
     }
 }

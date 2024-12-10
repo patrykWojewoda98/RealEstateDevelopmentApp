@@ -45,7 +45,6 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             BuildingNumber = b.BuildingNumber,
                             Floors = b.Floors,
                             Status = b.Status,
-                            Address = p.Location,
                         };
             var result = await query.ToListAsync();
             List = new ObservableCollection<BuildingsEntityForView>(result);

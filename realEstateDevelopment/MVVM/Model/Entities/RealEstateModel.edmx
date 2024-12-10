@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RealEstateDeveloperDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RealEstateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Apartments">
           <Key>
             <PropertyRef Name="ApartmentID" />
@@ -51,6 +51,7 @@
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="EndDate" Type="date" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuildingId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployeeProjects">
           <Key>
@@ -287,6 +288,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ConstructionSchedule_Buildings">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="ConstructionSchedule" Type="Self.ConstructionSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="BuildingID" />
+            </Principal>
+            <Dependent Role="ConstructionSchedule">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EmployeeProjects_Employees">
           <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
           <End Role="EmployeeProjects" Type="Self.EmployeeProjects" Multiplicity="*" />
@@ -455,7 +468,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RealEstateDeveloperDBModelStoreContainer">
+        <EntityContainer Name="RealEstateModelStoreContainer">
           <EntitySet Name="Apartments" EntityType="Self.Apartments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Buildings" EntityType="Self.Buildings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
@@ -498,6 +511,10 @@
           <AssociationSet Name="FK__Payments__Client__48CFD27E" Association="Self.FK__Payments__Client__48CFD27E">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Payments" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConstructionSchedule_Buildings" Association="Self.FK_ConstructionSchedule_Buildings">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="ConstructionSchedule" EntitySet="ConstructionSchedule" />
           </AssociationSet>
           <AssociationSet Name="FK_EmployeeProjects_Employees" Association="Self.FK_EmployeeProjects_Employees">
             <End Role="Employees" EntitySet="Employees" />
@@ -560,7 +577,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RealEstateDeveloperDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="RealEstateModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Apartments">
           <Key>
             <PropertyRef Name="ApartmentID" />
@@ -590,6 +607,7 @@
           <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Apartments" Relationship="Self.FK__Apartment__Build__3C69FB99" FromRole="Buildings" ToRole="Apartments" />
           <NavigationProperty Name="Projects" Relationship="Self.FK__Buildings__Proje__398D8EEE" FromRole="Buildings" ToRole="Projects" />
+          <NavigationProperty Name="ConstructionSchedule" Relationship="Self.FK_ConstructionSchedule_Buildings" FromRole="Buildings" ToRole="ConstructionSchedule" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -621,6 +639,8 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuildingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buildings" Relationship="Self.FK_ConstructionSchedule_Buildings" FromRole="ConstructionSchedule" ToRole="Buildings" />
           <NavigationProperty Name="Projects" Relationship="Self.FK__Construct__Proje__5BE2A6F2" FromRole="ConstructionSchedule" ToRole="Projects" />
         </EntityType>
         <EntityType Name="EmployeeProjects">
@@ -875,6 +895,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ConstructionSchedule_Buildings">
+          <End Role="Buildings" Type="Self.Buildings" Multiplicity="1" />
+          <End Role="ConstructionSchedule" Type="Self.ConstructionSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buildings">
+              <PropertyRef Name="BuildingID" />
+            </Principal>
+            <Dependent Role="ConstructionSchedule">
+              <PropertyRef Name="BuildingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Payments__Client__48CFD27E">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1095,6 +1127,10 @@
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Buildings" EntitySet="Buildings" />
           </AssociationSet>
+          <AssociationSet Name="FK_ConstructionSchedule_Buildings" Association="Self.FK_ConstructionSchedule_Buildings">
+            <End Role="Buildings" EntitySet="Buildings" />
+            <End Role="ConstructionSchedule" EntitySet="ConstructionSchedule" />
+          </AssociationSet>
           <AssociationSet Name="FK__Payments__Client__48CFD27E" Association="Self.FK__Payments__Client__48CFD27E">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Payments" EntitySet="Payments" />
@@ -1157,9 +1193,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RealEstateDeveloperDBModelStoreContainer" CdmEntityContainer="RealEstateEntities">
+        <EntityContainerMapping StorageEntityContainer="RealEstateModelStoreContainer" CdmEntityContainer="RealEstateEntities">
           <EntitySetMapping Name="Apartments">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Apartments">
+            <EntityTypeMapping TypeName="RealEstateModel.Apartments">
               <MappingFragment StoreEntitySet="Apartments">
                 <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
                 <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
@@ -1172,7 +1208,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Buildings">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Buildings">
+            <EntityTypeMapping TypeName="RealEstateModel.Buildings">
               <MappingFragment StoreEntitySet="Buildings">
                 <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1184,7 +1220,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Clients">
+            <EntityTypeMapping TypeName="RealEstateModel.Clients">
               <MappingFragment StoreEntitySet="Clients">
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1198,7 +1234,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ConstructionSchedule">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.ConstructionSchedule">
+            <EntityTypeMapping TypeName="RealEstateModel.ConstructionSchedule">
               <MappingFragment StoreEntitySet="ConstructionSchedule">
                 <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1206,11 +1242,12 @@
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BuildingId" ColumnName="BuildingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeProjects">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.EmployeeProjects">
+            <EntityTypeMapping TypeName="RealEstateModel.EmployeeProjects">
               <MappingFragment StoreEntitySet="EmployeeProjects">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1219,7 +1256,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Employees">
+            <EntityTypeMapping TypeName="RealEstateModel.Employees">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1232,7 +1269,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Expenses">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Expenses">
+            <EntityTypeMapping TypeName="RealEstateModel.Expenses">
               <MappingFragment StoreEntitySet="Expenses">
                 <ScalarProperty Name="ExpenseID" ColumnName="ExpenseID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1243,7 +1280,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HistoryOfChanges">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.HistoryOfChanges">
+            <EntityTypeMapping TypeName="RealEstateModel.HistoryOfChanges">
               <MappingFragment StoreEntitySet="HistoryOfChanges">
                 <ScalarProperty Name="IdOfChange" ColumnName="IdOfChange" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
@@ -1253,7 +1290,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MaintenanceRequests">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.MaintenanceRequests">
+            <EntityTypeMapping TypeName="RealEstateModel.MaintenanceRequests">
               <MappingFragment StoreEntitySet="MaintenanceRequests">
                 <ScalarProperty Name="RequestID" ColumnName="RequestID" />
                 <ScalarProperty Name="ApartmentID" ColumnName="ApartmentID" />
@@ -1265,7 +1302,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Materials">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Materials">
+            <EntityTypeMapping TypeName="RealEstateModel.Materials">
               <MappingFragment StoreEntitySet="Materials">
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
@@ -1276,7 +1313,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Payments">
+            <EntityTypeMapping TypeName="RealEstateModel.Payments">
               <MappingFragment StoreEntitySet="Payments">
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -1288,7 +1325,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Projects">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Projects">
+            <EntityTypeMapping TypeName="RealEstateModel.Projects">
               <MappingFragment StoreEntitySet="Projects">
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
                 <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
@@ -1300,7 +1337,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Purchases">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Purchases">
+            <EntityTypeMapping TypeName="RealEstateModel.Purchases">
               <MappingFragment StoreEntitySet="Purchases">
                 <ScalarProperty Name="PurchaseID" ColumnName="PurchaseID" />
                 <ScalarProperty Name="TypeOfPurchase" ColumnName="TypeOfPurchase" />
@@ -1310,7 +1347,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rental">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Rental">
+            <EntityTypeMapping TypeName="RealEstateModel.Rental">
               <MappingFragment StoreEntitySet="Rental">
                 <ScalarProperty Name="RentId" ColumnName="RentId" />
                 <ScalarProperty Name="ApartmentId" ColumnName="ApartmentId" />
@@ -1322,7 +1359,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reservations">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Reservations">
+            <EntityTypeMapping TypeName="RealEstateModel.Reservations">
               <MappingFragment StoreEntitySet="Reservations">
                 <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -1332,7 +1369,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Revenues">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Revenues">
+            <EntityTypeMapping TypeName="RealEstateModel.Revenues">
               <MappingFragment StoreEntitySet="Revenues">
                 <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
                 <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
@@ -1343,7 +1380,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sales">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Sales">
+            <EntityTypeMapping TypeName="RealEstateModel.Sales">
               <MappingFragment StoreEntitySet="Sales">
                 <ScalarProperty Name="SaleID" ColumnName="SaleID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
@@ -1355,7 +1392,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Suppliers">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.Suppliers">
+            <EntityTypeMapping TypeName="RealEstateModel.Suppliers">
               <MappingFragment StoreEntitySet="Suppliers">
                 <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
@@ -1365,7 +1402,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="RealEstateDeveloperDBModel.sysdiagrams">
+            <EntityTypeMapping TypeName="RealEstateModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />

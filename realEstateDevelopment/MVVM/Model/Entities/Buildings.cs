@@ -18,6 +18,7 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         public Buildings()
         {
             this.Apartments = new HashSet<Apartments>();
+            this.ConstructionSchedule = new HashSet<ConstructionSchedule>();
         }
     
         public int BuildingID { get; set; }
@@ -30,5 +31,7 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apartments> Apartments { get; set; }
         public virtual Projects Projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConstructionSchedule> ConstructionSchedule { get; set; }
     }
 }

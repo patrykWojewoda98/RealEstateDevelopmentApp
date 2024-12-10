@@ -87,11 +87,15 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewClientViewModel}">
                 <view:AddNewClientView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ScheduleBuildingConstructionViewModel}">
+                <view:ScheduleBuildingConstructionView/>
+            </DataTemplate>
 
 
             <DataTemplate DataType="{x:Type modalViewModel:ErrorModalViewModel}">
                 <modalView:ErrorModalView/>
             </DataTemplate>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

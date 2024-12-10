@@ -11,7 +11,6 @@
         public string BuildingName { get; set; }
         public int Floors { get; set; }
         public string Status { get; set; }
-        public string Address { get; set; }
         #endregion
     }
 }
