@@ -30,7 +30,7 @@
             <Button x:Name="AddNewBuildind"
                 Grid.Column="1"
                 Content="Dodaj nowy Materiał"
-                Command="{Binding OpenAddNewEmployeeCommand}"
+                Command="{Binding OpenAddNewMaterialCommand}"
                 Style="{StaticResource CommonNormalButtonTheme}"/>
     
         </Grid>

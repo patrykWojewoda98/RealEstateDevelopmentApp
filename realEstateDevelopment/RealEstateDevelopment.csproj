@@ -155,6 +155,7 @@
     <Compile Include="MVVM\ViewModel\AddNewApartmentViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewClientViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewMaterialViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewProjectViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
@@ -179,6 +180,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewClientView.xaml.cs">
       <DependentUpon>AddNewClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AddNewMaterialView.xaml.cs">
+      <DependentUpon>AddNewMaterialView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\AddNewProjectView.xaml.cs">
       <DependentUpon>AddNewProjectView.xaml</DependentUpon>
@@ -263,6 +267,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AddNewMaterialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

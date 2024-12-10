@@ -90,6 +90,9 @@
             <DataTemplate DataType="{x:Type viewModel:ScheduleBuildingConstructionViewModel}">
                 <view:ScheduleBuildingConstructionView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewMaterialViewModel}">
+                <view:AddNewMaterialView/>
+            </DataTemplate>
 
 
             <DataTemplate DataType="{x:Type modalViewModel:ErrorModalViewModel}">
