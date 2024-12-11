@@ -33,8 +33,8 @@
                Foreground="White"/>
         <Button x:Name="AddNewBuildind"
             Grid.Column="1"
-            Content="Dodaj nowego klienta"
-            Command="{Binding OpenAddNewClientCommand}"
+            Content="Zgłos nowe żądanie konserwacji"
+            Command="{Binding OpenAddNewMaintenanceRequestsCommand}"
             Style="{StaticResource CommonNormalButtonTheme}"
             />
     </Grid>

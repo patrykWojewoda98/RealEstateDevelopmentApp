@@ -2,16 +2,15 @@
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.View.Modals;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class AddNewReservationsViewModel : BaseDatabaseAdder<Reservations>
+    public class AddNewMaintenanceRequestsViewModel : BaseDatabaseAdder<MaintenanceRequests>
     {
-
         private string _selectedApartment;
         private string _selectedClient;
         public ObservableCollection<string> AvailableApartments { get; set; }
@@ -60,29 +59,42 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             set
             {
-                var text = SelectedApartment.Replace("ID:", "").Trim(); // Usuwamy "ID:" i nadmiarowe spacje
-                item.ApartmentID = Convert.ToInt32(text.Split(' ')[0]); // Bierzemy tylko pierwszą część (ID)
+                var text = SelectedApartment.Replace("ID:", "").Trim();
+                item.ApartmentID = Convert.ToInt32(text.Split(' ')[0]);
                 OnPropertyChanged(() => ApartmentID);
             }
         }
 
-        public DateTime ReservationDate
+        public DateTime RequestDate
         {
             get
             {
-                return item.ReservationDate;
+                return (DateTime)item.RequestDate;
 
             }
             set
             {
-                item.ReservationDate = DateTime.Now;
-                OnPropertyChanged(() => ReservationDate);
+                item.RequestDate = DateTime.Now;
+                OnPropertyChanged(() => RequestDate);
+            }
+        }
+
+        public string Description
+        {
+            get
+            {
+                return item.Description;
+            }
+            set
+            {
+                item.Description = value;
+                OnPropertyChanged(() => Description);
             }
         }
 
         #region Constructor
 
-        public AddNewReservationsViewModel()
+        public AddNewMaintenanceRequestsViewModel()
         {
             //dodawanie wartości domyślnych i tworzenie ObservableCollection do obsługi wyświetlania napisów w dropdown
             AllClients = new ObservableCollection<string> { "Wybierz klienta" };
@@ -92,7 +104,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                         where (a.Status != "Zarezerwowano" && a.Status != "Wynajęto")
                         join b in estateEntities.Buildings on a.BuildingID equals b.BuildingID
                         join p in estateEntities.Projects on b.ProjectID equals p.ProjectID
-                        select new AddNewReservationEntitiesForView
+                        select new AddNewMaintenanceRequestsEntityForView
                         {
                             ApartmentId = a.ApartmentID,
                             ApartmentNumber = a.ApartmentNumber,
@@ -108,7 +120,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
 
             var query2 = from c in estateEntities.Clients
-                         select new AddNewReservationEntitiesForView
+                         select new AddNewMaintenanceRequestsEntityForView
                          {
                              ClientId = c.ClientID,
                              ClientName = c.FirstName,
@@ -124,7 +136,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             SelectedClient = AllClients.First();
             SelectedApartment = AvailableApartments.First();
 
-            item = new Reservations();
+            item = new MaintenanceRequests();
         }
 
         #endregion
@@ -132,13 +144,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Validation
         public void Validate()
         {
-
+            Console.WriteLine(item.ApartmentID);
             for (int i = 0; i < 50; i++)
             {
                 Console.WriteLine("***");
             }
 
-            Console.WriteLine("Client ID"+item.ClientID);
+            Console.WriteLine("Client ID" + item.ClientID);
             Console.WriteLine("Apartment ID" + item.ApartmentID);
             isDataCorrect = true;
             var errors = new List<string>();
@@ -165,13 +177,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
-                var apartment = estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID);
-                if (apartment != null)
-                {
-                    apartment.Status = "Zarezerwowano";  // Zmiana statusu mieszkania na "Zarezerwowano"
-                    estateEntities.SaveChanges();
-                }
-                estateEntities.Reservations.Add(item);
+                
+                estateEntities.MaintenanceRequests.Add(item);
                 estateEntities.SaveChanges();
             }
             else
@@ -183,4 +190,5 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #endregion
 
     }
+
 }

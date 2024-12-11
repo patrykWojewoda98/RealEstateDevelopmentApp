@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\NumericValidationHelper.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\AddNewMaintenanceRequestsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AddNewReservationEntitiesForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ApartmentsEntitiesForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="MVVM\ViewModel\AddNewApartmentViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewBuildingViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewClientViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewMaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewMaterialViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewProjectViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewReservationsViewModel.cs" />
@@ -182,6 +184,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewClientView.xaml.cs">
       <DependentUpon>AddNewClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AddNewMaintenanceRequestsView.xaml.cs">
+      <DependentUpon>AddNewMaintenanceRequestsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\AddNewMaterialView.xaml.cs">
       <DependentUpon>AddNewMaterialView.xaml</DependentUpon>
@@ -272,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewClientView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AddNewMaintenanceRequestsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

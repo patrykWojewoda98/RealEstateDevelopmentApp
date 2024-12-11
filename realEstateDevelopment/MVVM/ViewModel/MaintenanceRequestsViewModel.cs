@@ -1,4 +1,6 @@
-﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
+﻿using realEstateDevelopment.Core;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -8,6 +10,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class MaintenanceRequestsViewModel : LoadAllViewModel<MaintenanceRequestsEntityForView>
     {
+        #region Commands
+        public RealyCommand OpenAddNewMaintenanceRequestsCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewMaintenanceRequestsRequested;
+        #endregion
+
+        #region
+        public MaintenanceRequestsViewModel()
+            :base()
+        {
+            OpenAddNewMaintenanceRequestsCommand = new RealyCommand(o =>
+            {
+                AddNewMaintenanceRequestsRequested?.Invoke();
+            });
+        }
+        #endregion
         #region Helpers
         public override async Task LoadAsync()
         {
