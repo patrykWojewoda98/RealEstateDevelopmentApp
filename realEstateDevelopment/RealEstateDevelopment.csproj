@@ -70,9 +70,10 @@
     </ApplicationDefinition>
     <Compile Include="Helper\NumericValidationHelper.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AddNewMaintenanceRequestsEntityForView.cs" />
-    <Compile Include="MVVM\Model\EntitiesForView\AddNewReservationEntitiesForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\ApartmentForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ApartmentsEntitiesForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\ClientForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ConstructionScheduleEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\EmployeesEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ExpensesEntityForView.cs" />

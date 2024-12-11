@@ -16,6 +16,7 @@
           <Property Name="RoomCount" Type="int" Nullable="false" />
           <Property Name="Floor" Type="int" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
         </EntityType>
         <EntityType Name="Buildings">
           <Key>
@@ -100,7 +101,7 @@
           <Property Name="ApartmentID" Type="int" Nullable="false" />
           <Property Name="ClientID" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="RequestDate" Type="date" />
+          <Property Name="RequestDate" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Materials">
@@ -162,7 +163,7 @@
           <Property Name="ReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientID" Type="int" Nullable="false" />
           <Property Name="ApartmentID" Type="int" Nullable="false" />
-          <Property Name="ReservationDate" Type="date" Nullable="false" />
+          <Property Name="ReservationDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Revenues">
           <Key>
@@ -408,30 +409,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_Apartments">
-          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Apartments">
-              <PropertyRef Name="ApartmentID" />
-            </Principal>
-            <Dependent Role="Reservations">
-              <PropertyRef Name="ApartmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservations_Clients">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clients">
-              <PropertyRef Name="ClientID" />
-            </Principal>
-            <Dependent Role="Reservations">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Revenues_Projects">
           <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
           <End Role="Revenues" Type="Self.Revenues" Multiplicity="*" />
@@ -457,6 +434,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Sales_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="Sales">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_Clients1">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -552,14 +541,6 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Rental" EntitySet="Rental" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Apartments" Association="Self.FK_Reservations_Apartments">
-            <End Role="Apartments" EntitySet="Apartments" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Clients" Association="Self.FK_Reservations_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Revenues_Projects" Association="Self.FK_Revenues_Projects">
             <End Role="Projects" EntitySet="Projects" />
             <End Role="Revenues" EntitySet="Revenues" />
@@ -569,6 +550,10 @@
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
           <AssociationSet Name="FK_Sales_Clients" Association="Self.FK_Sales_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_Clients1" Association="Self.FK_Sales_Clients1">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
@@ -589,10 +574,10 @@
           <Property Name="RoomCount" Type="Int32" Nullable="false" />
           <Property Name="Floor" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientID" Type="Int32" />
           <NavigationProperty Name="Buildings" Relationship="Self.FK__Apartment__Build__3C69FB99" FromRole="Apartments" ToRole="Buildings" />
           <NavigationProperty Name="MaintenanceRequests" Relationship="Self.FK_MaintenanceRequests_Apartments" FromRole="Apartments" ToRole="MaintenanceRequests" />
           <NavigationProperty Name="Rental" Relationship="Self.FK_Rental_Apartments" FromRole="Apartments" ToRole="Rental" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Apartments" FromRole="Apartments" ToRole="Reservations" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Apartments" FromRole="Apartments" ToRole="Sales" />
         </EntityType>
         <EntityType Name="Buildings">
@@ -626,8 +611,8 @@
           <NavigationProperty Name="Payments1" Relationship="Self.FK_Payments_Clients" FromRole="Clients" ToRole="Payments" />
           <NavigationProperty Name="Rental" Relationship="Self.FK_Rental_Clients" FromRole="Clients" ToRole="Rental" />
           <NavigationProperty Name="Rental1" Relationship="Self.FK_Rental_Clients1" FromRole="Clients" ToRole="Rental" />
-          <NavigationProperty Name="Reservations" Relationship="Self.FK_Reservations_Clients" FromRole="Clients" ToRole="Reservations" />
           <NavigationProperty Name="Sales" Relationship="Self.FK_Sales_Clients" FromRole="Clients" ToRole="Sales" />
+          <NavigationProperty Name="Sales1" Relationship="Self.FK_Sales_Clients1" FromRole="Clients" ToRole="Sales" />
         </EntityType>
         <EntityType Name="ConstructionSchedule">
           <Key>
@@ -696,7 +681,7 @@
           <Property Name="ApartmentID" Type="Int32" Nullable="false" />
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="RequestDate" Type="DateTime" Precision="0" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Apartments" Relationship="Self.FK_MaintenanceRequests_Apartments" FromRole="MaintenanceRequests" ToRole="Apartments" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_MaintenanceRequests_Clients" FromRole="MaintenanceRequests" ToRole="Clients" />
@@ -771,9 +756,7 @@
           <Property Name="ReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ClientID" Type="Int32" Nullable="false" />
           <Property Name="ApartmentID" Type="Int32" Nullable="false" />
-          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Apartments" Relationship="Self.FK_Reservations_Apartments" FromRole="Reservations" ToRole="Apartments" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_Reservations_Clients" FromRole="Reservations" ToRole="Clients" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Revenues">
           <Key>
@@ -798,6 +781,7 @@
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Apartments" Relationship="Self.FK_Sales_Apartments" FromRole="Sales" ToRole="Apartments" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_Sales_Clients" FromRole="Sales" ToRole="Clients" />
+          <NavigationProperty Name="Clients1" Relationship="Self.FK_Sales_Clients1" FromRole="Sales" ToRole="Clients" />
         </EntityType>
         <EntityType Name="Suppliers">
           <Key>
@@ -854,18 +838,6 @@
             </Principal>
             <Dependent Role="Rental">
               <PropertyRef Name="ApartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reservations_Apartments">
-          <End Role="Apartments" Type="Self.Apartments" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Apartments">
-              <PropertyRef Name="ApartmentID" />
-            </Principal>
-            <Dependent Role="Reservations">
-              <PropertyRef Name="ApartmentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -969,19 +941,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Reservations_Clients">
+        <Association Name="FK_Sales_Clients">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+          <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="ClientID" />
             </Principal>
-            <Dependent Role="Reservations">
+            <Dependent Role="Sales">
               <PropertyRef Name="ClientID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sales_Clients">
+        <Association Name="FK_Sales_Clients1">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="Sales" Type="Self.Sales" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1115,10 +1087,6 @@
             <End Role="Apartments" EntitySet="Apartments" />
             <End Role="Rental" EntitySet="Rental" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Apartments" Association="Self.FK_Reservations_Apartments">
-            <End Role="Apartments" EntitySet="Apartments" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sales_Apartments" Association="Self.FK_Sales_Apartments">
             <End Role="Apartments" EntitySet="Apartments" />
             <End Role="Sales" EntitySet="Sales" />
@@ -1151,11 +1119,11 @@
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Rental" EntitySet="Rental" />
           </AssociationSet>
-          <AssociationSet Name="FK_Reservations_Clients" Association="Self.FK_Reservations_Clients">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="Reservations" EntitySet="Reservations" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sales_Clients" Association="Self.FK_Sales_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Sales" EntitySet="Sales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_Clients1" Association="Self.FK_Sales_Clients1">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="Sales" EntitySet="Sales" />
           </AssociationSet>
@@ -1204,6 +1172,7 @@
                 <ScalarProperty Name="RoomCount" ColumnName="RoomCount" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -4,30 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a7c09b2d1a7b4ebfbea1a34ae3aab4fc" Name="Diagram1">
-        <EntityTypeShape EntityType="RealEstateModel.Apartments" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Buildings" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Clients" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.ConstructionSchedule" Width="1.5" PointX="8.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.EmployeeProjects" Width="1.5" PointX="11" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Employees" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Expenses" Width="1.5" PointX="3.75" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.HistoryOfChanges" Width="1.5" PointX="11" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.MaintenanceRequests" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Materials" Width="1.5" PointX="13" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Payments" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Projects" Width="1.5" PointX="1.5" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Purchases" Width="1.5" PointX="3.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Rental" Width="1.5" PointX="6" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Reservations" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Revenues" Width="1.5" PointX="3.75" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Sales" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.Suppliers" Width="1.5" PointX="10.75" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RealEstateModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.5" IsExpanded="true" />
+      <Diagram DiagramId="85bfb98aed6d47e095c2d9ed5cbf5337" Name="Diagram1">
+        <EntityTypeShape EntityType="RealEstateModel.Apartments" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Buildings" Width="1.5" PointX="1.5" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Clients" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.ConstructionSchedule" Width="1.5" PointX="6.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.EmployeeProjects" Width="1.5" PointX="11" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Employees" Width="1.5" PointX="8.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Expenses" Width="1.5" PointX="3.75" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.HistoryOfChanges" Width="1.5" PointX="11" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.MaintenanceRequests" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Materials" Width="1.5" PointX="13" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Payments" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Projects" Width="1.5" PointX="1.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Purchases" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Rental" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Reservations" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Revenues" Width="1.5" PointX="3.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Sales" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.Suppliers" Width="1.5" PointX="10.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
         <AssociationConnector Association="RealEstateModel.FK__Apartment__Build__3C69FB99" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_MaintenanceRequests_Apartments" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_Rental_Apartments" ManuallyRouted="false" />
-        <AssociationConnector Association="RealEstateModel.FK_Reservations_Apartments" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_Sales_Apartments" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK__Buildings__Proje__398D8EEE" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_ConstructionSchedule_Buildings" ManuallyRouted="false" />
@@ -36,8 +35,8 @@
         <AssociationConnector Association="RealEstateModel.FK_Payments_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_Rental_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_Rental_Clients1" ManuallyRouted="false" />
-        <AssociationConnector Association="RealEstateModel.FK_Reservations_Clients" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_Sales_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateModel.FK_Sales_Clients1" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK__Construct__Proje__5BE2A6F2" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_EmployeeProjects_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="RealEstateModel.FK_EmployeeProjects_Projects" ManuallyRouted="false" />

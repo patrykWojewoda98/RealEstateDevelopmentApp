@@ -22,8 +22,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
             this.Payments1 = new HashSet<Payments>();
             this.Rental = new HashSet<Rental>();
             this.Rental1 = new HashSet<Rental>();
-            this.Reservations = new HashSet<Reservations>();
             this.Sales = new HashSet<Sales>();
+            this.Sales1 = new HashSet<Sales>();
         }
     
         public int ClientID { get; set; }
@@ -46,8 +46,8 @@ namespace realEstateDevelopment.MVVM.Model.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rental1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reservations> Reservations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sales> Sales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sales> Sales1 { get; set; }
     }
 }

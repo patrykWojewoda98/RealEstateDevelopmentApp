@@ -23,5 +23,6 @@ namespace realEstateDevelopment.MVVM.Model.Entities
     
         public virtual Apartments Apartments { get; set; }
         public virtual Clients Clients { get; set; }
+        public virtual Clients Clients1 { get; set; }
     }
 }
