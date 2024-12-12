@@ -1,5 +1,4 @@
-﻿using realEstateDevelopment.MVVM.Model.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 namespace realEstateDevelopment.MVVM.Model.EntitiesForView
 {
@@ -11,7 +10,7 @@ namespace realEstateDevelopment.MVVM.Model.EntitiesForView
         public string Position { get; set; }
         public string Department { get; set; }
         public decimal? Salary { get; set; }
-        public List<string> Projects { get; set; }
+        public ObservableCollection <string> Projects { get; set; }
         public string SelectedProject { get; set; }
     }
 }

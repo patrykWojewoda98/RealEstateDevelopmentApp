@@ -83,6 +83,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             MaterialsVM.AddNewMaterialRequested += OnAddNewMaterialRequested;
             ReservationsVM.AddNewReservationRequested += OnAddNewReservationRequested;
             MaintenanceRequestsVM.AddNewMaintenanceRequestsRequested += OnAddNewMaintenanceRequestsRequested;
+            EmployeesVM.AddNewEmployeeRequested += OnAddNewEmployeeRequested;
 
 
 
@@ -247,6 +248,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = ReservationsVM;
             };
             CurrentView = addNewMaintenanceRequestVM;
+        }
+
+        private void OnAddNewEmployeeRequested()
+        {
+            var addNewEmployeeRequestVM = new AddNewEmployeeViewModel();
+            addNewEmployeeRequestVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = EmployeesVM;
+            };
+            CurrentView = addNewEmployeeRequestVM;
         }
         #endregion
     }

@@ -14,7 +14,8 @@
             <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" 
+          SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding EmployeeId}"/>
                 <DataGridTextColumn Header="Imię" Binding="{Binding FirstName }"/>
@@ -22,9 +23,16 @@
                 <DataGridTextColumn Header="Pozycja" Binding="{Binding Position}"/>
                 <DataGridTextColumn Header="Departament" Binding="{Binding Department}"/>
                 <DataGridTextColumn Header="Wypłata" Binding="{Binding Salary}"/>
-                <DataGridComboBoxColumn Header="Lista projektów-do naprawy"
-                        SelectedItemBinding="{Binding SelectedProject}"
-                        ItemsSource="{Binding Projects}" />
+                <DataGridTemplateColumn Header="Lista projektów (wymyślić jak podłączyć binging)">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
+                                      ItemsSource="{Binding Projects}" 
+                                      SelectedItem="{Binding SelectedProject}"
+                                      />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock Text="Tu będą filtry"
