@@ -30,5 +30,11 @@
         <TextBlock Text="Tu będą filtry"
            Grid.Row="0"
            Foreground="White"/>
+        <Button x:Name="AddNewBuildind"
+        Grid.Column="1"
+        Content="Dodaj nową sprzedarz"
+        Command="{Binding OpenAddNewSaleCommand}"
+        Style="{StaticResource CommonNormalButtonTheme}"
+        />
     </Grid>
 </UserControl>

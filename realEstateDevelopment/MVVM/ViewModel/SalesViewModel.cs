@@ -3,11 +3,33 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
+using realEstateDevelopment.Core;
+using System;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class SalesViewModel : LoadAllViewModel<SalesEntityForView>
     {
+
+        #region Commands
+        public RealyCommand OpenAddNewSaleCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewSaleRequested;
+        #endregion
+
+        #region Constructor
+        public SalesViewModel()
+            : base()
+        {
+            OpenAddNewSaleCommand = new RealyCommand(o =>
+            {
+                AddNewSaleRequested?.Invoke();
+            });
+        }
+        #endregion
+
         #region Helpers
         public override async Task LoadAsync()
         {

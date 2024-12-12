@@ -164,6 +164,7 @@
     <Compile Include="MVVM\ViewModel\AddNewProjectViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewPurchaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewReservationsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewSaleViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
@@ -205,6 +206,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewReservationsView.xaml.cs">
       <DependentUpon>AddNewReservationsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AddNewSaleView.xaml.cs">
+      <DependentUpon>AddNewSaleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\AddNewSupplierView.xaml.cs">
       <DependentUpon>AddNewSupplierView.xaml</DependentUpon>
@@ -310,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewReservationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AddNewSaleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
