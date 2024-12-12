@@ -1,5 +1,5 @@
 ﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.AddNewEmployeeView"
-                          xmlns:helper="clr-namespace:realEstateDevelopment.Helper"
+             xmlns:helper="clr-namespace:realEstateDevelopment.Helper"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -31,8 +31,7 @@
                  Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"/>
-
+        
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Stanowisko" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Position, UpdateSourceTrigger=PropertyChanged}"/>
 

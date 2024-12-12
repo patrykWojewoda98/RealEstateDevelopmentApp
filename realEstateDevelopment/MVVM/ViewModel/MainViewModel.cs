@@ -1,5 +1,6 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM;
+using realEstateDevelopment.MVVM.Model.Entities;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -84,6 +85,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             ReservationsVM.AddNewReservationRequested += OnAddNewReservationRequested;
             MaintenanceRequestsVM.AddNewMaintenanceRequestsRequested += OnAddNewMaintenanceRequestsRequested;
             EmployeesVM.AddNewEmployeeRequested += OnAddNewEmployeeRequested;
+            PurchasesVM.AddNewPurchaseRequested += OnAddNewPurchaseRequested;
 
 
 
@@ -258,6 +260,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = EmployeesVM;
             };
             CurrentView = addNewEmployeeRequestVM;
+        }
+
+        private void OnAddNewPurchaseRequested()
+        {
+            var addNewPurchaseRequestVM = new AddNewPurchaseViewModel();
+            addNewPurchaseRequestVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = PurchasesVM;
+            };
+            CurrentView = addNewPurchaseRequestVM;
         }
         #endregion
     }

@@ -162,6 +162,7 @@
     <Compile Include="MVVM\ViewModel\AddNewMaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewMaterialViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewProjectViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AddNewPurchaseViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewReservationsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
@@ -198,6 +199,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewProjectView.xaml.cs">
       <DependentUpon>AddNewProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AddNewPurchaseView.xaml.cs">
+      <DependentUpon>AddNewPurchaseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\AddNewReservationsView.xaml.cs">
       <DependentUpon>AddNewReservationsView.xaml</DependentUpon>
@@ -298,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AddNewPurchaseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

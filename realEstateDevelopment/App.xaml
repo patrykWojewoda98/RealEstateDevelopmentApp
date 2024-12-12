@@ -102,6 +102,9 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewEmployeeViewModel}">
                 <view:AddNewEmployeeView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewPurchaseViewModel}">
+                <view:AddNewPurchaseView/>
+            </DataTemplate>
 
 
             <DataTemplate DataType="{x:Type modalViewModel:ErrorModalViewModel}">
