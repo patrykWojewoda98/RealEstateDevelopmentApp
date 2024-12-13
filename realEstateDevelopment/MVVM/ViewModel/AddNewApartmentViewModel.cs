@@ -1,8 +1,11 @@
 ﻿using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -10,6 +13,25 @@ namespace realEstateDevelopment.MVVM.ViewModel
     {
 
         #region Propeties
+
+        private BuildingsEntityForView _selectedBuilding;
+
+        public ObservableCollection<BuildingsEntityForView> AvailableBuilding { get; set; }
+
+
+        public BuildingsEntityForView SelectedBuilding
+        {
+            get => _selectedBuilding;
+            set
+            {
+                _selectedBuilding = value;
+                if (_selectedBuilding != null)
+                {
+                    item.BuildingID = _selectedBuilding.BuildingID;
+                }
+                OnPropertyChanged(() => SelectedBuilding);
+            }
+        }
         public int BuildingID
         {
             get
@@ -92,6 +114,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             : base()
         {
             item = new Apartments();
+
+            AvailableBuilding = new ObservableCollection<BuildingsEntityForView>();
+            LoadBuildings();
+
+            SelectedBuilding = AvailableBuilding.FirstOrDefault();
         }
         #endregion
 
@@ -153,6 +180,27 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 var errorModal = new ErrorModalView(potentialErrors);
                 errorModal.ShowDialog();
+            }
+        }
+        private void LoadBuildings()
+        {
+            var projects = estateEntities.Projects;
+            var buildings = estateEntities.Buildings;
+
+            var allbuildings = buildings.Join(projects,
+                                              b => b.ProjectID,
+                                              p => p.ProjectID,
+                                              (b, p) => new BuildingsEntityForView
+                                              {
+                                                  BuildingID = b.BuildingID,
+                                                  BuildingNumber = b.BuildingNumber,  
+                                                  BuildingName = b.BuildingName,
+                                                  Localization = p.Location
+                                              }).ToList();
+
+            foreach (var building in allbuildings)
+            {
+                AvailableBuilding.Add(building);
             }
         }
         #endregion

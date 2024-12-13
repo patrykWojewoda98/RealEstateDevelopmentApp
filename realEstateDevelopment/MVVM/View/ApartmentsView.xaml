@@ -14,7 +14,7 @@
         <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id mieszkania" Binding="{Binding ApartmentID}"/>
-                <DataGridTextColumn Header="Id Budynku" Binding="{Binding BuildingID}"/>
+                <DataGridTextColumn Header="Numer Budynku" Binding="{Binding BuildingNumber}"/>
                 <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
                 <DataGridTextColumn Header="Numer mieszkania" Binding="{Binding ApartmentNumber}"/>
                 <DataGridTextColumn Header="Piętro" Binding="{Binding Floor}"/>

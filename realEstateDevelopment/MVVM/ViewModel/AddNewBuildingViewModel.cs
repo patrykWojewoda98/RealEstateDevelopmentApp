@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System;
 using realEstateDevelopment.MVVM.View.Modals;
 using System.Linq;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System.Collections.ObjectModel;
 
 
 namespace realEstateDevelopment.MVVM.ViewModel
@@ -11,6 +13,25 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class AddNewBuildingViewModel : BaseDatabaseAdder<Buildings>
     {
         #region Propeties
+
+        private ProjectEntityForView _selectedProject;
+
+        public ObservableCollection<ProjectEntityForView> AvailableProject { get; set; }
+
+
+        public ProjectEntityForView SelectedProject
+        {
+            get => _selectedProject;
+            set
+            {
+                _selectedProject = value;
+                if (_selectedProject != null)
+                {
+                    item.ProjectID = _selectedProject.ProjectId;
+                }
+                OnPropertyChanged(() => SelectedProject);
+            }
+        }
         public int BuildingID
         {
             get
@@ -94,6 +115,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             : base()
         {
             item = new Buildings();
+
+            AvailableProject = new ObservableCollection<ProjectEntityForView>();
+            LoadProjects();
+
+            SelectedProject = AvailableProject.FirstOrDefault();
         }
 
 
@@ -160,6 +186,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 var errorModal = new ErrorModalView(potentialErrors);
                 errorModal.ShowDialog();
+            }
+        }
+
+        private void LoadProjects()
+        {
+            var projects = estateEntities.Projects.Select(c => new ProjectEntityForView
+            {
+                ProjectId = c.ProjectID,
+                ProjectName = c.ProjectName,
+                ProjectLocalization = c.Location
+            }).ToList();
+
+            foreach (var project in projects)
+            {
+                AvailableProject.Add(project);
             }
         }
         #endregion

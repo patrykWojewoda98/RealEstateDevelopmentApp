@@ -35,6 +35,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                         {
                             ApartmentID = a.ApartmentID,
                             BuildingID = b.BuildingID,
+                            BuildingNumber = b.BuildingNumber,
                             Address = p.Location,
                             ApartmentNumber = a.ApartmentNumber,
                             Floor = a.Floor,

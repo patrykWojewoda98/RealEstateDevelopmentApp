@@ -18,7 +18,7 @@
                 <DataGridTextColumn Header="Id" Binding="{Binding BuildingID}"/>
                 <DataGridTextColumn Header="Id projektu" Binding="{Binding ProjectID}"/>
                 <DataGridTextColumn Header="Nazwa budynku" Binding="{Binding BuildingName}"/>
-                <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Localization}"/>
                 <DataGridTextColumn Header="Numer budynku" Binding="{Binding BuildingNumber}"/>
                 <DataGridTextColumn Header="Liczba pienter" Binding="{Binding Floors}"/>
                 <DataGridTextColumn Header="Ukończono" Binding="{Binding Status}"/>

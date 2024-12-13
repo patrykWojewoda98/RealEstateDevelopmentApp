@@ -11,6 +11,13 @@
         public string BuildingName { get; set; }
         public int Floors { get; set; }
         public string Status { get; set; }
+
+        public string Localization { get; set; }
+
+        public override string ToString()
+        {
+            return $"Budynek numer: {BuildingNumber} w {Localization}";
+        }
         #endregion
     }
 }

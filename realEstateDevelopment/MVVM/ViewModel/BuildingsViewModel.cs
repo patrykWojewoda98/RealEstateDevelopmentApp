@@ -43,6 +43,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                             BuildingName = b.BuildingName,
                             ProjectID = b.ProjectID,
                             BuildingNumber = b.BuildingNumber,
+                            Localization = p.Location,
                             Floors = b.Floors,
                             Status = b.Status,
                         };

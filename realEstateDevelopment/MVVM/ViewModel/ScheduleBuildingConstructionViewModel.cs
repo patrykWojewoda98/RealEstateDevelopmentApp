@@ -5,21 +5,34 @@ using System.Linq;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System.Collections.ObjectModel;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ScheduleBuildingConstructionViewModel : BaseDatabaseAdder<ConstructionSchedule>
     {
         #region Properties
-        public int ProjectID
+
+        private ProjectEntityForView _selectedProject;
+
+        public ObservableCollection<ProjectEntityForView> AvailableProject { get; set; }
+
+
+        public ProjectEntityForView SelectedProject
         {
-            get => item.ProjectID;
+            get => _selectedProject;
             set
             {
-                item.ProjectID = value;
-                OnPropertyChanged(() => ProjectID);
+                _selectedProject = value;
+                if (_selectedProject != null)
+                {
+                    item.ProjectID = _selectedProject.ProjectId;
+                }
+                OnPropertyChanged(() => SelectedProject);
             }
         }
+        
 
         public string ConstructionPhase
         {
@@ -61,6 +74,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             : base()
         {
             item = new ConstructionSchedule();
+
+            AvailableProject = new ObservableCollection<ProjectEntityForView>();
+            LoadProjects();
+
+            SelectedProject = AvailableProject.FirstOrDefault();
         }
         #endregion
 
@@ -71,11 +89,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var errors = new List<string>();
             var db = new RealEstateEntities();
 
-            if (!db.Projects.Any(p => p.ProjectID == ProjectID))
-            {
-                errors.Add("Projekt o podanym ID nie istnieje.");
-                isDataCorrect = false;
-            }
+           
 
             if (StartDate > EndDate)
             {
@@ -95,7 +109,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 isDataCorrect = false;
             }
             
-            if (db.Buildings.Any(b => b.BuildingNumber == BuildingNumber && b.ProjectID == ProjectID))
+            if (db.Buildings.Any(b => b.BuildingNumber == BuildingNumber && b.ProjectID == SelectedProject.ProjectId))
             {
                 errors.Add("Budynek o podanym numerze i ID projektu już istnieje.");
                 isDataCorrect = false;
@@ -127,7 +141,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                     // Tworzenie nowego budynku
                     var newBuilding = new Buildings
                     {
-                        ProjectID = ProjectID,
+                        ProjectID = SelectedProject.ProjectId,
                         BuildingName = BuildingName,
                         BuildingNumber = BuildingNumber,
                         Floors = Floors,
@@ -142,7 +156,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                     // Tworzenie harmonogramu konstrukcji
                     var newConstructionSchedule = new ConstructionSchedule
                     {
-                        ProjectID = ProjectID,
+                        ProjectID = SelectedProject.ProjectId,
                         Status = "Zaplanowano",
                         ConstructionPhase = "Zaplanowano",
                         StartDate = StartDate,
@@ -178,7 +192,20 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 errorModal.ShowDialog();
             }
         }
+        private void LoadProjects()
+        {
+            var projects = estateEntities.Projects.Select(c => new ProjectEntityForView
+            {
+                ProjectId = c.ProjectID,
+                ProjectName = c.ProjectName,
+                ProjectLocalization = c.Location
+            }).ToList();
 
+            foreach (var project in projects)
+            {
+                AvailableProject.Add(project);
+            }
+        }
 
         #endregion
     }

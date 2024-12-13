@@ -4,6 +4,7 @@
     {
         public int ApartmentID {  get; set; }
         public int BuildingID {  get; set; }
+        public string BuildingNumber {  get; set; } 
         public string Address {  get; set; }    
         public string ApartmentNumber {  get; set; }
         public int Floor {  get; set; }
