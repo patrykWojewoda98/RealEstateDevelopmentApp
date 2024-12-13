@@ -27,6 +27,10 @@
         <TextBlock Text="Tu będą filtry"
        Grid.Row="0"
        Foreground="White"/>
+        <Button Grid.Column="1"
+                Content="Zarejestruj nowy Wydatek"
+                Command="{Binding OpenAddNewExpenseCommand}"
+                Style="{StaticResource CommonNormalButtonTheme}"/>
 
     </Grid>
 </UserControl>

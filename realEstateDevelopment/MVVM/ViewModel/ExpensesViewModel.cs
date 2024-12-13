@@ -1,4 +1,6 @@
-﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
+﻿using realEstateDevelopment.Core;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -8,6 +10,25 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ExpensesViewModel : LoadAllViewModel<ExpensesEntityForView>
     {
+        #region Commands
+        public RealyCommand OpenAddNewExpenseCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewExpenseRequested;
+        #endregion
+
+        #region Constructor
+        public ExpensesViewModel()
+            : base()
+        {
+            OpenAddNewExpenseCommand = new RealyCommand(o =>
+            {
+                AddNewExpenseRequested?.Invoke();
+            });
+        }
+        #endregion
+
         #region Helpers
         public override async Task LoadAsync()
         {

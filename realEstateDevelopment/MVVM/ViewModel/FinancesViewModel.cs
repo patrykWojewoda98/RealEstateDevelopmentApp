@@ -46,15 +46,15 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = ExpensesVM;
             });
 
-            RevenuesVM.AddNewRevenueRequested += OnAddNewBuildingRequested;
-
+            RevenuesVM.AddNewRevenueRequested += OnAddNewRevenueRequested;
+            ExpensesVM.AddNewExpenseRequested += OnAddNewExpenseRequested;
 
 
         }
         #endregion
 
         #region Helpers
-        private void OnAddNewBuildingRequested()
+        private void OnAddNewRevenueRequested()
         {
             var addNewRevenueVM = new AddNewRevenueViewModel();
             addNewRevenueVM.RequestClose += (sender, args) =>
@@ -63,7 +63,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
             };
             CurrentView = addNewRevenueVM;
         }
+        
+        private void OnAddNewExpenseRequested()
+        {
+            var addNewExpenseVM = new AddNewExpenseViewModel();
+            addNewExpenseVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = ExpensesVM;
+            };
+            CurrentView = addNewExpenseVM;
+        }
         #endregion
-
     }
 }
