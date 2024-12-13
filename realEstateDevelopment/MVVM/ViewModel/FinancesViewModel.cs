@@ -1,6 +1,7 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
 
+
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class FinancesViewModel : ObservableObject
@@ -8,6 +9,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Commands
         public RealyCommand RevenueViewCommand { get; set; }
         public RealyCommand ExpenseViewCommand { get; set; }
+        public RealyCommand AllCashOperationsViewCommand { get; set; }  
 
         #endregion
 
@@ -15,7 +17,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Properties
         public RevenuesViewModel RevenuesVM { get; set; }
         public ExpensesViewModel ExpensesVM { get; set; }
-        
+        public AllCashOperationsViewModel AllCashOperationsVM { get; set; }
+
 
         private object _currentView;
         public object CurrentView
@@ -34,7 +37,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             RevenuesVM = new RevenuesViewModel();
             ExpensesVM = new ExpensesViewModel();
+            AllCashOperationsVM = new AllCashOperationsViewModel();
             
+
 
             RevenueViewCommand = new RealyCommand(o =>
             {
@@ -44,6 +49,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             ExpenseViewCommand = new RealyCommand(o =>
             {
                 CurrentView = ExpensesVM;
+            });
+
+            AllCashOperationsViewCommand = new RealyCommand(o =>
+            {
+                CurrentView = AllCashOperationsVM;
             });
 
             RevenuesVM.AddNewRevenueRequested += OnAddNewRevenueRequested;

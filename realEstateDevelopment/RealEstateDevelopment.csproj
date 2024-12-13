@@ -70,6 +70,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\NumericValidationHelper.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AddNewMaintenanceRequestsEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\AllCashOperationsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ApartmentForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ApartmentsEntitiesForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\BuildingsEntityForView.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="MVVM\ViewModel\AddNewRevenueViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSaleViewModel.cs" />
     <Compile Include="MVVM\ViewModel\AddNewSupplierViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\AllCashOperationsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ApartmentsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ClientViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ConstructionScheduleViewModel.cs" />
@@ -221,6 +223,9 @@
     </Compile>
     <Compile Include="MVVM\View\AddNewSupplierView.xaml.cs">
       <DependentUpon>AddNewSupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\AllCashOperationsView.xaml.cs">
+      <DependentUpon>AllCashOperationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ApartmentsView.xaml.cs">
       <DependentUpon>ApartmentsView.xaml</DependentUpon>
@@ -339,6 +344,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\AddNewSupplierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\AllCashOperationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
