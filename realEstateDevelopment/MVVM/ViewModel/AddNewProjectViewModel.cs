@@ -80,6 +80,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
             : base()
         {
             item = new Projects();
+
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
         }
 
 

@@ -24,7 +24,7 @@
 
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Id Budynku" Foreground="White"/>
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Budynek" Foreground="White"/>
         <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
           Width="500"
           ItemsSource="{Binding AvailableBuilding}" 
