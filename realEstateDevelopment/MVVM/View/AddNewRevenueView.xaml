@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="realEstateDevelopment.MVVM.View.AddNewRevenueView"
+             xmlns:helper="clr-namespace:realEstateDevelopment.Helper"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Projekt" Foreground="White"/>
+        <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
+          Width="500"
+          ItemsSource="{Binding AvailableProject}" 
+          SelectedItem="{Binding SelectedProject}"
+          SelectionChanged="ComboBoxSelectionChanged" />
+
+        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Typ przychodu" Foreground="White"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
+          ItemsSource="{Binding AvaibleTypes}" 
+          SelectedItem="{Binding SelectedType}"
+          SelectionChanged="ComboBoxSelectionChanged" />
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Kwota" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+     Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}"
+     helper:NumericValidationHelper.NumericOnly="True"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Data uzyskania przychodu" Foreground="White"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding Path=RevenueeDate, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+        <ContentControl Grid.Column="1" Grid.Row="4" Template="{StaticResource AddButtonTemplate}"/>
+    </Grid>
+</UserControl>

@@ -87,6 +87,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             EmployeesVM.AddNewEmployeeRequested += OnAddNewEmployeeRequested;
             PurchasesVM.AddNewPurchaseRequested += OnAddNewPurchaseRequested;
             SalesVM.AddNewSaleRequested += OnAddNewSaleRequested;
+            
 
 
 

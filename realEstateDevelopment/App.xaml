@@ -108,6 +108,9 @@
             <DataTemplate DataType="{x:Type viewModel:AddNewSaleViewModel}">
                 <view:AddNewSaleView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AddNewRevenueViewModel}">
+                <view:AddNewRevenueView/>
+            </DataTemplate>
 
 
 

@@ -1,4 +1,5 @@
 ﻿using realEstateDevelopment.Core;
+using realEstateDevelopment.MVVM.Model.Entities;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -45,9 +46,22 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 CurrentView = ExpensesVM;
             });
 
-            
+            RevenuesVM.AddNewRevenueRequested += OnAddNewBuildingRequested;
 
-            
+
+
+        }
+        #endregion
+
+        #region Helpers
+        private void OnAddNewBuildingRequested()
+        {
+            var addNewRevenueVM = new AddNewRevenueViewModel();
+            addNewRevenueVM.RequestClose += (sender, args) =>
+            {
+                CurrentView = RevenuesVM;
+            };
+            CurrentView = addNewRevenueVM;
         }
         #endregion
 

@@ -1,4 +1,6 @@
-﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
+﻿using realEstateDevelopment.Core;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
@@ -9,6 +11,22 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class RevenuesViewModel : LoadAllViewModel<RevenuesEntityForView>
     {
 
+        #region Commands
+        public RealyCommand OpenAddNewRevenueCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewRevenueRequested;
+        #endregion
+
+        public RevenuesViewModel()
+            : base()
+        {
+            OpenAddNewRevenueCommand = new RealyCommand(o =>
+            {
+                AddNewRevenueRequested?.Invoke();
+            });
+        }
 
         #region Helpers
         public override async Task LoadAsync()
