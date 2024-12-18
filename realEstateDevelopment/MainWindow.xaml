@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:realEstateDevelopment"
         xmlns:viewModel="clr-namespace:realEstateDevelopment.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="860" Width="950"
+        Height="860" Width="1150"
         ResizeMode="NoResize"
         Background="Transparent"
         >
@@ -19,7 +19,7 @@
             CornerRadius="20">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -34,140 +34,107 @@
                        FontSize="22"
                        Margin="20,0,0,0"/>
 
-            
-
-            <StackPanel Grid.Row="1">
-                <RadioButton Content="Home"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             IsChecked="True"
-                             Command="{Binding HomeViewCommand}"
-                             />
-
-                <RadioButton Content="Budynki"
-                     Height="50"
-                     Foreground="White"
-                     FontSize="14"
-                     Style="{StaticResource MenuButtonTheme}"
-                     Command="{Binding BuildingsViewCommand}"
-                 />
-                <RadioButton Content="Mieszkania"
-                     Height="50"
-                     Foreground="White"
-                     FontSize="14"
-                     Style="{StaticResource MenuButtonTheme}"
-                     Command="{Binding ApartmentsViewCommand}"
-                 />
-                <RadioButton Content="Charmonogram Budowy"
-                    Height="50"
-                    Foreground="White"
-                    FontSize="14"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding ConstructionScheduleViewCommand}"
-                />
-
-                <RadioButton Content="Klient"
-                    Height="50"
-                    Foreground="White"
-                    FontSize="14"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding ClientsViewCommand}"
-                />
-
-                <RadioButton Content="Projekt"
-                    Height="50"
-                    Foreground="White"
-                    FontSize="14"
-                    Style="{StaticResource MenuButtonTheme}"
-                    Command="{Binding ProjectsViewCommand}"
-                />
-
-                
 
 
-                <RadioButton Content="Materiały"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MaterialViewCommand}"
-                />
+            <Menu Grid.Row="1" VerticalAlignment="Top" Background="Transparent">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
 
-                <RadioButton Content="Rezerwacje"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding ReservationRequestCommand}"
-                />
+                <MenuItem Header="Strona Główna" Command="{Binding HomeViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/MainScrean.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Budynki" Command="{Binding BuildingsViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/building.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Mieszkania" Command="{Binding ApartmentsViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/apartment.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Charmonogram Budowy" Command="{Binding ConstructionScheduleViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/ConstructionSchedule.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Klient" Command="{Binding ClientsViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Client.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Projekt" Command="{Binding ProjectsViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Project.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Materiały" Command="{Binding MaterialViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Materials.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Rezerwacje" Command="{Binding ReservationRequestCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Reservation.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Finanse" Command="{Binding FinancesRequestCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Finance.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Wymagane Konserwacje" Command="{Binding MaintenanceRequestsCommand}" Style="{StaticResource MenuItemTheme}" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Maintenance.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Kadra" Command="{Binding EmployeesViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Employees.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Dostawcy" Command="{Binding SuppliersViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Suppliers.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Sprzedaż" Command="{Binding SalesRequestCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Sales.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Zakup" Command="{Binding PurchasesRequestCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/Purchases.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header="Historia Zmian" Command="{Binding HistoryOfChangesViewCommand}" Style="{StaticResource MenuItemTheme}">
+                    <MenuItem.Icon>
+                        <Image Source="pack://application:,,,/Images/History.png" Width="24" Height="24" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </Menu>
 
 
-                <RadioButton Content="Finanse"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding FinancesRequestCommand}"
-                />
-
-                <RadioButton Content="Wymagane konserwacje"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding MaintenanceRequestsCommand}"
-                />
-
-                <RadioButton Content="Kadra"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding EmployeesViewCommand}"
-                />
-
-                <RadioButton Content="Dostawcy"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding SuppliersViewCommand}"
-                             
-                />
-
-
-
-                <RadioButton Content="Sprzedarz"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding SalesRequestCommand}"
-                />
-
-                <RadioButton Content="Zakup"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding PurchasesRequestCommand}"
-                />
-
-                <RadioButton Content="Historia Zmian"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding HistoryOfChangesViewCommand}"
-                />
-
-
-
-
-            </StackPanel>
-            
             <TextBox Width="250"
                 Height="40"
                 VerticalAlignment="Center"

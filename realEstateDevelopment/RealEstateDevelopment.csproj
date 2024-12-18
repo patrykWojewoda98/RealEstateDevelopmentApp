@@ -501,12 +501,26 @@
     <Folder Include="Fonts\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\apartment_3938871.png" />
+    <Resource Include="Images\apartment.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\building.png" />
+    <Resource Include="Images\ConstructionSchedule.png" />
+    <Resource Include="Images\Client.png" />
+    <Resource Include="Images\Project.png" />
+    <Resource Include="Images\Reservation.png" />
+    <Resource Include="Images\Finance.png" />
+    <Resource Include="Images\Maintenance.png" />
+    <Resource Include="Images\Employees.png" />
+    <Resource Include="Images\Suppliers.png" />
+    <Resource Include="Images\Sales.png" />
+    <Resource Include="Images\Purchases.png" />
+    <Resource Include="Images\History.png" />
+    <Resource Include="Images\Materials.png" />
+    <Resource Include="Images\MainScrean.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

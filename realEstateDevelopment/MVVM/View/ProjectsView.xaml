@@ -11,7 +11,7 @@
             <ColumnDefinition Width="500"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}">
+        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding ProjectID}"/>
                 <DataGridTextColumn Header="Nazwa projektu" Binding="{Binding ProjectName}"/>
