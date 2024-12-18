@@ -10,46 +10,46 @@
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
-
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Imie klienta" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=FristName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=FristName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko klienta" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Pesel" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
          Text="{Binding Path=Pesel, UpdateSourceTrigger=PropertyChanged}"
-         helper:NumericValidationHelper.NumericOnly="True"/>
+         helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Numer dowodu osobistego" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
          Text="{Binding Path=IdCardNumber, UpdateSourceTrigger=PropertyChanged}"
-         helper:NumericValidationHelper.NumericOnly="True"/>
+         helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Seria dowodu osobistego" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=IdCardSeries, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="2" Grid.Row="0" Margin="0,8,0,8" Content="Seria dowodu osobistego" Foreground="White"/>
+        <TextBox Grid.Column="3" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=IdCardSeries, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Numer telefonu" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="0,8,0,8" 
+        <Label Grid.Column="2" Grid.Row="1" Margin="0,8,0,8" Content="Numer telefonu" Foreground="White"/>
+        <TextBox Grid.Column="3" Grid.Row="1" Margin="0,8,0,8" 
                  Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
-                 helper:NumericValidationHelper.NumericOnly="True"/>
+                 helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Adres Email" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="6" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="2" Grid.Row="2" Margin="0,8,0,8" Content="Adres Email" Foreground="White"/>
+        <TextBox Grid.Column="3" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Email, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
         
-        <ContentControl Grid.Column="1" Grid.Row="7" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="4" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="5" Source="pack://application:,,,/Images/AddPerson.png" Width="200" Height="200" />
     </Grid>
 </UserControl>

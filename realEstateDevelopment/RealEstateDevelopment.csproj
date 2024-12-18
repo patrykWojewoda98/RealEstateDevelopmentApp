@@ -526,6 +526,10 @@
     <Resource Include="Images\Materials.png" />
     <Resource Include="Images\MainScrean.png" />
     <Resource Include="Images\NewApartment.png" />
+    <Resource Include="Images\AddPerson.png" />
+    <Resource Include="Images\AddMaterial.png" />
+    <Resource Include="Images\AddReservation.png" />
+    <Resource Include="Images\AddRevenue.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

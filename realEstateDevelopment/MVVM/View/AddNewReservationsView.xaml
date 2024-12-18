@@ -12,9 +12,10 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Klient" Foreground="White"/>
@@ -29,6 +30,7 @@
                   ItemsSource="{Binding AvailableApartments}" 
                   SelectedItem="{Binding SelectedApartment}"
                   SelectionChanged="ComboBoxSelectionChanged" />
-        <ContentControl Grid.Column="1" Grid.Row="5" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="2" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="3" Source="pack://application:,,,/Images/AddReservation.png" Width="200" Height="200" />
     </Grid>
 </UserControl>

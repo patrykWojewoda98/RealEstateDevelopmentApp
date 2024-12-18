@@ -10,53 +10,70 @@
 
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="60"/>
-
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Projekt" Foreground="White"/>
-        <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
-          Width="500"
-          ItemsSource="{Binding AvailableProject}" 
-          SelectedItem="{Binding SelectedProject}"
-          SelectionChanged="ComboBoxSelectionChanged" />
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwa budynku" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingName, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Projekt" Foreground="White"/>
+            <ComboBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
+              Width="500"
+              ItemsSource="{Binding AvailableProject}" 
+              SelectedItem="{Binding SelectedProject}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Numer budynku" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=BuildingNumber, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Data rozpoczęcia" Foreground="White"/>
+            <Calendar Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Liczba pienter" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-             Text="{Binding Path=Floors, UpdateSourceTrigger=PropertyChanged}"
-             helper:NumericValidationHelper.NumericOnly="True"/>
+            <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Data zakończenia" Foreground="White"/>
+            <Calendar Grid.Column="1" Grid.Row="2" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Liczba mieszkań" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" 
-                 Text="{Binding Path=NumberOfApartments, UpdateSourceTrigger=PropertyChanged}"
-                 helper:NumericValidationHelper.NumericOnly="True"/>
+            <ContentControl Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Template="{StaticResource AddButtonTemplate}"/>
+        </Grid>
 
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Data rozpoczęcia" Foreground="White"/>
-        <DatePicker Grid.Column="1" Grid.Row="5" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Data zakończenia" Foreground="White"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Nazwa budynku" Foreground="White"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=BuildingName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
+            <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Numer budynku" Foreground="White"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingNumber, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
+            <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Liczba pięter" Foreground="White"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
+                 Text="{Binding Path=Floors, UpdateSourceTrigger=PropertyChanged}"
+                 helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
-        <ContentControl Grid.Column="1" Grid.Row="7" Template="{StaticResource AddButtonTemplate}"/>
+            <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Liczba mieszkań" Foreground="White"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
+                     Text="{Binding Path=NumberOfApartments, UpdateSourceTrigger=PropertyChanged}"
+                     helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
+
+            <Image Grid.Column="3" Grid.Row="4" Source="pack://application:,,,/Images/ConstructionSchedule.png" Width="200" Height="200" />
+        </Grid>
     </Grid>
 </UserControl>
