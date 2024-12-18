@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace realEstateDevelopment.MVVM.View
 {
@@ -13,6 +14,16 @@ namespace realEstateDevelopment.MVVM.View
             var selectedComboItem = sender as ComboBox;
             string name = selectedComboItem.SelectedItem as string;
 
+        }
+
+        private void DatePicker_Loaded(object sender, RoutedEventArgs e)
+        {
+            var datePicker = sender as DatePicker;
+            if (datePicker != null)
+            {
+                // Automatyczne otwarcie kalendarza
+                datePicker.IsDropDownOpen = true;
+            }
         }
 
     }

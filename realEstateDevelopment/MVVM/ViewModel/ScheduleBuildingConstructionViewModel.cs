@@ -7,6 +7,7 @@ using System;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -77,6 +78,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             AvailableProject = new ObservableCollection<ProjectEntityForView>();
             LoadProjects();
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
 
             SelectedProject = AvailableProject.FirstOrDefault();
         }

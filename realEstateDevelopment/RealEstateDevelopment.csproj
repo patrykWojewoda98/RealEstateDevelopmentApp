@@ -443,7 +443,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\TextboxTheme.xaml">
+    <Page Include="Themes\SearchBoxTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TextBoxTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -521,6 +525,7 @@
     <Resource Include="Images\History.png" />
     <Resource Include="Images\Materials.png" />
     <Resource Include="Images\MainScrean.png" />
+    <Resource Include="Images\NewApartment.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

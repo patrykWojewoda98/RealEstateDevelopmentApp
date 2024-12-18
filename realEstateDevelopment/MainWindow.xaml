@@ -141,7 +141,7 @@
                 HorizontalAlignment="Left"
                 Margin="10"
                 Grid.Column="1"
-                Style="{StaticResource MyTextbox}"
+                Style="{StaticResource SearchBox}"
              />
 
             <ContentControl Grid.Row="2"

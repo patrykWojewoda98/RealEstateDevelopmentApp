@@ -11,7 +11,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Themes/MenuButtonTheme.xaml"/>
-                <ResourceDictionary Source="Themes/TextboxTheme.xaml"/>
+                <ResourceDictionary Source="Themes/SearchBoxTheme.xaml"/>
+                <ResourceDictionary Source="Themes/TextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Themes/Generic.xaml" />
                 <ResourceDictionary Source="Themes/ButtonTheme.xaml"/>
                 <ResourceDictionary Source="Themes/FinanceMenuButtonTheme.xaml" />

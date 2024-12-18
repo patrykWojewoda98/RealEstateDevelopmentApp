@@ -50,10 +50,10 @@
                  helper:NumericValidationHelper.NumericOnly="True"/>
 
         <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Data rozpoczęcia" Foreground="White"/>
-        <DatePicker Grid.Column="1" Grid.Row="5" />
+        <DatePicker Grid.Column="1" Grid.Row="5" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Data zakończenia" Foreground="White"/>
-        <DatePicker Grid.Column="1" Grid.Row="6" />
+        <DatePicker Grid.Column="1" Grid.Row="6" SelectedDate="{Binding Path=EndDate, UpdateSourceTrigger=PropertyChanged}"/>
 
 
 
