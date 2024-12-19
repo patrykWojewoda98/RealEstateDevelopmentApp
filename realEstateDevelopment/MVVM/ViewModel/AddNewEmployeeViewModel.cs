@@ -112,6 +112,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
             :base()
         {
             item = new Employees();
+            OriginalPassword = string.Empty;
+            RepeatedPassword = string.Empty;
         }
         #endregion
 

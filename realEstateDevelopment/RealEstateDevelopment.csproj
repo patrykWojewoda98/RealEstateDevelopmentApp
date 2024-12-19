@@ -439,6 +439,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\LongTextBoxTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -530,6 +534,11 @@
     <Resource Include="Images\AddMaterial.png" />
     <Resource Include="Images\AddReservation.png" />
     <Resource Include="Images\AddRevenue.png" />
+    <Resource Include="Images\AddExpense.png" />
+    <Resource Include="Images\AddMaintenanceRequests.png" />
+    <Resource Include="Images\AddProject.png" />
+    <Resource Include="Images\AddSale.png" />
+    <Resource Include="Images\AddPurchase.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

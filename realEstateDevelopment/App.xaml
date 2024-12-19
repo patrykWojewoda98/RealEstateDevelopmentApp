@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Themes/Generic.xaml" />
                 <ResourceDictionary Source="Themes/ButtonTheme.xaml"/>
                 <ResourceDictionary Source="Themes/FinanceMenuButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/LongTextBoxTheme.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
 

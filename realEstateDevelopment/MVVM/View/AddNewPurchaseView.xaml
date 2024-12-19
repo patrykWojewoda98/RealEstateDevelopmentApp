@@ -12,10 +12,11 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Typ Zakupu" Foreground="White"/>
@@ -25,12 +26,13 @@
                   SelectedItem="{Binding SelectedType}"
                   SelectionChanged="ComboBoxSelectionChanged" />
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Kwota Zakupu" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LongTextBox}"/>
 
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Data Zakupu" Foreground="White"/>
         <DatePicker Grid.Column="1" Grid.Row="2" SelectedDate="{Binding Path=PurchaseDate, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ContentControl Grid.Column="1" Grid.Row="7" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="3" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="4" Source="pack://application:,,,/Images/AddPurchase.png" Width="200" Height="200" />
     </Grid>
 </UserControl>

@@ -10,14 +10,17 @@
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Projekt" Foreground="White"/>
@@ -36,12 +39,13 @@
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Kwota" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
      Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}"
-     helper:NumericValidationHelper.NumericOnly="True"/>
+     helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Data poniesienia kosztu" Foreground="White"/>
-        <DatePicker Grid.Column="1" Grid.Row="3" SelectedDate="{Binding Path=ExpenseDate, UpdateSourceTrigger=PropertyChanged}"/>
+        <Calendar Grid.Column="1" Grid.Row="3" SelectedDate="{Binding Path=ExpenseDate, UpdateSourceTrigger=PropertyChanged}"/>
 
 
         <ContentControl Grid.Column="1" Grid.Row="4" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="6" Source="pack://application:,,,/Images/AddExpense.png" Width="200" Height="200" />
     </Grid>
 </UserControl>
