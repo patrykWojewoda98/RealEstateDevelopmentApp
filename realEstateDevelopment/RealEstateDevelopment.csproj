@@ -539,6 +539,8 @@
     <Resource Include="Images\AddProject.png" />
     <Resource Include="Images\AddSale.png" />
     <Resource Include="Images\AddPurchase.png" />
+    <Resource Include="Images\AddEmployee.png" />
+    <Resource Include="Images\AddSupplier.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

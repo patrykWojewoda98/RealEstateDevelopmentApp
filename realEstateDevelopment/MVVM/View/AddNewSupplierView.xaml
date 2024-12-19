@@ -10,30 +10,28 @@
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Dostawca" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=CompanyName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=CompanyName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LongTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Numer Telefonu" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
                  Text="{Binding Path=Contact, UpdateSourceTrigger=PropertyChanged}"
-                 helper:NumericValidationHelper.NumericOnly="True"/>
+                 helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource LongTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Typ materiału (chyba do usuniecia)" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=MaterialType, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Adres" Foreground="White"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LongTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Adres" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <ContentControl Grid.Column="1" Grid.Row="5" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="3" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="4" Source="pack://application:,,,/Images/AddSupplier.png" Width="200" Height="200" />
     </Grid>
 </UserControl>

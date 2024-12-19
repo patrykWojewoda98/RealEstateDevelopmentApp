@@ -11,48 +11,47 @@
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
-
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Imię" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
-                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
         
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Stanowisko" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Position, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Position, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Demartament" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                 Text="{Binding Path=Department, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Path=Department, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
 
-        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Wypłata" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Salary, UpdateSourceTrigger=PropertyChanged}"
-                 helper:NumericValidationHelper.NumericOnly="True"/>
+        <Label Grid.Column="2" Grid.Row="0" Margin="0,8,0,8" Content="Wypłata" Foreground="White"/>
+        <TextBox Grid.Column="3" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Salary, UpdateSourceTrigger=PropertyChanged}"
+                 helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
         
-        <Label Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Content="Idywidualne hasło" Foreground="White"/>
-        <PasswordBox Grid.Column="1" Grid.Row="5" 
+        <Label Grid.Column="2" Grid.Row="1" Margin="0,8,0,8" Content="Idywidualne hasło" Foreground="White"/>
+        <PasswordBox Grid.Column="3" Grid.Row="1" 
                      Margin="0,8,0,8" PasswordChanged="OryginalPasswordChanged"/>
 
-        <Label Grid.Column="0" Grid.Row="6" Margin="0,8,0,8" Content="Powtórz hasło" Foreground="White"/>
-        <PasswordBox Grid.Column="1" Grid.Row="6" 
+        <Label Grid.Column="2" Grid.Row="2" Margin="0,8,0,8" Content="Powtórz hasło" Foreground="White"/>
+        <PasswordBox Grid.Column="3" Grid.Row="2" 
                      Margin="0,8,0,8" PasswordChanged="PepeatedPasswordChanged"/>
         
-        <ContentControl Grid.Column="1" Grid.Row="7" Template="{StaticResource AddButtonTemplate}"/>
+        <ContentControl Grid.Column="1" Grid.Row="4" Template="{StaticResource AddButtonTemplate}"/>
+        <Image Grid.Column="3" Grid.Row="5" Source="pack://application:,,,/Images/AddEmployee.png" Width="200" Height="200" />
     </Grid>
 
 </UserControl>
