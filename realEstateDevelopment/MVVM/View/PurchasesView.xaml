@@ -19,14 +19,33 @@
                 <DataGridTextColumn Header="Data zakupu" Binding="{Binding PurchaseDate}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Text="Tu będą filtry"
-           Grid.Column="1"
-           Foreground="White"/>
-        <Button x:Name="AddNewBuildind"
-                Grid.Column="1"
-                Content="Dodaj nowy zakup"
-                Command="{Binding OpenAddNewPurchaseCommand}"
-                Style="{StaticResource CommonNormalButtonTheme}"
-                />
+
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Filtry"
+                       Grid.Column="0"
+                       Foreground="White"/>
+            <Button Grid.Row="1"
+                    Content="Dodaj nowy zakup"
+                    Command="{Binding OpenAddNewPurchaseCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}"
+                    />
+            <Button Grid.Row="2"
+                    Grid.Column="1"
+                    Content="Odświerz"
+                    Command="{Binding ReloadCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}"
+                    />
+        </Grid>
+
+        
     </Grid>
 </UserControl>

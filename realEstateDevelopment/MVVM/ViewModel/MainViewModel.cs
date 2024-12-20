@@ -208,7 +208,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewApartmentVM = new AddNewApartmentViewModel();
             addNewApartmentVM.RequestClose += (sender, args) =>
             {
-                CurrentView = ProjectsVM;
+                CurrentView = ApartmentsVM;
             };
             CurrentView = addNewApartmentVM;
         }

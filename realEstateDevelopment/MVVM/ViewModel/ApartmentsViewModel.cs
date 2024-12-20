@@ -12,6 +12,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
     {
         #region Commands
         public RealyCommand OpenAddNewApartmentCommand { get; set; }
+        public RealyCommand ReloadCommand {  get; set; }
         #endregion
         public event Action AddNewApartmentRequested;
         #region
@@ -21,6 +22,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             OpenAddNewApartmentCommand = new RealyCommand(o =>
             {
                 AddNewApartmentRequested?.Invoke();
+            });
+
+            ReloadCommand = new RealyCommand(async o =>
+            {
+                ReloadAsync(); 
             });
         }
         #endregion
@@ -50,6 +56,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
 
         }
+
         #endregion
 
     }

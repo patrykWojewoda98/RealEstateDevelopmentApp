@@ -1,4 +1,5 @@
 ﻿using MVVMFirma.Helper;
+using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Fields
         protected readonly RealEstateEntities realEstateEntities;
         private BaseCommand _LoadCommand;
+        public RealyCommand ReloadCommand { get; set; }
         private ObservableCollection<T> _List;
         #endregion
 
@@ -24,6 +26,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 return _LoadCommand;
             }
         }
+
+        
 
         public ObservableCollection<T> List
         {
@@ -45,11 +49,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
             public LoadAllViewModel()
             {
                 realEstateEntities = new RealEstateEntities();
-            }
+
+            ReloadCommand = new RealyCommand(async o =>
+            {
+                ReloadAsync();
+            });
+        }
         #endregion
 
         #region Helpers
-        public abstract Task LoadAsync(); 
+        public abstract Task LoadAsync();
+        public async void ReloadAsync()
+        {
+                List.Clear();
+                await LoadAsync();
+        }
         #endregion
     }
 

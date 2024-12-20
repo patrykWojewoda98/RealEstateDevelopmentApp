@@ -11,7 +11,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="140"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" 
@@ -35,14 +35,39 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Text="Tu będą filtry"
-                   Grid.Row="0"
-                   Foreground="White"/>
-        <Button x:Name="AddNewBuildind"
-                Grid.Column="1"
-                Content="Dodaj nowego pracownika"
-                Command="{Binding OpenAddNewEmployeeCommand}"
-                Style="{StaticResource CommonNormalButtonTheme}"/>
-                
+
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Filtry"
+                        Grid.Column="0"
+                        Foreground="White"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Content="Dodaj nowego pracownika"
+                        Command="{Binding OpenAddNewEmployeeCommand}"
+                        Style="{StaticResource CommonNormalButtonTheme}"/>
+                <Button Grid.Column="1"
+        Content="Odświerz"
+        Command="{Binding ReloadCommand}"
+        Style="{StaticResource CommonNormalButtonTheme}"/>
+            </Grid>
+
+
+
+        </Grid>
+
     </Grid>
 </UserControl>
