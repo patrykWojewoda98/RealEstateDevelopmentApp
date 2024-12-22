@@ -5,53 +5,83 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-
-
+             d:DesignHeight="450" d:DesignWidth="850">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="480"/>
+            <ColumnDefinition Width="550"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+
+        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" 
+                  CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding BuildingID}"/>
                 <DataGridTextColumn Header="Id projektu" Binding="{Binding ProjectID}"/>
                 <DataGridTextColumn Header="Nazwa budynku" Binding="{Binding BuildingName}"/>
                 <DataGridTextColumn Header="Adres" Binding="{Binding Localization}"/>
                 <DataGridTextColumn Header="Numer budynku" Binding="{Binding BuildingNumber}"/>
-                <DataGridTextColumn Header="Liczba pienter" Binding="{Binding Floors}"/>
+                <DataGridTextColumn Header="Liczba pięter" Binding="{Binding Floors}"/>
                 <DataGridTextColumn Header="Ukończono" Binding="{Binding Status}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
-
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="150"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Filtry"
-                Grid.Column="0"
-                Foreground="White"/>
-            <Button x:Name="AddNewBuildind"
-            Grid.Row="1"
-            Grid.Column="1"
-            Content="Dodaj nowy budynek"
-            Command="{Binding OpenAddNewBuildingCommand}"
-            Style="{StaticResource CommonNormalButtonTheme}"
-            />
-            <Button Grid.Row="2"
-            Grid.Column="1"
-            Content="Odświerz"
-            Command="{Binding ReloadCommand}"
-            Style="{StaticResource CommonNormalButtonTheme}"
-            />
+
+            <Grid Height="50" VerticalAlignment="Top" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Filtry" Grid.Column="0" Foreground="White"/>
+                <Button Grid.Column="1" Content="Zastosuj" Command="{Binding ApplyFiltersCommand}" 
+                        Style="{StaticResource CommonNormalButtonTheme}"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Adres" Grid.Column="0" Grid.Row="0" Foreground="White"/>
+                <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Address, UpdateSourceTrigger=PropertyChanged}" 
+                         Style="{StaticResource FilterTextBox}" Grid.ColumnSpan="3"/>
+
+                
+
+                <TextBlock Text="Liczba pięter" Grid.Column="0" Grid.Row="1" Foreground="White"/>
+                <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=MinFloors, UpdateSourceTrigger=PropertyChanged}" 
+                         Style="{StaticResource FilterTextBox}"/>
+                <TextBlock Text="do" Grid.Column="2" Grid.Row="1" Foreground="White"/>
+                <TextBox Grid.Column="3" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=MaxFloors, UpdateSourceTrigger=PropertyChanged}" 
+                         Style="{StaticResource FilterTextBox}"/>
+
+                <TextBlock Text="Status" Grid.Column="0" Grid.Row="2" Foreground="White"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}" 
+                         Style="{StaticResource FilterTextBox}" Grid.ColumnSpan="3"/>
+                
+            </Grid>
+
+            <Button x:Name="AddNewBuildind" Grid.Row="2" Grid.Column="0" Content="Dodaj nowy budynek" 
+                    Command="{Binding OpenAddNewBuildingCommand}" Style="{StaticResource CommonNormalButtonTheme}"/>
+            <Button Grid.Row="3" Grid.Column="0" Content="Odświerz" Command="{Binding ReloadCommand}" 
+                    Style="{StaticResource CommonNormalButtonTheme}"/>
         </Grid>
-       
     </Grid>
 </UserControl>

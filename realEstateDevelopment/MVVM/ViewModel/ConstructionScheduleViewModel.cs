@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class ConstructionScheduleViewModel:LoadAllViewModel<ConstructionScheduleEntityForView>
+    public class ConstructionScheduleViewModel : LoadAllViewModel<ConstructionScheduleEntityForView>
     {
         #region Commands
         public RealyCommand OpenScheduleNewConstructionCommand { get; set; }
@@ -55,6 +55,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             var result = await query.ToListAsync();
             List = new ObservableCollection<ConstructionScheduleEntityForView>(result);
+        }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

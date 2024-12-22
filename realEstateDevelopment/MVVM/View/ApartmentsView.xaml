@@ -10,7 +10,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="550"/>
             <ColumnDefinition/>
-            
+
         </Grid.ColumnDefinitions>
         <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
             <DataGrid.Columns>
@@ -27,7 +27,7 @@
 
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
-                
+
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -51,7 +51,7 @@
                         Style="{StaticResource CommonNormalButtonTheme}"
                         />
             </Grid>
-            
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -66,7 +66,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                
+
                 <TextBlock  Text="Powieszchnia"
                             Grid.Column="0"
                             Grid.Row="1"
@@ -88,7 +88,7 @@
                             Grid.Row="2"
                             Foreground="White"/>
                 <TextBox Grid.Column="3" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=MaxFloor, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FilterTextBox}"/>
-                
+
 
                 <TextBlock  Text="Liczba pokoi"
                             Grid.Column="0"
@@ -100,16 +100,16 @@
                             Grid.Row="3"
                             Foreground="White"/>
                 <TextBox Grid.Column="3" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=MaxRoomsNumber, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FilterTextBox}"/>
-                
+
 
                 <TextBlock  Text="Status"
                             Grid.Column="0"
                             Grid.Row="4"
                             Foreground="White"/>
                 <TextBox Grid.Column="1" Grid.Row="4" Margin="0,8,0,8" Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource FilterTextBox}"/>
-                
+
             </Grid>
-            
+
             <Button x:Name="AddNewBuildind"
                     Grid.Row="1"
                     Grid.Column="1"
@@ -124,9 +124,9 @@
                     Style="{StaticResource CommonNormalButtonTheme}"
                     />
         </Grid>
-        
-        
 
-        
+
+
+
     </Grid>
 </UserControl>

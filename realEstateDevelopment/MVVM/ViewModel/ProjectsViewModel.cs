@@ -37,7 +37,12 @@ namespace realEstateDevelopment.MVVM.ViewModel
         List = new ObservableCollection<Projects>(projects);
     }
 
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
 
-    #endregion
-}
+
+        #endregion
+    }
 }

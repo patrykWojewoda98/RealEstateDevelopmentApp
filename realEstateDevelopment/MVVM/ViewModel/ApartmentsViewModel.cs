@@ -11,9 +11,6 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class ApartmentsViewModel : LoadAllViewModel<ApartmentsEntitiesForView>
     {
         #region Properties
-
-        
-        public ObservableCollection<ApartmentsEntitiesForView> OriginalList;
         private decimal _minArea;
         public decimal MinArea
         {
@@ -95,8 +92,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         #region Commands
         public RealyCommand OpenAddNewApartmentCommand { get; set; }
-        public RealyCommand ReloadCommand {  get; set; }
-        public RealyCommand ApplyFiltersCommand { get; set; }
+        public RealyCommand ReloadCommand { get; set; }
+        
         #endregion
         public event Action AddNewApartmentRequested;
         #region
@@ -111,12 +108,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             ReloadCommand = new RealyCommand(async o =>
             {
-                ReloadAsync(); 
+                ReloadAsync();
             });
-            ApplyFiltersCommand = new RealyCommand(async o =>
-            {
-                ApplyFiltersAsync();
-            });
+            
 
         }
         #endregion
@@ -145,14 +139,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         }
 
-        public async Task ApplyFiltersAsync()
+        public override async Task ApplyFiltersAsync()
         {
-            if(OriginalList == null)
-            {
-                OriginalList = new ObservableCollection<ApartmentsEntitiesForView>(List);
-            }
-            
-            var filtered = OriginalList.Where(item =>
+            var filtered = List.Where(item =>
                 (item.Area >= MinArea) &&
                 (item.Area <= MaxArea) &&
                 (item.Floor >= MinFloor) &&
@@ -160,9 +149,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 (item.RoomCount >= MinRoomsNumber) &&
                 (item.RoomCount <= MaxRoomsNumber) &&
                 (string.IsNullOrWhiteSpace(Status) ||
-                 (item.Status != null && item.Status.IndexOf(Status, StringComparison.OrdinalIgnoreCase) >= 0)));
+                 (item.Status != null && item.Status.IndexOf(Status, StringComparison.OrdinalIgnoreCase) >= 0))).ToList();
 
-            List= new ObservableCollection<ApartmentsEntitiesForView>(filtered);
+
+            
+            List.Clear();
+
+            foreach (var item in filtered)
+            {
+                List.Add(item);
+            }
         }
 
         #endregion

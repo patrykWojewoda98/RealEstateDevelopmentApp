@@ -47,6 +47,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var result = await query.ToListAsync();
             List = new ObservableCollection<ExpensesEntityForView>(result);
         }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

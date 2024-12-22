@@ -35,6 +35,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var suppliers = await Task.Run(() => realEstateEntities.Suppliers.ToList());
             List = new ObservableCollection<Suppliers>(suppliers);
         }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

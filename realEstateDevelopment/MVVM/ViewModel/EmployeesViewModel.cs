@@ -43,6 +43,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             List = new ObservableCollection<EmployeesEntityForView>(result);
 
         }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

@@ -36,5 +36,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var purchases = await Task.Run(() => realEstateEntities.Purchases.ToList());
             List = new ObservableCollection<Purchases>(purchases);
         }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

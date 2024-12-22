@@ -2,6 +2,7 @@
 using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,6 +14,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         protected readonly RealEstateEntities realEstateEntities;
         private BaseCommand _LoadCommand;
         public RealyCommand ReloadCommand { get; set; }
+        public RealyCommand ApplyFiltersCommand { get; set; }
         private ObservableCollection<T> _List;
         #endregion
 
@@ -54,7 +56,12 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 ReloadAsync();
             });
-        }
+
+            ApplyFiltersCommand = new RealyCommand(async o =>
+            {
+                await ApplyFiltersAsync();
+            });
+            }
         #endregion
 
         #region Helpers
@@ -64,6 +71,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 List.Clear();
                 await LoadAsync();
         }
+
+        public abstract Task ApplyFiltersAsync();
         #endregion
     }
 

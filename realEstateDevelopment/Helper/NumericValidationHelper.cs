@@ -32,10 +32,33 @@ namespace realEstateDevelopment.Helper
         {
             e.Handled = !IsTextNumeric(e.Text);
         }
+
+        //TODO zamienić w AddViews funkcje z IsextNumeric na IsTextInteger oraz IsTextDouble
         private static bool IsTextNumeric(string text)
         {
-            Regex regex = new Regex("^[0-9]+$");
-            return regex.IsMatch(text);
+
+            return int.TryParse(text, out var result);
+            
+            //return decimal.TryParse(text, out var result);
+            //Metoda nie dokonca poprawna
+            //Regex regex = new Regex("^[0-9]+$");
+            //return regex.IsMatch(text);
+        }
+
+
+        private static bool IsTextInteger(string text)
+        {
+
+            return int.TryParse(text, out var result);
+            //todo zrobić drugą metodę do sprawdzania liczb zmienno przecinkowych taką samą tylko z returnem poniżej ***vvv***
+            //return decimal.TryParse(text, out var result);
+            //Regex regex = new Regex("^[0-9]+$");
+            //return regex.IsMatch(text);
+        }
+
+        private static bool IsTextDouble(string text)
+        {
+            return decimal.TryParse(text, out var result);
         }
     }
 }

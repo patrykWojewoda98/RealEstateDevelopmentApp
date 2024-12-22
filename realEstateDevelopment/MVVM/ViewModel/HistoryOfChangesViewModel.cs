@@ -11,6 +11,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class HistoryOfChangesViewModel : LoadAllViewModel<HistoryOfChangesEntityForView>
     {
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
         #region Helpers
         public override async Task LoadAsync()
         {

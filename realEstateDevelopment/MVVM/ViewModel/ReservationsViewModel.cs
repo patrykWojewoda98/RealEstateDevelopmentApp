@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class ReservationsViewModel :LoadAllViewModel<ReservationsEntityForView>
+    public class ReservationsViewModel : LoadAllViewModel<ReservationsEntityForView>
     {
         #region Commands
         public RealyCommand OpenAddNewReservationCommand { get; set; }
@@ -54,6 +54,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             var result = await query.ToListAsync();
             List = new ObservableCollection<ReservationsEntityForView>(result);
+        }
+
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

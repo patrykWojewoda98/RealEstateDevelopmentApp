@@ -17,6 +17,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
             
         }
 
+        public override Task ApplyFiltersAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public override async Task LoadAsync()
         {
             var query = from r in realEstateEntities.Revenues
