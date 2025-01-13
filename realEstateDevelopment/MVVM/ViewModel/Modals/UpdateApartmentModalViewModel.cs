@@ -7,31 +7,34 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace realEstateDevelopment.MVVM.ViewModel
+namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
-    internal class AddNewApartmentViewModel : BaseDatabaseAdder<Apartments>
+    public class UpdateApartmentModalViewModel : BaseDataUpdater<Apartments>
     {
-
         #region Propeties
 
         private BuildingsEntityForView _selectedBuilding;
-
-        public ObservableCollection<BuildingsEntityForView> AvailableBuilding { get; set; }
 
 
         public BuildingsEntityForView SelectedBuilding
         {
             get => _selectedBuilding;
+
+        }
+
+        public int ApartmentID
+        {
+            get
+            {
+                return item.ApartmentID;
+            }
             set
             {
-                _selectedBuilding = value;
-                if (_selectedBuilding != null)
-                {
-                    item.BuildingID = _selectedBuilding.BuildingID;
-                }
-                OnPropertyChanged(() => SelectedBuilding);
+                item.ApartmentID = value;
+                OnPropertyChanged(() => ApartmentID);
             }
         }
+
         public int BuildingID
         {
             get
@@ -110,15 +113,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #endregion
 
         #region Constructor
-        public AddNewApartmentViewModel()
+        public UpdateApartmentModalViewModel(Apartments apartment)
             : base()
         {
-            item = new Apartments();
-
-            AvailableBuilding = new ObservableCollection<BuildingsEntityForView>();
-            LoadBuildings();
-
-            SelectedBuilding = AvailableBuilding.FirstOrDefault();
+            item = apartment;
         }
         #endregion
 
@@ -167,14 +165,28 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
 
         #region Helpers
-
-        public override void Save()
+        public override void Update()
         {
             Validate();
             if (isDataCorrect)
             {
-                estateEntities.Apartments.Add(item);
-                estateEntities.SaveChanges();
+                var existingItem = estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID);
+                if (existingItem != null)
+                {
+                    existingItem.ApartmentNumber = item.ApartmentNumber;
+                    existingItem.Area = item.Area;
+                    existingItem.RoomCount = item.RoomCount;
+                    existingItem.Floor = item.Floor;
+                    existingItem.Status = item.Status;
+                    existingItem.BuildingID = item.BuildingID;
+
+                    estateEntities.SaveChanges();
+                }
+                else
+                {
+                    var errorModal = new ErrorModalView("Nie znaleziono elementu do aktualizacji.");
+                    errorModal.ShowDialog();
+                }
             }
             else
             {
@@ -182,27 +194,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 errorModal.ShowDialog();
             }
         }
-        private void LoadBuildings()
-        {
-            var projects = estateEntities.Projects;
-            var buildings = estateEntities.Buildings;
 
-            var allbuildings = buildings.Join(projects,
-                                              b => b.ProjectID,
-                                              p => p.ProjectID,
-                                              (b, p) => new BuildingsEntityForView
-                                              {
-                                                  BuildingID = b.BuildingID,
-                                                  BuildingNumber = b.BuildingNumber,
-                                                  BuildingName = b.BuildingName,
-                                                  Localization = p.Location
-                                              }).ToList();
+        public void ShowMessageBox(string message)
+    {
+        // Zamiast wyświetlać alert, otwórz modal.
+        var updateApartmentModal = new UpdateApartmentModal(); // To powinien być Twój UserControl/Window
+        updateApartmentModal.DataContext = this;
+        updateApartmentModal.ShowDialog(); // Jeśli to jest Window
+    }
 
-            foreach (var building in allbuildings)
-            {
-                AvailableBuilding.Add(building);
-            }
-        }
         #endregion
     }
 }
+

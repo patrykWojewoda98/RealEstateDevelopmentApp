@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -46,11 +49,23 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,7 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\BaseDataUpdater.cs" />
     <Compile Include="Helper\NumericValidationHelper.cs" />
+    <Compile Include="Helper\UpdateMessage.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AddNewMaintenanceRequestsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AllCashOperationsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ApartmentForView.cs" />
@@ -181,6 +198,9 @@
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateModalShower.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\PurchasesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ReservationsViewModel.cs" />
@@ -256,6 +276,12 @@
     </Compile>
     <Compile Include="MVVM\View\Modals\ErrorModalView.xaml.cs">
       <DependentUpon>ErrorModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateApartmentModalView.xaml.cs">
+      <DependentUpon>UpdateApartmentModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateBuildingModalView.xaml.cs">
+      <DependentUpon>UpdateBuildingModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
@@ -396,6 +422,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\ErrorModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateApartmentModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateBuildingModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

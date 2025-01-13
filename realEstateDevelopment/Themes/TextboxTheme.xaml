@@ -5,12 +5,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border CornerRadius="10"
+                    <Border x:Name="Border"
+                            CornerRadius="10"
                             Background="#353340"
                             Width="240"
                             Height="50"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            BorderBrush="Transparent"
+                            BorderThickness="1">
                         <Grid>
                             <Rectangle StrokeThickness="1"/>
                             <ScrollViewer x:Name="PART_ContentHost"

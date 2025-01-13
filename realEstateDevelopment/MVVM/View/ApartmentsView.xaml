@@ -12,7 +12,14 @@
             <ColumnDefinition/>
 
         </Grid.ColumnDefinitions>
-        <DataGrid Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+        <DataGrid Background="Transparent" 
+          AutoGenerateColumns="False" 
+          ItemsSource="{Binding List}" 
+          CanUserAddRows="False" 
+          IsReadOnly="True" 
+          CanUserDeleteRows="False" 
+          SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+          MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id mieszkania" Binding="{Binding ApartmentID}"/>
                 <DataGridTextColumn Header="Numer Budynku" Binding="{Binding BuildingNumber}"/>

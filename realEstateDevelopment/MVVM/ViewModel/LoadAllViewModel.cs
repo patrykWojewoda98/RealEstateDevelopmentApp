@@ -1,6 +1,9 @@
-﻿using MVVMFirma.Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
 using realEstateDevelopment.Core;
+using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,13 +15,30 @@ namespace realEstateDevelopment.MVVM.ViewModel
     {
         #region Fields
         protected readonly RealEstateEntities realEstateEntities;
+        private ObservableCollection<T> _List;
+        private int _selectedItem;
+        public int SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+
+        #region Commands
         private BaseCommand _LoadCommand;
+        private BaseCommand _UpdateCommand;
         public RealyCommand ReloadCommand { get; set; }
         public RealyCommand ApplyFiltersCommand { get; set; }
-        private ObservableCollection<T> _List;
+        #endregion
+
+
         #endregion
 
         #region Properties
+        
         public ICommand LoadCommand
         {
             get
@@ -28,8 +48,17 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 return _LoadCommand;
             }
         }
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                if (_UpdateCommand == null)
+                    _UpdateCommand = new BaseCommand(() => Update(SelectedItem));
+                return _UpdateCommand;
+            }
+        }
 
-        
+
 
         public ObservableCollection<T> List
         {
@@ -73,6 +102,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
         }
 
         public abstract Task ApplyFiltersAsync();
+
+        public void Update(int id)
+        {
+            var updateMessage = new UpdateMessage(this.GetType().Name+ "Update", id);
+            Console.WriteLine("Moja Widomośc: "+ updateMessage.Message +"  "+updateMessage.Data);
+            Messenger.Default.Send(updateMessage);
+        }
         #endregion
     }
 

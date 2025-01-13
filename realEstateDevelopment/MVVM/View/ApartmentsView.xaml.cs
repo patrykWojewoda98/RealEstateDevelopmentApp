@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.ViewModel;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace realEstateDevelopment.MVVM.View
 {
@@ -28,6 +20,22 @@ namespace realEstateDevelopment.MVVM.View
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is DataGrid dataGrid && dataGrid.SelectedItem is ApartmentsEntitiesForView selectedApartment)
+            {
+                if (DataContext is ApartmentsViewModel viewModel)
+                {
+                    // Ustaw ID w ViewModelu na podstawie wybranego obiektu
+                    viewModel.SelectedItem = selectedApartment.ApartmentID;
+                    Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
+
+                    // Wywołaj Update
+                    viewModel.Update(viewModel.SelectedItem);
+                }
+            }
         }
     }
 }

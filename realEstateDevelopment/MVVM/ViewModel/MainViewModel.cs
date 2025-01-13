@@ -1,6 +1,8 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM;
 using realEstateDevelopment.MVVM.Model.Entities;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -74,6 +76,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
             SalesVM = new SalesViewModel();
             PurchasesVM = new PurchasesViewModel();
             HistoryOfChangesVM = new HistoryOfChangesViewModel();
+
+            var updateModalShower = UpdateModalShower.Instance; // Tworzy instancję i rejestruje nasłuchiwanie
+           
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
             ClientVM.AddNewClientRequested += OnAddNewClientRequested;

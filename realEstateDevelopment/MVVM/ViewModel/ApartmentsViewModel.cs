@@ -11,6 +11,17 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class ApartmentsViewModel : LoadAllViewModel<ApartmentsEntitiesForView>
     {
         #region Properties
+        private int _ID;
+        public int ID
+        {
+            get => _ID;
+            set
+            {
+                _ID = value;
+                OnPropertyChanged(() => ID);
+            }
+        }
+
         private decimal _minArea;
         public decimal MinArea
         {
