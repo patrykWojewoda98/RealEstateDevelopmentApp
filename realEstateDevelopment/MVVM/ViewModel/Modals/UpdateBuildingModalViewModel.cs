@@ -152,6 +152,12 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             // Zamiast wyświetlać alert, otwórz modal.
             var updateBuildingModal = new UpdateBuildingModalView(); // To powinien być Twój UserControl/Window
             updateBuildingModal.DataContext = this;
+
+            this.RequestClose += (sender, args) =>
+            {
+                updateBuildingModal.Close();
+            };
+
             updateBuildingModal.ShowDialog(); // Jeśli to jest Window
         }
 

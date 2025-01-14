@@ -1,10 +1,8 @@
 ﻿using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
-using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
@@ -12,15 +10,6 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
     public class UpdateApartmentModalViewModel : BaseDataUpdater<Apartments>
     {
         #region Propeties
-
-        private BuildingsEntityForView _selectedBuilding;
-
-
-        public BuildingsEntityForView SelectedBuilding
-        {
-            get => _selectedBuilding;
-
-        }
 
         public int ApartmentID
         {
@@ -47,6 +36,15 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 OnPropertyChanged(() => BuildingID);
             }
         }
+
+        public string BuildingName
+        {
+            get
+            {
+                return estateEntities.Buildings.FirstOrDefault(b=>b.BuildingID == BuildingID).BuildingName;
+            }
+        }
+
         public string ApartmentNumber
         {
             get
@@ -117,6 +115,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             : base()
         {
             item = apartment;
+            Console.WriteLine(BuildingName);
         }
         #endregion
 
@@ -200,7 +199,13 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         // Zamiast wyświetlać alert, otwórz modal.
         var updateApartmentModal = new UpdateApartmentModal(); // To powinien być Twój UserControl/Window
         updateApartmentModal.DataContext = this;
-        updateApartmentModal.ShowDialog(); // Jeśli to jest Window
+
+            this.RequestClose += (sender, args) =>
+            {
+                updateApartmentModal.Close();
+            };
+
+            updateApartmentModal.ShowDialog(); // Jeśli to jest Window
     }
 
         #endregion

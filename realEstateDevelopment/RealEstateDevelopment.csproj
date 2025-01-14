@@ -199,8 +199,12 @@
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateClientModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateMaterialModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateModalShower.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateProjectModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\PurchasesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ReservationsViewModel.cs" />
@@ -280,8 +284,20 @@
     <Compile Include="MVVM\View\Modals\UpdateApartmentModalView.xaml.cs">
       <DependentUpon>UpdateApartmentModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateBuildingConstructionScheduleModalView.xaml.cs">
+      <DependentUpon>UpdateBuildingConstructionScheduleModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\Modals\UpdateBuildingModalView.xaml.cs">
       <DependentUpon>UpdateBuildingModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateClientModalView.xaml.cs">
+      <DependentUpon>UpdateClientModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateMaterialModalView.xaml.cs">
+      <DependentUpon>UpdateMaterialModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateProjectModalView.xaml.cs">
+      <DependentUpon>UpdateProjectModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
@@ -429,7 +445,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\Modals\UpdateBuildingConstructionScheduleModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\Modals\UpdateBuildingModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateClientModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateMaterialModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateProjectModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

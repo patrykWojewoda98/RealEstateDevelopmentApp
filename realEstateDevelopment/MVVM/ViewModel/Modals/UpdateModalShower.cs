@@ -4,6 +4,7 @@ using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Linq;
+using System.Windows.Data;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
@@ -64,6 +65,29 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     // dokończyć
                     var updateModal = new UpdateBuildingModalViewModel(building);
                     updateModal.ShowMessageBox($"Update for Apartment: {building.BuildingNumber}");
+                }
+
+            }
+            else if (updateMessage.Message == "ConstructionScheduleViewModelUpdate")
+            {
+                var constructionSchedule = realEstateEntities.ConstructionSchedule.FirstOrDefault(c => c.ScheduleID == updateMessage.Data);
+                if (constructionSchedule != null)
+                {
+                    // dokończyć
+                    var updateModal = new UpdateBuildingConstructionScheduleModalViewModel(constructionSchedule);
+                    updateModal.ShowMessageBox($"Update for Apartment: {constructionSchedule.ScheduleID}");
+                }
+
+            }
+            else if (updateMessage.Message == "ClientViewModelUpdate")
+            {
+                var client = realEstateEntities.Clients.FirstOrDefault(c => c.ClientID == updateMessage.Data);
+                if (client != null)
+                {
+                    // dokończyć
+                    var updateModal = new UpdateClientModalViewModel(client);
+                    updateModal.ShowMessageBox($"Update for Apartment: {client.ClientID}");
+                    
                 }
 
             }

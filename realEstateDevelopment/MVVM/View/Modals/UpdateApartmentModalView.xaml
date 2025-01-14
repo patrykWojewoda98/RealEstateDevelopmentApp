@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Budynek" Foreground="White" VerticalAlignment="Bottom"/>
-        <TextBox Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingNumber}" IsReadOnly="True" Style="{StaticResource MyTextBox}"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingName, Mode=OneWay}" IsReadOnly="True" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Numer Mieszkania" Foreground="White" VerticalAlignment="Bottom"/>
         <TextBox Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=ApartmentNumber}" IsReadOnly="True" Style="{StaticResource MyTextBox}"/>
