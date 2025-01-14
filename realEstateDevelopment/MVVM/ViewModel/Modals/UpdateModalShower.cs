@@ -110,6 +110,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "ReservationsViewModelUpdate")
+            {
+                var reservation = realEstateEntities.Reservations.FirstOrDefault(r => r.ReservationID == updateMessage.Data);
+                if (reservation != null)
+                {
+                    var updateModal = new UpdateReservationModalViewModel(reservation);
+                    updateModal.ShowMessageBox($"Update for Project: {reservation.ReservationID}");
+
+                }
+            }
 
             else
             {

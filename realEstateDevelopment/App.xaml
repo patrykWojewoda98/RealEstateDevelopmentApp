@@ -137,6 +137,9 @@
       <DataTemplate DataType="{x:Type modalViewModel:UpdateMaterialModalViewModel}">
           <modalView:UpdateMaterialModalView />
       </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:UpdateReservationModalViewModel}">
+          <modalView:UpdateReservationModalView />
+      </DataTemplate>
 
         </ResourceDictionary>
   </Application.Resources>
