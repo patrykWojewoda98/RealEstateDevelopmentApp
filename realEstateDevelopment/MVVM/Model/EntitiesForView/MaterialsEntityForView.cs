@@ -8,5 +8,6 @@
         public string SupplierContact { get; set; }
         public string Type {  get; set; }
         public decimal UnitPrice { get; set; }
+        public int SupplierId { get; set;}
     }
 }

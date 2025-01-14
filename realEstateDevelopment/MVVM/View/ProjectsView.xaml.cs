@@ -20,6 +20,7 @@ namespace realEstateDevelopment.MVVM.View
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
                     viewModel.SelectedItem = selectedProject.ProjectId;
+                    Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
 
                     // Wywołaj Update
                     viewModel.Update(viewModel.SelectedItem);

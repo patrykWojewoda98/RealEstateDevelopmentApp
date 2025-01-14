@@ -1,13 +1,13 @@
 ﻿using realEstateDevelopment.Core;
-using realEstateDevelopment.MVVM.Model.Entities;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System;
 using System.Linq;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class ProjectsViewModel: LoadAllViewModel<Projects>
+    public class ProjectsViewModel: LoadAllViewModel<ProjectEntityForView>
     {
     #region Commands
         public RealyCommand OpenAddNewProjectCommand { get; set; }
@@ -33,8 +33,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
     #region Helpers
     public override async Task LoadAsync()
     {
-        var projects = await Task.Run(() => realEstateEntities.Projects.ToList());
-        List = new ObservableCollection<Projects>(projects);
+            var projects = from p in realEstateEntities.Projects
+                           select new ProjectEntityForView
+                           {
+                               ProjectId = p.ProjectID,
+                               ProjectLocalization = p.Location,
+                               ProjectName = p.ProjectName,
+                               StartDate = (DateTime)p.StartDate,
+                               EndDate = (DateTime)p.EndDate,
+                               Status = p.Status,
+
+                           };
+
+        List = new ObservableCollection<ProjectEntityForView>(projects);
     }
 
         public override Task ApplyFiltersAsync()

@@ -102,6 +102,7 @@
     <Compile Include="MVVM\Model\EntitiesForView\ReservationsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\RevenuesEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\SalesEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\SuppliersEntityForView.cs" />
     <Compile Include="MVVM\Model\Entities\Apartments.cs">
       <DependentUpon>RealEstateModel.tt</DependentUpon>
     </Compile>

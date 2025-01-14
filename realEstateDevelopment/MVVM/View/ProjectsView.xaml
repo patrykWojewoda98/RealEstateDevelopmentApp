@@ -20,9 +20,9 @@
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding ProjectID}"/>
+                <DataGridTextColumn Header="Id" Binding="{Binding ProjectId}"/>
                 <DataGridTextColumn Header="Nazwa projektu" Binding="{Binding ProjectName}"/>
-                <DataGridTextColumn Header="Lokalizacja" Binding="{Binding Location}"/>
+                <DataGridTextColumn Header="Lokalizacja" Binding="{Binding ProjectLocalization}"/>
                 <DataGridTextColumn Header="Data rozpoczęcia" Binding="{Binding StartDate}"/>
                 <DataGridTextColumn Header="Data Zakończenia" Binding="{Binding EndDate}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>

@@ -5,8 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View.Modals"
         mc:Ignorable="d"
-        Title="UpdateMaterialModalView" Height="450" Width="800">
-    <Grid>
-        
+        Title="UpdateMaterialModalView" Height="600" Width="800">
+    <Grid Background="#272537">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Nazwa Materiału" Foreground="White" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=MaterialName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Nazwa Dostawcy" Foreground="White" VerticalAlignment="Bottom"/>
+        <ComboBox Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" 
+          ItemsSource="{Binding AvailableSupplier}" 
+          SelectedItem="{Binding SelectedSupplier}"
+          SelectionChanged="ComboBoxSelectionChanged" 
+                  />
+
+        <Label Grid.Column="0" Grid.Row="4" Margin="0,8,0,8" Content="Kontakt Dostawcy" Foreground="White" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Column="0" Grid.Row="5" Margin="0,8,0,8" Text="{Binding Path=SupplierContact, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+
+        <Label Grid.Column="2" Grid.Row="0" Margin="0,8,0,8" Content="Typ Materiału" Foreground="White" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Column="2" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Type, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+
+        <Label Grid.Column="2" Grid.Row="2" Margin="0,8,0,8" Content="Cena Jednostkowa" Foreground="White" VerticalAlignment="Bottom"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Margin="0,8,0,8" Text="{Binding Path=UnitPrice, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+
+        <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" Source="pack://application:,,,/Images/Materials.png" Width="Auto" Height="Auto"/>
+
+        <ContentControl Grid.Column="1" Grid.Row="6" Template="{StaticResource UpdateButtonTemplate}"/>
     </Grid>
 </Window>

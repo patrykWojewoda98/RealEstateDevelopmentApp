@@ -57,14 +57,15 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 {
                     Console.WriteLine("No apartment found with the provided ID.");
                 }
-            } else if (updateMessage.Message == "BuildingsViewModelUpdate")
+            }
+            else if (updateMessage.Message == "BuildingsViewModelUpdate")
             {
                 var building = realEstateEntities.Buildings.FirstOrDefault(b => b.BuildingID == updateMessage.Data);
                 if (building != null)
                 {
                     // dokończyć
                     var updateModal = new UpdateBuildingModalViewModel(building);
-                    updateModal.ShowMessageBox($"Update for Apartment: {building.BuildingNumber}");
+                    updateModal.ShowMessageBox($"Update for Building: {building.BuildingNumber}");
                 }
 
             }
@@ -75,7 +76,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 {
                     // dokończyć
                     var updateModal = new UpdateBuildingConstructionScheduleModalViewModel(constructionSchedule);
-                    updateModal.ShowMessageBox($"Update for Apartment: {constructionSchedule.ScheduleID}");
+                    updateModal.ShowMessageBox($"Update for Construction Schedule: {constructionSchedule.ScheduleID}");
                 }
 
             }
@@ -86,15 +87,36 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 {
                     // dokończyć
                     var updateModal = new UpdateClientModalViewModel(client);
-                    updateModal.ShowMessageBox($"Update for Apartment: {client.ClientID}");
-                    
+                    updateModal.ShowMessageBox($"Update for Client: {client.ClientID}");
                 }
-
             }
+            else if (updateMessage.Message == "ProjectsViewModelUpdate")
+            {
+                var project = realEstateEntities.Projects.FirstOrDefault(p => p.ProjectID == updateMessage.Data);
+                if (project != null)
+                {
+                    var updateModal = new UpdateProjectModalViewModel(project);
+                    updateModal.ShowMessageBox($"Update for Project: {project.ProjectID}");
+
+                }
+            }
+            else if (updateMessage.Message == "MaterialsViewModelUpdate")
+            {
+                var material = realEstateEntities.Materials.FirstOrDefault(m => m.MaterialID == updateMessage.Data);
+                if (material != null)
+                {
+                    var updateModal = new UpdateMaterialModalViewModel(material);
+                    updateModal.ShowMessageBox($"Update for Project: {material.MaterialID}");
+
+                }
+            }
+
             else
             {
                 Console.WriteLine("obslużyć bład");
+            
             }
         }
     }
+
 }
