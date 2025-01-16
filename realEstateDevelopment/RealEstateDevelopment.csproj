@@ -99,6 +99,7 @@
     <Compile Include="MVVM\Model\EntitiesForView\MaintenanceRequestsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\MaterialsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ProjectEntityForView.cs" />
+    <Compile Include="MVVM\Model\EntitiesForView\PurchasesEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\ReservationsEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\RevenuesEntityForView.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\SalesEntityForView.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="MVVM\ViewModel\Modals\UpdateMaterialModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateModalShower.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateProjectModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdatePurchaseModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateReservationModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateRevenueModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateSalesModalViewModel.cs" />
@@ -315,6 +317,9 @@
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateProjectModalView.xaml.cs">
       <DependentUpon>UpdateProjectModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdatePurchaseModalView.xaml.cs">
+      <DependentUpon>UpdatePurchaseModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateReservationModalView.xaml.cs">
       <DependentUpon>UpdateReservationModalView.xaml</DependentUpon>
@@ -503,6 +508,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\UpdateProjectModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdatePurchaseModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

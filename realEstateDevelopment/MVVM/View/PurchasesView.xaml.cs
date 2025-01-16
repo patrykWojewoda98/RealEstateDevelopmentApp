@@ -1,28 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.ViewModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace realEstateDevelopment.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for PurchasesView.xaml
-    /// </summary>
     public partial class PurchasesView : UserControl
     {
         public PurchasesView()
         {
             InitializeComponent();
+        }
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is DataGrid dataGrid && dataGrid.SelectedItem is PurchasesEntityForView selectedPurchase)
+            {
+                if (DataContext is PurchasesViewModel viewModel)
+                {
+                    // Ustaw ID w ViewModelu na podstawie wybranego obiektu
+                    viewModel.SelectedItem = selectedPurchase.PurchaseID;
+
+                    // Wywołaj Update
+                    viewModel.Update(viewModel.SelectedItem);
+                }
+            }
         }
     }
 }

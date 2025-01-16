@@ -180,6 +180,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "PurchasesViewModelUpdate")
+            {
+                var updatePurchase = realEstateEntities.Purchases.FirstOrDefault(p => p.PurchaseID == updateMessage.Data);
+                if (updatePurchase != null)
+                {
+                    var updateModal = new UpdatePurchaseModalViewModel(updatePurchase);
+                    updateModal.ShowMessageBox($"Update for Project: {updatePurchase.PurchaseID}");
+
+                }
+            }
 
             else
             {
