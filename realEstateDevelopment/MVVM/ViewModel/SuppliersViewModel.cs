@@ -1,13 +1,15 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
-    public class SuppliersViewModel : LoadAllViewModel<Suppliers>
+    public class SuppliersViewModel : LoadAllViewModel<SuppliersEntityForView>
     {
         #region Commands
         public RealyCommand OpenAddNewSupplierCommand { get; set; }
@@ -30,10 +32,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #endregion
 
         #region Helpers
+
         public override async Task LoadAsync()
         {
-            var suppliers = await Task.Run(() => realEstateEntities.Suppliers.ToList());
-            List = new ObservableCollection<Suppliers>(suppliers);
+            var query = from s in realEstateEntities.Suppliers
+                        select new SuppliersEntityForView
+                        {
+                            SupplierID = s.SupplierID,
+                            Address = s.Address,
+                            Contact = s.Contact,
+                            CompanyName = s.CompanyName,
+                        };
+        
+
+            var result = await query.ToListAsync();
+            List = new ObservableCollection<SuppliersEntityForView>(result);
         }
 
         public override Task ApplyFiltersAsync()

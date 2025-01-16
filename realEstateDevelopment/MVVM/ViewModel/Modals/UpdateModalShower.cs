@@ -160,6 +160,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "SuppliersViewModelUpdate")
+            {
+                var updateSupplier = realEstateEntities.Suppliers.FirstOrDefault(s => s.SupplierID == updateMessage.Data);
+                if (updateSupplier != null)
+                {
+                    var updateModal = new UpdateSupplierModalViewModel(updateSupplier);
+                    updateModal.ShowMessageBox($"Update for Project: {updateSupplier.SupplierID}");
+
+                }
+            }
 
             else
             {

@@ -211,6 +211,7 @@
     <Compile Include="MVVM\ViewModel\Modals\UpdateProjectModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateReservationModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateRevenueModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateSupplierModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ProjectsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\PurchasesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\ReservationsViewModel.cs" />
@@ -319,6 +320,9 @@
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateRevenueModalView.xaml.cs">
       <DependentUpon>UpdateRevenueModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateSupplierModalView.xaml.cs">
+      <DependentUpon>UpdateSupplierModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\ProjectsView.xaml.cs">
       <DependentUpon>ProjectsView.xaml</DependentUpon>
@@ -503,6 +507,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\UpdateRevenueModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateSupplierModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
