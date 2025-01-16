@@ -170,6 +170,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "SalesViewModelUpdate")
+            {
+                var updateSale = realEstateEntities.Sales.FirstOrDefault(s => s.SaleID == updateMessage.Data);
+                if (updateSale != null)
+                {
+                    var updateModal = new UpdateSalesModalViewModel(updateSale);
+                    updateModal.ShowMessageBox($"Update for Project: {updateSale.SaleID}");
+
+                }
+            }
 
             else
             {
