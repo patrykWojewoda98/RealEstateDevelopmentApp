@@ -120,6 +120,26 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "ExpenceUpdate")
+            {
+                var expense = realEstateEntities.Expenses.FirstOrDefault(e => e.ExpenseID == updateMessage.Data);
+                if (expense != null)
+                {
+                    var updateModal = new UpdateExpensesModalViewModel(expense);
+                    updateModal.ShowMessageBox($"Update for Project: {expense.ExpenseID}");
+
+                }
+            }
+            else if (updateMessage.Message == "RevenueUpdate")
+            {
+                var revenue = realEstateEntities.Revenues.FirstOrDefault(r => r.RevenueID == updateMessage.Data);
+                if (revenue != null)
+                {
+                    var updateModal = new UpdateRevenueModalViewModel(revenue);
+                    updateModal.ShowMessageBox($"Update for Project: {revenue.RevenueID}");
+
+                }
+            }
 
             else
             {

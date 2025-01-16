@@ -1,28 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using GalaSoft.MvvmLight.Messaging;
+using realEstateDevelopment.Helper;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.ViewModel;
+using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace realEstateDevelopment.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for AllCashOperationsView.xaml
-    /// </summary>
+    
     public partial class AllCashOperationsView : UserControl
     {
         public AllCashOperationsView()
         {
             InitializeComponent();
+        }
+        private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (sender is DataGrid dataGrid && dataGrid.SelectedItem is AllCashOperationsEntityForView selectedOperation)
+            {
+                if (DataContext is AllCashOperationsViewModel viewModel)
+                {
+                    // Ustaw ID w ViewModelu na podstawie wybranego obiektu
+                    viewModel.SelectedItem = selectedOperation.Id;
+
+                    if (selectedOperation.Type == "Przychód")
+                    {
+                        var updateMessage = new UpdateMessage("RevenueUpdate", selectedOperation.Id);
+                        Messenger.Default.Send(updateMessage);
+                    }else if (selectedOperation.Type == "Koszt")
+                    {
+                        var updateMessage = new UpdateMessage("ExpenceUpdate", selectedOperation.Id);
+                        Messenger.Default.Send(updateMessage);
+                    }
+                    else
+                    {
+                        var updateMessage = new UpdateMessage("UnknownUpdate", -1);
+                        Messenger.Default.Send(updateMessage);
+                    }
+                }
+            }
         }
     }
 }

@@ -28,6 +28,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                         join p in realEstateEntities.Projects on r.ProjectID equals p.ProjectID
                         select new AllCashOperationsEntityForView
                         {
+                            Id = r.RevenueID,
                             ProjectName = p.ProjectName,
                             Type = "Przychód",
                             Category = r.RevenueType,
@@ -41,6 +42,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                         join p in realEstateEntities.Projects on e.ProjectID equals p.ProjectID
                         select new AllCashOperationsEntityForView
                         {
+                            Id = e.ExpenseID,
                             ProjectName = p.ProjectName,
                             Type = "Koszt",
                             Category = e.ExpenseType,

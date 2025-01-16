@@ -5,6 +5,7 @@ namespace realEstateDevelopment.MVVM.Model.EntitiesForView
     public class RevenuesEntityForView
     {
         public int Id { get; set; }
+        public int ProjectId { get; set; }
         public string ProjectName {  get; set; }
         public string Address { get; set; }
         public string RevenueType { get; set; }

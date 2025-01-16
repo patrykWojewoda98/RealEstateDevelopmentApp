@@ -14,7 +14,15 @@
             <RowDefinition Height="150"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
+        <DataGrid Grid.Row="1" 
+                  Background="Transparent" 
+                  AutoGenerateColumns="False" 
+                  ItemsSource="{Binding List}" 
+                  CanUserAddRows="False" 
+                  IsReadOnly="True" 
+                  CanUserDeleteRows="False"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                  MouseDoubleClick="DataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Nazwa Projektu" Binding="{Binding ProjectName}"/>
