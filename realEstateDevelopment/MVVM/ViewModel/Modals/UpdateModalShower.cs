@@ -140,6 +140,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "MaintenanceRequestsViewModelUpdate")
+            {
+                var maintenanceRequest = realEstateEntities.MaintenanceRequests.FirstOrDefault(m => m.RequestID == updateMessage.Data);
+                if (maintenanceRequest != null)
+                {
+                    var updateModal = new UpdateMaintenanceRequestModalViewModel(maintenanceRequest);
+                    updateModal.ShowMessageBox($"Update for Project: {maintenanceRequest.RequestID}");
+
+                }
+            }
 
             else
             {

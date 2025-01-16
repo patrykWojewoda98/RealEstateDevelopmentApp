@@ -204,6 +204,7 @@
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateClientModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateExpensesModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateMaintenanceRequestModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateMaterialModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateModalShower.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateProjectModalViewModel.cs" />
@@ -299,6 +300,9 @@
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateExpensesModalView.xaml.cs">
       <DependentUpon>UpdateExpensesModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateMaintenanceRequestModalView.xaml.cs">
+      <DependentUpon>UpdateMaintenanceRequestModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateMaterialModalView.xaml.cs">
       <DependentUpon>UpdateMaterialModalView.xaml</DependentUpon>
@@ -471,6 +475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\UpdateExpensesModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateMaintenanceRequestModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
