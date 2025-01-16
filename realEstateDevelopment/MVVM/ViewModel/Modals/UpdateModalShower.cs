@@ -150,6 +150,16 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                 }
             }
+            else if (updateMessage.Message == "EmployeesViewModelUpdate")
+            {
+                var updateEmployees = realEstateEntities.Employees.FirstOrDefault(e => e.EmployeeID == updateMessage.Data);
+                if (updateEmployees != null)
+                {
+                    var updateModal = new UpdateEmployeesModalViewModel(updateEmployees);
+                    updateModal.ShowMessageBox($"Update for Project: {updateEmployees.EmployeeID}");
+
+                }
+            }
 
             else
             {

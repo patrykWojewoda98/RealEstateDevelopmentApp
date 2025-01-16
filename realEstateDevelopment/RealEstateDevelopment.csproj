@@ -203,6 +203,7 @@
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateClientModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\UpdateEmployeesModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateExpensesModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateMaintenanceRequestModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateMaterialModalViewModel.cs" />
@@ -297,6 +298,9 @@
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateClientModalView.xaml.cs">
       <DependentUpon>UpdateClientModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\UpdateEmployeesModalView.xaml.cs">
+      <DependentUpon>UpdateEmployeesModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Modals\UpdateExpensesModalView.xaml.cs">
       <DependentUpon>UpdateExpensesModalView.xaml</DependentUpon>
@@ -471,6 +475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\UpdateClientModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\UpdateEmployeesModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
