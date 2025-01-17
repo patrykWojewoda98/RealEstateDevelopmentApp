@@ -84,6 +84,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\BaseDataUpdater.cs" />
+    <Compile Include="Helper\LoginChecker.cs" />
+    <Compile Include="Helper\LogInMessage.cs" />
+    <Compile Include="Helper\LoginSucceedMessage.cs" />
     <Compile Include="Helper\NumericValidationHelper.cs" />
     <Compile Include="Helper\UpdateMessage.cs" />
     <Compile Include="MVVM\Model\EntitiesForView\AddNewMaintenanceRequestsEntityForView.cs" />
@@ -197,6 +200,7 @@
     <Compile Include="MVVM\ViewModel\ExpensesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\FinancesViewModel.cs" />
     <Compile Include="MVVM\ViewModel\HistoryOfChangesViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
@@ -281,6 +285,9 @@
     </Compile>
     <Compile Include="MVVM\View\HistoryOfChangesView.xaml.cs">
       <DependentUpon>HistoryOfChangesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\MaintenanceRequestsView.xaml.cs">
       <DependentUpon>MaintenanceRequestsView.xaml</DependentUpon>
@@ -460,6 +467,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -677,6 +688,10 @@
     <Resource Include="Images\AddPurchase.png" />
     <Resource Include="Images\AddEmployee.png" />
     <Resource Include="Images\AddSupplier.png" />
+    <Resource Include="Images\Password.png" />
+    <Resource Include="Images\User.png" />
+    <Resource Include="Images\Logo.jpg" />
+    <Resource Include="Images\CityBackground.jpg" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

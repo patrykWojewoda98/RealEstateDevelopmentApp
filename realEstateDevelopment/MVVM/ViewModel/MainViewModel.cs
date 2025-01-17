@@ -1,8 +1,11 @@
-﻿using realEstateDevelopment.Core;
+﻿using GalaSoft.MvvmLight.Messaging;
+using realEstateDevelopment.Core;
+using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
+using System;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -77,7 +80,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
             PurchasesVM = new PurchasesViewModel();
             HistoryOfChangesVM = new HistoryOfChangesViewModel();
 
+            
             var updateModalShower = UpdateModalShower.Instance; // Tworzy instancję i rejestruje nasłuchiwanie
+            
            
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
@@ -92,7 +97,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
             EmployeesVM.AddNewEmployeeRequested += OnAddNewEmployeeRequested;
             PurchasesVM.AddNewPurchaseRequested += OnAddNewPurchaseRequested;
             SalesVM.AddNewSaleRequested += OnAddNewSaleRequested;
-            
+
+
 
 
 
@@ -288,6 +294,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
             };
             CurrentView = addNewSaleRequestVM;
         }
+
+        
+
+
         #endregion
     }
 }
