@@ -83,7 +83,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\BaseDataDeleter.cs" />
     <Compile Include="Helper\BaseDataUpdater.cs" />
+    <Compile Include="Helper\DelateMessage.cs" />
     <Compile Include="Helper\LoginChecker.cs" />
     <Compile Include="Helper\LogInMessage.cs" />
     <Compile Include="Helper\LoginSucceedMessage.cs" />
@@ -203,6 +205,8 @@
     <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DelateModalShower.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteApartmentModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />
@@ -294,6 +298,15 @@
     </Compile>
     <Compile Include="MVVM\View\MaterialsView.xaml.cs">
       <DependentUpon>MaterialsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteApartmentModalView.xaml.cs">
+      <DependentUpon>DeleteApartmentModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteBuildingModalView.xaml.cs">
+      <DependentUpon>DeleteBuildingModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteClientModalView.xaml.cs">
+      <DependentUpon>DeleteClientModalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\Modals\ErrorModalView.xaml.cs">
       <DependentUpon>ErrorModalView.xaml</DependentUpon>
@@ -479,6 +492,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\MaterialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteApartmentModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteBuildingModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteClientModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -692,6 +717,7 @@
     <Resource Include="Images\User.png" />
     <Resource Include="Images\Logo.jpg" />
     <Resource Include="Images\CityBackground.jpg" />
+    <Resource Include="Images\DeleteIcon.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

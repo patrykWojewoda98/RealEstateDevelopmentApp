@@ -109,6 +109,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Console.WriteLine("Moja Widomośc: "+ updateMessage.Message +"  "+updateMessage.Data);
             Messenger.Default.Send(updateMessage);
         }
+
+        public void Delate(int id)
+        {
+            var updateMessage = new UpdateMessage(this.GetType().Name + "Delate", id);
+            Console.WriteLine("Moja Widomośc: " + updateMessage.Message + "  " + updateMessage.Data);
+            Messenger.Default.Send(updateMessage);
+        }
         #endregion
     }
 

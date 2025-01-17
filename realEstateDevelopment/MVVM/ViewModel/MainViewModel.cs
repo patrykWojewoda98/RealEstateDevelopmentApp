@@ -1,11 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using realEstateDevelopment.Core;
-using realEstateDevelopment.Helper;
-using realEstateDevelopment.MVVM;
-using realEstateDevelopment.MVVM.Model.Entities;
-using realEstateDevelopment.MVVM.Model.EntitiesForView;
+﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
-using System;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -19,11 +13,11 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public RealyCommand ProjectsViewCommand { get; set; }
         public RealyCommand ApartmentsViewCommand { get; set; }
         public RealyCommand ConstructionScheduleViewCommand { get; set; }
-        public RealyCommand EmployeesViewCommand {  get; set; }
+        public RealyCommand EmployeesViewCommand { get; set; }
         public RealyCommand MaterialViewCommand { get; set; }
-        public RealyCommand MaintenanceRequestsCommand {  get; set; }
+        public RealyCommand MaintenanceRequestsCommand { get; set; }
         public RealyCommand ReservationRequestCommand { get; set; }
-        public RealyCommand FinancesRequestCommand {  get; set; }
+        public RealyCommand FinancesRequestCommand { get; set; }
         public RealyCommand SalesRequestCommand { get; set; }
         public RealyCommand PurchasesRequestCommand { get; set; }
         public RealyCommand HistoryOfChangesViewCommand { get; set; }
@@ -41,16 +35,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public ConstructionScheduleViewModel ConstructionScheduleVM { get; set; }
         public EmployeesViewModel EmployeesVM { get; set; }
         public MaterialsViewModel MaterialsVM { get; set; }
-        public MaintenanceRequestsViewModel MaintenanceRequestsVM {  get; set; }
+        public MaintenanceRequestsViewModel MaintenanceRequestsVM { get; set; }
         public ReservationsViewModel ReservationsVM { get; set; }
         public FinancesViewModel FinancesVM { get; set; }
         public SalesViewModel SalesVM { get; set; }
         public PurchasesViewModel PurchasesVM { get; set; }
         public HistoryOfChangesViewModel HistoryOfChangesVM { get; set; }
-        
+
         private object _currentView;
 
-        
+
         public object CurrentView
         {
             get { return _currentView; }
@@ -80,10 +74,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
             PurchasesVM = new PurchasesViewModel();
             HistoryOfChangesVM = new HistoryOfChangesViewModel();
 
-            
+
             var updateModalShower = UpdateModalShower.Instance; // Tworzy instancję i rejestruje nasłuchiwanie
-            
-           
+
+
 
             BuildingsVM.AddNewBuildingRequested += OnAddNewBuildingRequested;
             ClientVM.AddNewClientRequested += OnAddNewClientRequested;
@@ -230,7 +224,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var scheduleBuildingConstructionVM = new ScheduleBuildingConstructionViewModel();
             scheduleBuildingConstructionVM.RequestClose += (sender, args) =>
             {
-                CurrentView = ConstructionScheduleVM; 
+                CurrentView = ConstructionScheduleVM;
             };
             CurrentView = scheduleBuildingConstructionVM;
         }
@@ -240,7 +234,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewmaterialVM = new AddNewMaterialViewModel();
             addNewmaterialVM.RequestClose += (sender, args) =>
             {
-                CurrentView = MaterialsVM; 
+                CurrentView = MaterialsVM;
             };
             CurrentView = addNewmaterialVM;
         }
@@ -250,7 +244,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewReservationVM = new AddNewReservationsViewModel();
             addNewReservationVM.RequestClose += (sender, args) =>
             {
-                CurrentView = ReservationsVM; 
+                CurrentView = ReservationsVM;
             };
             CurrentView = addNewReservationVM;
         }
@@ -295,7 +289,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             CurrentView = addNewSaleRequestVM;
         }
 
-        
+
 
 
         #endregion

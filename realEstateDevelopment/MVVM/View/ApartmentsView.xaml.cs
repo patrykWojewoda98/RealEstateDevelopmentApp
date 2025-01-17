@@ -7,9 +7,6 @@ using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for ApartmentsView.xaml
-    /// </summary>
     public partial class ApartmentsView : UserControl
     {
         public ApartmentsView()
@@ -28,14 +25,24 @@ namespace realEstateDevelopment.MVVM.View
             {
                 if (DataContext is ApartmentsViewModel viewModel)
                 {
-                    // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedApartment.ApartmentID;
-                    Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
+                    viewModel.SelectedItem = selectedApartment; // Przekazanie całego obiektu.
+                    Console.WriteLine("Wybrano mieszkanie: " + viewModel.SelectedItem.ApartmentID);
 
-                    // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.ApartmentID); // Wywołanie Update.
                 }
             }
         }
+
+        private void DeleteCommand(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is ApartmentsViewModel viewModel && viewModel.SelectedItem != null)
+            {
+                Console.WriteLine("Usuwanie mieszkania o ID: " + viewModel.SelectedItem.ApartmentID);
+
+                // Wywołaj polecenie usunięcia.
+                viewModel.DeleteSelectedCommand.Execute(null);
+            }
+        }
+
     }
 }

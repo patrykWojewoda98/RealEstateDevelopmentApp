@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View">
 
-
     <ControlTemplate x:Key="AddButtonTemplate" TargetType="{x:Type ContentControl}">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
@@ -15,7 +14,6 @@
         </Grid>
     </ControlTemplate>
 
-
     <ControlTemplate x:Key="UpdateButtonTemplate" TargetType="{x:Type ContentControl}">
         <Grid Background="Transparent">
             <Grid.RowDefinitions>
@@ -26,5 +24,9 @@
             <Button Grid.Row="1" Content="Zapisz i zamknij" Style="{DynamicResource CommonNormalButtonTheme}" Command="{Binding UpdateCommand}"/>
         </Grid>
     </ControlTemplate>
+
+  
+
+
 
 </ResourceDictionary>

@@ -1,6 +1,8 @@
 ﻿using realEstateDevelopment.Core;
 
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -11,6 +13,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class ApartmentsViewModel : LoadAllViewModel<ApartmentsEntitiesForView>
     {
         #region Properties
+        private ApartmentsEntitiesForView _selectedItem;
+        public ApartmentsEntitiesForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
         private int _ID;
         public int ID
         {
@@ -104,7 +116,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Commands
         public RealyCommand OpenAddNewApartmentCommand { get; set; }
         public RealyCommand ReloadCommand { get; set; }
-        
+        public RealyCommand DeleteSelectedCommand { get; set; }
+
         #endregion
         public event Action AddNewApartmentRequested;
         #region
@@ -121,8 +134,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 ReloadAsync();
             });
-            
 
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
         #endregion
 
@@ -170,6 +183,26 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 List.Add(item);
             }
+        }
+
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is ApartmentsEntitiesForView selectedApartment)
+            {
+                var modal = new DeleteApartmentModalView(); // Modal bez argumentów
+                modal.DataContext = new DeleteApartmentModalViewModel(
+                    realEstateEntities.Apartments.First(a => a.ApartmentID == selectedApartment.ApartmentID)
+                );
+
+                modal.Show();
+                
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
         }
 
         #endregion

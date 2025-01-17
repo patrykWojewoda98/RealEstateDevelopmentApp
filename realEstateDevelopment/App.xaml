@@ -177,6 +177,10 @@
           <modalView:UpdatePurchaseModalView />
       </DataTemplate>
 
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteApartmentModalViewModel}">
+          <modalView:DeleteApartmentModalView />
+      </DataTemplate>
+
         </ResourceDictionary>
   </Application.Resources>
 </Application>

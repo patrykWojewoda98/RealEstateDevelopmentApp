@@ -130,6 +130,12 @@
                     Command="{Binding ReloadCommand}"
                     Style="{StaticResource CommonNormalButtonTheme}"
                     />
+            <Button Grid.Row="3"
+                    Grid.Column="1"
+                    Content="Usuń Zaznaczony"
+                    Click="DeleteCommand"
+                    Style="{StaticResource CommonNormalButtonTheme}"
+                    />
         </Grid>
 
 
