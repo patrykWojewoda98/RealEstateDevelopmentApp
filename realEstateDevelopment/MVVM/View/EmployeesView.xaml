@@ -29,16 +29,7 @@
                 <DataGridTextColumn Header="Pozycja" Binding="{Binding Position}"/>
                 <DataGridTextColumn Header="Departament" Binding="{Binding Department}"/>
                 <DataGridTextColumn Header="Wypłata" Binding="{Binding Salary}"/>
-                <DataGridTemplateColumn Header="Lista projektów (wymyślić jak podłączyć binging)">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" 
-                                      ItemsSource="{Binding Projects}" 
-                                      SelectedItem="{Binding SelectedProject}"
-                                      />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
 

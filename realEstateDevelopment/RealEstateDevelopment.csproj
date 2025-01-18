@@ -308,6 +308,39 @@
     <Compile Include="MVVM\View\Modals\DeleteClientModalView.xaml.cs">
       <DependentUpon>DeleteClientModalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteConstructionScheduleModalView.xaml.cs">
+      <DependentUpon>DeleteConstructionScheduleModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteEmployeeModalView.xaml.cs">
+      <DependentUpon>DeleteEmployeeModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteExpenseModalView.xaml.cs">
+      <DependentUpon>DeleteExpenseModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteMaintenanceRequestModalView.xaml.cs">
+      <DependentUpon>DeleteMaintenanceRequestModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteMaterialModalView.xaml.cs">
+      <DependentUpon>DeleteMaterialModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteProjectModalView.xaml.cs">
+      <DependentUpon>DeleteProjectModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeletePurchaseModalView.xaml.cs">
+      <DependentUpon>DeletePurchaseModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteReservationModalView.xaml.cs">
+      <DependentUpon>DeleteReservationModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteRevenueModalView.xaml.cs">
+      <DependentUpon>DeleteRevenueModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteSaleModalView.xaml.cs">
+      <DependentUpon>DeleteSaleModalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Modals\DeleteSupplierModalView.xaml.cs">
+      <DependentUpon>DeleteSupplierModalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MVVM\View\Modals\ErrorModalView.xaml.cs">
       <DependentUpon>ErrorModalView.xaml</DependentUpon>
     </Compile>
@@ -504,6 +537,50 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\Modals\DeleteClientModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteConstructionScheduleModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteEmployeeModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteExpenseModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteMaintenanceRequestModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteMaterialModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteProjectModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeletePurchaseModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteReservationModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteRevenueModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteSaleModalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Modals\DeleteSupplierModalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
