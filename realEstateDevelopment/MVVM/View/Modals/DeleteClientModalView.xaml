@@ -23,14 +23,31 @@
         <!-- Szczegóły klienta -->
         <StackPanel Grid.Row="1" Margin="40,0">
             <TextBlock Text="Szczegóły klienta:" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,10" />
-            <TextBlock Text="{Binding Id}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Name}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Surname}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Pesel}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding IdCardNumber}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding IdCardSeries}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding PhoneNumber}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Email}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
+
+            <TextBlock Text="Id klienta: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Id, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Imię: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Name, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Nazwisko: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Surname, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="PESEL: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Pesel, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Numer dowodu: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding IdCardNumber, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Seria dowodu: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding IdCardSeries, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Numer telefonu: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding PhoneNumber, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Email: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Email, Mode=OneWay}" />
+            </TextBlock>
 
             <TextBlock Text="Ta operacja jest nieodwracalna!" FontSize="40" FontWeight="Bold" Foreground="#FF2D55" Margin="0,20,0,0" HorizontalAlignment="Center" />
         </StackPanel>

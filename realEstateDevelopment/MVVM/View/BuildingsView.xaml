@@ -40,6 +40,7 @@
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
             <Grid Height="50" VerticalAlignment="Top" Grid.Row="0">
@@ -88,6 +89,13 @@
                     Command="{Binding OpenAddNewBuildingCommand}" Style="{StaticResource CommonNormalButtonTheme}"/>
             <Button Grid.Row="3" Grid.Column="0" Content="Odświerz" Command="{Binding ReloadCommand}" 
                     Style="{StaticResource CommonNormalButtonTheme}"/>
+            <Button Grid.Row="4"
+                    Grid.Column="0"
+                    Content="Usuń Zaznaczony"
+                    Click="DeleteCommand"
+                    Style="{StaticResource CommonNormalButtonTheme}"
+                    />
+            
         </Grid>
     </Grid>
 </UserControl>

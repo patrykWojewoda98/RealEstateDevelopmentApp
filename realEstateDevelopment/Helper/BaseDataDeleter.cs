@@ -31,14 +31,14 @@ namespace realEstateDevelopment.Helper
         #endregion
 
         #region Command
-        private BaseCommand _UpdateCommand;
-        public ICommand UpdateCommand
+        private BaseCommand _DeleteCommand;
+        public ICommand DeleteCommand
         {
             get
             {
-                if (_UpdateCommand == null)
-                    _UpdateCommand = new BaseCommand(() => ExecuteDelete());
-                return _UpdateCommand;
+                if (_DeleteCommand == null)
+                    _DeleteCommand = new BaseCommand(() => ExecuteDelete());
+                return _DeleteCommand;
             }
 
         }

@@ -112,9 +112,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public void Delate(int id)
         {
-            var updateMessage = new UpdateMessage(this.GetType().Name + "Delate", id);
-            Console.WriteLine("Moja Widomośc: " + updateMessage.Message + "  " + updateMessage.Data);
-            Messenger.Default.Send(updateMessage);
+            var deleteMessage = new DeleteMessage(this.GetType().Name + "Delate", id);
+            Console.WriteLine("Moja Widomośc: " + deleteMessage.Message + "  " + deleteMessage.Data);
+            Messenger.Default.Send(deleteMessage);
         }
         #endregion
     }

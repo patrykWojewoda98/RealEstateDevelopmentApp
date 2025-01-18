@@ -5,33 +5,20 @@ using realEstateDevelopment.MVVM.View.Modals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
-    public class DeleteApartmentModalViewModel : BaseDataDeleter<Apartments>
+    public class DeleteBuildingModalViewModel : BaseDataDeleter<Buildings>
     {
-        #region Propeties
+        #region Properties
 
         private RealEstateEntities estateEntities;
-        public int ApartmentID
-        {
-            get
-            {
-                return item.ApartmentID;
-            }
-            set
-            {
-                item.ApartmentID = value;
-                OnPropertyChanged(() => ApartmentID);
-            }
-        }
 
         public int BuildingID
         {
-            get
-            {
-                return item.BuildingID;
-            }
+            get => item.BuildingID;
             set
             {
                 item.BuildingID = value;
@@ -39,80 +26,49 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             }
         }
 
+        public int ProjectID
+        {
+            get => item.ProjectID;
+            set
+            {
+                item.ProjectID = value;
+                OnPropertyChanged(() => ProjectID);
+            }
+        }
+
         public string BuildingName
         {
-            get
+            get => item.BuildingName;
+            set
             {
-                return estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == BuildingID).BuildingName;
+                item.BuildingName = value;
+                OnPropertyChanged(() => BuildingName);
             }
         }
 
         public string BuildingNumber
         {
-            get
-            {
-                return estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == BuildingID).BuildingNumber;
-            }
-            
-        }
-
-        public string ApartmentNumber
-        {
-            get
-            {
-                return item.ApartmentNumber;
-            }
+            get => item.BuildingNumber;
             set
             {
-                item.ApartmentNumber = value;
-                OnPropertyChanged(() => ApartmentNumber);
-            }
-        }
-        public decimal Area
-        {
-            get
-            {
-                return item.Area;
-            }
-            set
-            {
-                item.Area = value;
-                OnPropertyChanged(() => Area);
+                item.BuildingNumber = value;
+                OnPropertyChanged(() => BuildingNumber);
             }
         }
 
-        public int RoomCount
+        public int Floors
         {
-            get
-            {
-                return item.RoomCount;
-            }
+            get => item.Floors;
             set
             {
-                item.RoomCount = value;
-                OnPropertyChanged(() => RoomCount);
-            }
-        }
-
-        public int Floor
-        {
-            get
-            {
-                return item.Floor;
-            }
-            set
-            {
-                item.Floor = value;
-                OnPropertyChanged(() => Floor);
+                item.Floors = value;
+                OnPropertyChanged(() => Floors);
             }
         }
 
         public string Status
         {
-            get
-            {
-                return item.Status;
-            }
+            get => item.Status;
             set
             {
                 item.Status = value;
@@ -120,40 +76,60 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             }
         }
 
-        public string Address
+        public string Localization
         {
-            get => estateEntities.Projects.FirstOrDefault(p => p.ProjectID == estateEntities.Buildings.FirstOrDefault(b => b.ProjectID == p.ProjectID).ProjectID).Location;
+            get
+            {
+                // Jeśli chcesz wyświetlić lokalizację związanego projektu
+                return estateEntities.Projects.FirstOrDefault(p => p.ProjectID == item.ProjectID)?.Location;
+            }
         }
         #endregion
+
 
         #region Commands
         public RealyCommand ConfirmDeleteCommand { get; set; }
         #endregion 
 
         #region Constructor
-        public DeleteApartmentModalViewModel(Apartments apartment)
+        public DeleteBuildingModalViewModel(Buildings building)
             : base()
         {
-            item = apartment;
+            item = building;
             estateEntities = new RealEstateEntities();
             ConfirmDeleteCommand = new RealyCommand(ExecuteDelete);
-            
+
         }
         #endregion
 
-        
+
 
 
         #region Helpers
         public override void Delete()
         {
-             var existingItem = estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID);
-             if (existingItem != null)
-             {
+            var existingItem = estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.BuildingID);
+            if (existingItem != null)
+            {
+                // Usuń harmonogramy budynku
+                var constructionSchedulesToRemove = estateEntities.ConstructionSchedule
+                    .Where(c => c.BuildingId == existingItem.BuildingID)
+                    .ToList();
+                foreach (var constructionSchedule in constructionSchedulesToRemove)
+                {
+                    estateEntities.ConstructionSchedule.Remove(constructionSchedule);
+                }
 
+                // Przygotowanie mieszkań do usunięcia
+                var apartmentsToRemove = estateEntities.Apartments
+                    .Where(a => a.BuildingID == existingItem.BuildingID)
+                    .ToList();
+
+                foreach (var apartment in apartmentsToRemove)
+                {
                     // Usuń sprzedaż powiązaną z mieszkaniem
                     var salesToRemove = estateEntities.Sales
-                        .Where(s => s.ApartmentID == existingItem.ApartmentID)
+                        .Where(s => s.ApartmentID == apartment.ApartmentID)
                         .ToList();
                     foreach (var sale in salesToRemove)
                     {
@@ -162,7 +138,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                     // Usuń zgłoszenia konserwacyjne powiązane z mieszkaniem
                     var maintenanceRequestsToRemove = estateEntities.MaintenanceRequests
-                        .Where(m => m.ApartmentID == existingItem.ApartmentID)
+                        .Where(m => m.ApartmentID == apartment.ApartmentID)
                         .ToList();
                     foreach (var maintenanceRequest in maintenanceRequestsToRemove)
                     {
@@ -171,38 +147,43 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                     // Usuń wynajem powiązany z mieszkaniem
                     var rentalsToRemove = estateEntities.Rental
-                        .Where(r => r.ApartmentId == existingItem.ApartmentID)
+                        .Where(r => r.ApartmentId == apartment.ApartmentID)
                         .ToList();
                     foreach (var rental in rentalsToRemove)
                     {
                         estateEntities.Rental.Remove(rental);
                     }
-                
 
+                    // Usuń mieszkanie
+                    estateEntities.Apartments.Remove(apartment);
+                }
 
-                estateEntities.Apartments.Remove(existingItem);
+                // Usuń budynek
+                estateEntities.Buildings.Remove(existingItem);
 
-                 estateEntities.SaveChanges();
-             }
-             else
-             {
-                 var errorModal = new ErrorModalView("Nie znaleziono elementu do aktualizacji.");
-                 errorModal.ShowDialog();
-             }
+                // Zapisz zmiany
+                estateEntities.SaveChanges();
+            }
+            else
+            {
+                var errorModal = new ErrorModalView("Nie znaleziono elementu do usunięcia.");
+                errorModal.ShowDialog();
+            }
         }
+
 
         public void ShowMessageBox(string message)
         {
             // Zamiast wyświetlać alert, otwórz modal.
-            var deleteApartmentModal = new DeleteApartmentModalView(); // To powinien być Twój UserControl/Window
-            deleteApartmentModal.DataContext = this;
+            var deleteBuildingModal = new DeleteBuildingModalView(); // To powinien być Twój UserControl/Window
+            deleteBuildingModal.DataContext = this;
 
             this.RequestClose += (sender, args) =>
             {
-                deleteApartmentModal.Close();
+                deleteBuildingModal.Close();
             };
 
-            deleteApartmentModal.ShowDialog(); // Jeśli to jest Window
+            deleteBuildingModal.ShowDialog(); // Jeśli to jest Window
         }
 
         private void ExecuteDelete(object parameter)

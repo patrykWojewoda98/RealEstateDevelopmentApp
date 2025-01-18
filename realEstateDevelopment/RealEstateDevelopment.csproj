@@ -205,8 +205,8 @@
     <Compile Include="MVVM\ViewModel\LoginViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaintenanceRequestsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MaterialsViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\Modals\DelateModalShower.cs" />
     <Compile Include="MVVM\ViewModel\Modals\DeleteApartmentModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteBuildingModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />

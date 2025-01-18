@@ -23,13 +23,28 @@
         <!-- Szczegóły budynku -->
         <StackPanel Grid.Row="1" Margin="40,0">
             <TextBlock Text="Szczegóły budynku:" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,10" />
-            <TextBlock Text="{Binding BuildingID}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding ProjectID}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding BuildingName}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Localization}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding BuildingNumber}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Floors}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
-            <TextBlock Text="{Binding Status}" FontSize="14" Foreground="LightGray" Margin="10,5,0,0" />
+
+            <TextBlock Text="Id budynku: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding BuildingID, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Id projektu: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding ProjectID, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Nazwa budynku: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding BuildingName, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Lokalizacja: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Localization, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Numer budynku: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding BuildingNumber, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Liczba pięter: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Floors, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Text="Status: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
+                <Run Text="{Binding Status, Mode=OneWay}" />
+            </TextBlock>
 
             <TextBlock Text="Ta operacja jest nieodwracalna!" FontSize="40" FontWeight="Bold" Foreground="#FF2D55" Margin="0,20,0,0" HorizontalAlignment="Center" />
         </StackPanel>
