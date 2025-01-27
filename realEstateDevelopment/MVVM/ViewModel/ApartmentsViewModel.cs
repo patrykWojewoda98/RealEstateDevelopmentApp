@@ -193,7 +193,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 modal.DataContext = new DeleteApartmentModalViewModel(
                     realEstateEntities.Apartments.First(a => a.ApartmentID == selectedApartment.ApartmentID)
                 );
-
+                this.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
                 modal.Show();
                 
             }

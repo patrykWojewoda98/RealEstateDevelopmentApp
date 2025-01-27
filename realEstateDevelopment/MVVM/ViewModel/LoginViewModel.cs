@@ -2,19 +2,13 @@
 using MVVMFirma.ViewModels;
 using realEstateDevelopment.Core;
 using realEstateDevelopment.Helper;
-using realEstateDevelopment.MVVM.Model.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Documents;
-using System.Windows.Media;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
         #region Properties
-        private RealEstateEntities estateEntities;
         private string _password;
         private string _login;
         public string Password
@@ -40,6 +34,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         #region Commands
         public RealyCommand LogInCommand { get; set; }
+        
         #endregion
 
         #region Events
@@ -49,29 +44,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #region Constructor
         public LoginViewModel()
         {
-            LogInCommand = new RealyCommand(o => LogIn());
-            var loginchecker = new LoginChecker();
+            LogInCommand = new RealyCommand(o => TryLogIn());
             
+
         }
         #endregion
 
         #region Methods
-        private void LogIn()
-        {
-            Console.WriteLine("Loguje! ");
-            var employee = estateEntities.Employees.FirstOrDefault(e => e.LastName == _login && e.Password == _password);
+        
 
-            if (employee!=null)
-            {
-                LoginSuccessful?.Invoke(true); // Powiadomienie, że logowanie się powiodło
-            }
-            else
-            {
-                LoginSuccessful?.Invoke(false); // Logowanie nie powiodło się
-            }
+        private void TryLogIn()
+        {
+            Console.WriteLine("Wysłałem prośbę o logowanie");
+            var message = new LogInMessage(Login, Password);
+            Messenger.Default.Send(message);
         }
 
         
+
         #endregion
     }
 }

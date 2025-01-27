@@ -9,23 +9,16 @@ namespace realEstateDevelopment.MVVM.View
 {
     public partial class LoginView : Window
     {
+        LoginChecker loginchecker;
         public LoginView()
         {
-            InitializeComponent();
             DataContext = new LoginViewModel();
+            loginchecker = new LoginChecker();
             Messenger.Default.Register<LoginSucceedMessage>(this, OnLoginSucceeded);
+            InitializeComponent();
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
+       
         
 
         private void PasswordChanged(object sender, RoutedEventArgs e)
@@ -43,17 +36,12 @@ namespace realEstateDevelopment.MVVM.View
 
         
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Wysłałem prośbę o logowanie");
-            var viewModel = DataContext as LoginViewModel;
-            var message = new LogInMessage(viewModel.Login, viewModel.Password);
-            Messenger.Default.Send(message);
-        }
+        
 
         private void OnLoginSucceeded(LoginSucceedMessage message)
         {
-            // Zamknij okno logowania
+            // Zamknij okno logowan
+            this.Hide();
             var mainWindow = new MainWindow();
             mainWindow.Show();
             WindowState = WindowState.Minimized;

@@ -23,6 +23,7 @@ namespace realEstateDevelopment
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closing;
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
@@ -38,6 +39,11 @@ namespace realEstateDevelopment
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
