@@ -796,6 +796,7 @@
     <Resource Include="Images\Logo.jpg" />
     <Resource Include="Images\CityBackground.jpg" />
     <Resource Include="Images\DeleteIcon.png" />
+    <Resource Include="Images\Error.png" />
     <Content Include="MVVM\Model\Entities\RealEstateModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RealEstateModel.edmx</DependentUpon>

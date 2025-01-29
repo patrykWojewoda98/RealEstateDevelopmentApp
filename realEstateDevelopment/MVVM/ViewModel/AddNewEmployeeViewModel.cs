@@ -172,6 +172,29 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Name):
+                    return string.IsNullOrWhiteSpace(Name) ? "Imię jest wymagane." : string.Empty;
+
+                case nameof(LastName):
+                    return string.IsNullOrWhiteSpace(LastName) ? "Nazwisko jest wymagane." : string.Empty;
+
+                case nameof(Position):
+                    return string.IsNullOrWhiteSpace(Position) ? "Pozycja pracownika jest wymagana." : string.Empty;
+
+                case nameof(Department):
+                    return string.IsNullOrWhiteSpace(Department) ? "Departament jest wymagany." : string.Empty;
+
+                case nameof(Salary):
+                    return Salary <= 0 ? "Wypłata nie może wynosić 0 lub mniej." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
 
 

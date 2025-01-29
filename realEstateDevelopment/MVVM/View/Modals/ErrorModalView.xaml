@@ -6,8 +6,22 @@
         xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View.Modals"
         mc:Ignorable="d"
         Title="ErrorModalView" Height="200" Width="700">
-    <Grid HorizontalAlignment="Center"
-          VerticalAlignment="Center">
-        <Label Content="{Binding _errors}" FontSize="10"/>
-    </Grid>
+    <Border Background="#1B1448" CornerRadius="10" Padding="15">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Ikona błędu -->
+            <Image Source="pack://application:,,,/Images/Error.png"
+                   Width="60"
+                   Height="60"
+                   Grid.Column="0"
+                   Margin="10"/>
+            <Label Content="Lista błedów: " FontSize="16" Foreground="White" VerticalAlignment="Top" Grid.Column="1"/>
+            <Label Content="{Binding _errors}" FontSize="10" Foreground="White" VerticalAlignment="Center" Grid.Column="1"/>
+
+        </Grid>
+    </Border>
 </Window>

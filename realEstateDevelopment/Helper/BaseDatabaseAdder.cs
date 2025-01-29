@@ -1,11 +1,12 @@
 ﻿using MVVMFirma.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.ViewModel;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace realEstateDevelopment.Helper
 {
-    public abstract class BaseDatabaseAdder<T> : WorkspaceViewModel
+    public abstract class BaseDatabaseAdder<T> : WorkspaceViewModel, IDataErrorInfo
     {
         #region Properties
         protected bool isDataCorrect;
@@ -32,6 +33,8 @@ namespace realEstateDevelopment.Helper
             }
 
         }
+
+        
         #endregion
 
         #region Constructor
@@ -44,11 +47,20 @@ namespace realEstateDevelopment.Helper
         #region Helpers
         public abstract void Save();
 
+        public virtual string ValidateProperty(string propertyName)
+        {
+            return string.Empty;
+        }
+
         public void SaveAndClose()
         {
             Save();
             base.OnRequestClose();
         }
+
+        public string Error => string.Empty;
+
+        public string this[string columnName] => ValidateProperty(columnName);
         #endregion
 
     }

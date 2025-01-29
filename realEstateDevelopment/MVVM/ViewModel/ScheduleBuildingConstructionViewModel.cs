@@ -132,6 +132,34 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             potentialErrors = string.Join("\n", errors);
         }
+
+        public override string ValidateProperty(string propertyName)
+        {
+            var db = new RealEstateEntities();
+
+            switch (propertyName)
+            {
+                case nameof(BuildingName):
+                    return string.IsNullOrWhiteSpace(BuildingName) ? "Nazwa budynku jest wymagana." : string.Empty;
+
+                case nameof(BuildingNumber):
+                    return string.IsNullOrWhiteSpace(BuildingNumber)
+                        ? "Numer budynku jest wymagany."
+                        : db.Buildings.Any(b => b.BuildingNumber == BuildingNumber && b.ProjectID == SelectedProject.ProjectId)
+                            ? "Budynek o podanym numerze i ID projektu już istnieje."
+                            : string.Empty;
+
+                case nameof(Floors):
+                    return Floors < 0 ? "Liczba pięter musi być większa bądź równa 0." : string.Empty;
+
+                case nameof(NumberOfApartments):
+                    return NumberOfApartments <= 0 ? "Liczba mieszkań musi być większa od 0." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
 
         #region Helpers

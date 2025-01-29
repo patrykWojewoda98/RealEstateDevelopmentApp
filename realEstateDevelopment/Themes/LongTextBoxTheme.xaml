@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Style TargetType="{x:Type TextBox}" x:Key="LongTextBox">
+    <Style BasedOn="{StaticResource {x:Type TextBox}}" TargetType="{x:Type TextBox}" x:Key="LongTextBox">
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -40,5 +40,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

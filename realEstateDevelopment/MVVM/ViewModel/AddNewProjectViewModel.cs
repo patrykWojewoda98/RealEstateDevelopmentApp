@@ -107,6 +107,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(ProjectName):
+                    return string.IsNullOrWhiteSpace(ProjectName) ? "Nazwa projektu jest wymagana." : string.Empty;
+
+                case nameof(Location):
+                    return string.IsNullOrWhiteSpace(Location) ? "Lokalizacja projektu jest wymagana." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
 
         #region Helpers

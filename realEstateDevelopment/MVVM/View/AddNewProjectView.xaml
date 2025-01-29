@@ -28,7 +28,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Nazwa Projektu" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=ProjectName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=ProjectName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
             <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Data rozpoczęcia" Foreground="White"/>
             <Calendar Grid.Column="1" Grid.Row="1" SelectedDate="{Binding Path=StartDate, UpdateSourceTrigger=PropertyChanged}"/>
@@ -53,10 +53,10 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Lokalizacja" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Location, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
             <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Status" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Status, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
             <Image Grid.Column="3" Grid.Row="4" Source="pack://application:,,,/Images/AddProject.png" Width="200" Height="200" />
         </Grid>

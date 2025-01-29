@@ -58,19 +58,19 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Nazwa budynku" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=BuildingName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+            <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=BuildingName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
             <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Numer budynku" Foreground="White"/>
-            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingNumber, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=BuildingNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
             <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Liczba pięter" Foreground="White"/>
             <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" 
-                 Text="{Binding Path=Floors, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding Path=Floors, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
             <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Liczba mieszkań" Foreground="White"/>
             <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                     Text="{Binding Path=NumberOfApartments, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding Path=NumberOfApartments, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
 
             <Image Grid.Column="3" Grid.Row="4" Source="pack://application:,,,/Images/ConstructionSchedule.png" Width="200" Height="200" />

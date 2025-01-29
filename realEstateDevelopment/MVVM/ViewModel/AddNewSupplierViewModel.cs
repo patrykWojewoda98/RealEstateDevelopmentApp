@@ -79,6 +79,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(CompanyName):
+                    return string.IsNullOrWhiteSpace(CompanyName) ? "Nazwa firmy jest wymagana." : string.Empty;
+
+                case nameof(Contact):
+                    return string.IsNullOrWhiteSpace(Contact) ? "Kontakt jest wymagany." : string.Empty;
+
+                case nameof(Address):
+                    return string.IsNullOrWhiteSpace(Address) ? "Adres jest wymagany." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
         #region Helpers
         public override void Save()

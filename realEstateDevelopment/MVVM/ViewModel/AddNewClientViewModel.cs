@@ -153,6 +153,37 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(FristName):
+                    return string.IsNullOrWhiteSpace(FristName) ? "Imię jest wymagane." : string.Empty;
+
+                case nameof(LastName):
+                    return string.IsNullOrWhiteSpace(LastName) ? "Nazwisko jest wymagane." : string.Empty;
+
+                case nameof(PhoneNumber):
+                    return string.IsNullOrWhiteSpace(PhoneNumber) ? "Numer telefonu jest wymagany." : string.Empty;
+
+                case nameof(Pesel):
+                    return string.IsNullOrWhiteSpace(Pesel) ? "Pesel jest wymagany." : string.Empty;
+
+                case nameof(IdCardNumber):
+                    return IdCardNumber <= 99999 ? "Numer dowodu osobistego nie może być liczbą 5-cyfrową lub mniej." :
+                           IdCardNumber > 999999 ? "Numer dowodu osobistego nie może być liczbą 7-cyfrową lub więcej." :
+                           string.Empty;
+
+                case nameof(IdCardSeries):
+                    return string.IsNullOrWhiteSpace(IdCardSeries) || IdCardSeries.Length != 3
+                        ? "Seria dowodu osobistego musi zawierać dokładnie 3 znaki."
+                        : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
 
         #region Helpers

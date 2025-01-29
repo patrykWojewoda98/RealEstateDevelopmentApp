@@ -163,6 +163,33 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(BuildingID):
+                    return BuildingID <= 0 ? "Id Budynku nie może być mniejszy lub równy 0" : string.Empty;
+
+                case nameof(ApartmentNumber):
+                    return string.IsNullOrWhiteSpace(ApartmentNumber) ? "Numer mieszkania jest wymagany." : string.Empty;
+
+                case nameof(Area):
+                    return Area < 25 ? "Zgodnie z prawem Polskim powieszchnia mieszkania nie może być mniejsza niż 25m2" : string.Empty;
+
+                case nameof(RoomCount):
+                    return RoomCount < 1 ? "Liczba pokoi nie może być mniejsza od 1" : string.Empty;
+
+                case nameof(Floor):
+                    return Floor < 0 ? "Piętro nie może być liczbą ujemną." : string.Empty;
+
+                case nameof(Status):
+                    return string.IsNullOrWhiteSpace(Status) ? "Status mieszkania jest wymagany." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
         #endregion
 
 

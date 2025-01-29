@@ -42,6 +42,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public PurchasesViewModel PurchasesVM { get; set; }
         public HistoryOfChangesViewModel HistoryOfChangesVM { get; set; }
 
+
         private object _currentView;
 
 

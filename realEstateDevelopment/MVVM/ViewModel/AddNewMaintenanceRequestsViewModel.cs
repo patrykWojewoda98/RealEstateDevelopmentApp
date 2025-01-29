@@ -112,6 +112,18 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(Description):
+                    return string.IsNullOrWhiteSpace(Description) ? "Opis zgłoszenia nie może być pusty." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
 
         #endregion
 

@@ -67,7 +67,7 @@
                     Style="{StaticResource CommonNormalButtonTheme}" />
 
             <Button Content="Anuluj" 
-                    Command="{Binding CancelCommand}" 
+                    Command="{Binding CancelDeleteCommand}" 
                     Background="#462AB0" 
                     Foreground="White" 
                     Margin="10"

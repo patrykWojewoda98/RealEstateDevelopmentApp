@@ -10,18 +10,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class AddNewMaterialViewModel:BaseDatabaseAdder<Materials>
     {
         #region Propeties
-        public int MaterialID
-        {
-            get
-            {
-                return item.MaterialID;
-            }
-            set
-            {
-                item.MaterialID = value;
-                OnPropertyChanged(() => MaterialID);
-            }
-        }
+        
 
         public int SupplierID
         {
@@ -93,17 +82,6 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var errors = new List<string>();
             var db = new RealEstateEntities();
 
-            if(db.Materials.Any(m=>m.MaterialID == MaterialID)) {
-                errors.Add("Materiał o podanym Numerze ID już istnieje.");
-                isDataCorrect = false;
-            }
-
-             if (MaterialID <= 0)
-            {
-                errors.Add("Id Materiału nie może być mniejszy lub równy 0");
-                isDataCorrect = false;
-            }
-
             if (string.IsNullOrWhiteSpace(MaterialName))
             {
                 errors.Add("Nazwa materiału jest wymagana.");
@@ -129,6 +107,27 @@ namespace realEstateDevelopment.MVVM.ViewModel
             }
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(MaterialName):
+                    return string.IsNullOrWhiteSpace(MaterialName) ? "Nazwa materiału jest wymagana." : string.Empty;
+
+                case nameof(SupplierID):
+                    return SupplierID <= 0 ? "Id dostawcy nie może być ujemne lub być \"0\"." : string.Empty;
+
+                case nameof(UnitPrice):
+                    return UnitPrice < 0 ? "Kwota musi być większa od 0." : string.Empty;
+
+                case nameof(Type):
+                    return string.IsNullOrWhiteSpace(Type) ? "Typ materiału jest wymagany." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
 
 

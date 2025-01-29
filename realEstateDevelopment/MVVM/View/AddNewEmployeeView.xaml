@@ -26,29 +26,31 @@
 
         <Label Grid.Column="0" Grid.Row="0" Margin="0,8,0,8" Content="Imię" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" 
-                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+                 Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Nazwisko" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
         
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Stanowisko" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Position, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8" Text="{Binding Path=Position, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="0" Grid.Row="3" Margin="0,8,0,8" Content="Demartament" Foreground="White"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,8" 
-                 Text="{Binding Path=Department, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MyTextBox}"/>
+                 Text="{Binding Path=Department, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource MyTextBox}"/>
 
         <Label Grid.Column="2" Grid.Row="0" Margin="0,8,0,8" Content="Wypłata" Foreground="White"/>
-        <TextBox Grid.Column="3" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Salary, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Grid.Column="3" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Salary, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  helper:NumericValidationHelper.NumericOnly="True" Style="{StaticResource MyTextBox}"/>
         
         <Label Grid.Column="2" Grid.Row="1" Margin="0,8,0,8" Content="Idywidualne hasło" Foreground="White"/>
         <PasswordBox Grid.Column="3" Grid.Row="1" 
-                     Margin="0,8,0,8" PasswordChanged="OryginalPasswordChanged"/>
+                     Margin="0,8,0,8" PasswordChanged="OryginalPasswordChanged"
+                     ToolTip="Hasło musi mieć minimum 6 znaków"/>
 
         <Label Grid.Column="2" Grid.Row="2" Margin="0,8,0,8" Content="Powtórz hasło" Foreground="White"/>
         <PasswordBox Grid.Column="3" Grid.Row="2" 
-                     Margin="0,8,0,8" PasswordChanged="PepeatedPasswordChanged"/>
+                     Margin="0,8,0,8" PasswordChanged="PepeatedPasswordChanged"
+                     ToolTip="Hasło musi mieć minimum 6 znaków"/>
         
         <ContentControl Grid.Column="1" Grid.Row="4" Template="{StaticResource AddButtonTemplate}"/>
         <Image Grid.Column="3" Grid.Row="5" Source="pack://application:,,,/Images/AddEmployee.png" Width="200" Height="200" />

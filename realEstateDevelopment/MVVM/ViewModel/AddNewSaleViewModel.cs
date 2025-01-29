@@ -106,6 +106,18 @@ namespace realEstateDevelopment.MVVM.ViewModel
             potentialErrors = string.Join(Environment.NewLine, errors);
         }
 
+        public override string ValidateProperty(string propertyName)
+        {
+            switch (propertyName)
+            {
+                case nameof(SalePrice):
+                    return SalePrice <= 0 ? "Kwota nie może być mniejsza bądź równa 0." : string.Empty;
+
+                default:
+                    return string.Empty;
+            }
+        }
+
         #endregion
 
         #region Helpers

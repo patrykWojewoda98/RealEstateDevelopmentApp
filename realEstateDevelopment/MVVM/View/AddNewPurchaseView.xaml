@@ -26,7 +26,7 @@
                   SelectedItem="{Binding SelectedType}"
                   SelectionChanged="ComboBoxSelectionChanged" />
         <Label Grid.Column="0" Grid.Row="1" Margin="0,8,0,8" Content="Kwota Zakupu" Foreground="White"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LongTextBox}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,8" Text="{Binding Path=Amount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource LongTextBox}"/>
 
 
         <Label Grid.Column="0" Grid.Row="2" Margin="0,8,0,8" Content="Data Zakupu" Foreground="White"/>
