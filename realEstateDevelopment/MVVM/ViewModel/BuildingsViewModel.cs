@@ -143,9 +143,14 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 var modal = new DeleteBuildingModalView(); // Modal bez argumentów
 
                 // tu dokończyć
-                modal.DataContext = new DeleteBuildingModalViewModel(
-                    realEstateEntities.Buildings.First(b => b.BuildingID == selectedbuilding.BuildingID)
-                );
+                DeleteBuildingModalViewModel deleteBuildingModalViewModel = new DeleteBuildingModalViewModel(
+                                        realEstateEntities.Buildings.First(b=> b.BuildingID == selectedbuilding.BuildingID)
+                    );
+                deleteBuildingModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteBuildingModalViewModel;
 
                 modal.Show();
 

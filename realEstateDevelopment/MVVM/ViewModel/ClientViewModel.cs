@@ -5,13 +5,29 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ClientViewModel : LoadAllViewModel<ClientForView>
     {
+        #region Properties
+        private ClientForView _selectedItem;
+        public ClientForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
+
         #region Commands
         public RealyCommand OpenAddNewClientCommand { get; set; }
+        public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
 
         #region Events
@@ -27,6 +43,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 AddNewClientRequested?.Invoke();
             });
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
         #endregion
 
@@ -55,6 +72,31 @@ namespace realEstateDevelopment.MVVM.ViewModel
             throw new NotImplementedException();
         }
 
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is ClientForView selectedClient)
+            {
+                var modal = new DeleteClientModalView();
+
+                
+                DeleteClientModalViewModel deleteClientModalViewModel = new DeleteClientModalViewModel(
+                                        realEstateEntities.Clients.First(c => c.ClientID == selectedClient.Id)
+                    );
+                deleteClientModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteClientModalViewModel;
+
+                modal.Show();
+
+            }
+        }
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null;
+        }
 
         #endregion
     }

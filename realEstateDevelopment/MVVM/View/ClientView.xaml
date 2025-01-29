@@ -63,6 +63,12 @@
                         Content="Odświerz"
                         Command="{Binding ReloadCommand}"
                         Style="{StaticResource CommonNormalButtonTheme}"/>
+                <Button Grid.Row="4"
+                        Grid.Column="2"
+                        Content="Usuń Zaznaczony"
+                        Click="DeleteCommand"
+                        Style="{StaticResource CommonNormalButtonTheme}"
+                        />
             </Grid>
             
         </Grid>

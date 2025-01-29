@@ -18,10 +18,22 @@ namespace realEstateDevelopment.MVVM.View
             {
                 if (DataContext is ClientViewModel viewModel)
                 {
-                    viewModel.SelectedItem = selectedClient.Id;
-                    Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.SelectedItem = selectedClient;
+                    
+                    viewModel.Update(viewModel.SelectedItem.Id);
                 }
+            }
+        }
+
+
+
+        private void DeleteCommand(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (DataContext is ClientViewModel viewModel && viewModel.SelectedItem != null)
+            {
+
+                // Wywołaj polecenie usunięcia.
+                viewModel.DeleteSelectedCommand.Execute(null);
             }
         }
     }

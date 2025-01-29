@@ -3,10 +3,7 @@ using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
@@ -80,7 +77,6 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         {
             get
             {
-                // Jeśli chcesz wyświetlić lokalizację związanego projektu
                 return estateEntities.Projects.FirstOrDefault(p => p.ProjectID == item.ProjectID)?.Location;
             }
         }
@@ -154,14 +150,11 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                         estateEntities.Rental.Remove(rental);
                     }
 
-                    // Usuń mieszkanie
                     estateEntities.Apartments.Remove(apartment);
                 }
 
-                // Usuń budynek
                 estateEntities.Buildings.Remove(existingItem);
 
-                // Zapisz zmiany
                 estateEntities.SaveChanges();
             }
             else
@@ -174,8 +167,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
         public void ShowMessageBox(string message)
         {
-            // Zamiast wyświetlać alert, otwórz modal.
-            var deleteBuildingModal = new DeleteBuildingModalView(); // To powinien być Twój UserControl/Window
+            var deleteBuildingModal = new DeleteBuildingModalView();
             deleteBuildingModal.DataContext = this;
 
             this.RequestClose += (sender, args) =>
@@ -183,19 +175,18 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 deleteBuildingModal.Close();
             };
 
-            deleteBuildingModal.ShowDialog(); // Jeśli to jest Window
+            deleteBuildingModal.ShowDialog(); 
         }
 
         private void ExecuteDelete(object parameter)
         {
             try
             {
-                Delete(); // Wywołanie istniejącej metody Delete
+                Delete();
                 base.OnRequestClose();
             }
             catch (Exception ex)
             {
-                // Obsługa błędów
                 var errorModal = new ErrorModalView($"Wystąpił błąd: {ex.Message}");
                 errorModal.ShowDialog();
             }

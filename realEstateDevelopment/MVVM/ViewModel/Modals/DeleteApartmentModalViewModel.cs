@@ -3,7 +3,6 @@ using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
@@ -194,7 +193,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         public void ShowMessageBox(string message)
         {
             // Zamiast wyświetlać alert, otwórz modal.
-            var deleteApartmentModal = new DeleteApartmentModalView(); // To powinien być Twój UserControl/Window
+            var deleteApartmentModal = new DeleteApartmentModalView();
             deleteApartmentModal.DataContext = this;
 
             this.RequestClose += (sender, args) =>
@@ -202,7 +201,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 deleteApartmentModal.Close();
             };
 
-            deleteApartmentModal.ShowDialog(); // Jeśli to jest Window
+            deleteApartmentModal.ShowDialog();
         }
 
         private void ExecuteDelete(object parameter)

@@ -182,6 +182,10 @@
           <modalView:DeleteApartmentModalView />
       </DataTemplate>
 
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteClientModalViewModel}">
+          <modalView:DeleteClientModalView />
+      </DataTemplate>
+        
         </ResourceDictionary>
   </Application.Resources>
 </Application>

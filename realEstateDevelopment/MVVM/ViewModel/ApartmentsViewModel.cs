@@ -189,19 +189,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             if (SelectedItem is ApartmentsEntitiesForView selectedApartment)
             {
-                var modal = new DeleteApartmentModalView(); // Modal bez argumentów
-                modal.DataContext = new DeleteApartmentModalViewModel(
-                    realEstateEntities.Apartments.First(a => a.ApartmentID == selectedApartment.ApartmentID)
-                );
-                this.RequestClose += (obj, sender) =>
+                var modal = new DeleteApartmentModalView();
+                DeleteApartmentModalViewModel deleteApartmentModalViewModel = new DeleteApartmentModalViewModel(
+                                            realEstateEntities.Apartments.First(a => a.ApartmentID == selectedApartment.ApartmentID) );
+                deleteApartmentModalViewModel.RequestClose += (obj, sender) =>
                 {
                     modal.Close();
                 };
+                modal.DataContext = deleteApartmentModalViewModel;
                 modal.Show();
                 
             }
         }
-
+        
 
         private bool CanExecuteDeleteSelected(object parameter)
         {
