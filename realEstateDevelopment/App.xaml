@@ -203,6 +203,21 @@
       <DataTemplate DataType="{x:Type modalViewModel:DeleteProjectModalViewModel}">
           <modalView:DeleteProjectModalView />
       </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeletePurchaseModalViewModel}">
+          <modalView:DeletePurchaseModalView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteReservationModalViewModel}">
+          <modalView:DeleteReservationModalView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteRevenueModalViewModel}">
+          <modalView:DeleteRevenueModalView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteSaleModalViewModel}">
+          <modalView:DeleteSaleModalView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteSupplierModalViewModel}">
+          <modalView:DeleteSupplierModalView />
+      </DataTemplate>
         </ResourceDictionary>
   </Application.Resources>
 </Application>

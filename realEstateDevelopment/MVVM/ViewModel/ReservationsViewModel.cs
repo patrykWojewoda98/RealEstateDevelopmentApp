@@ -1,6 +1,8 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,8 +15,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ReservationsViewModel : LoadAllViewModel<ReservationsEntityForView>
     {
+        #region Properties
+        private ReservationsEntityForView _selectedItem;
+        public ReservationsEntityForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
         #region Commands
         public RealyCommand OpenAddNewReservationCommand { get; set; }
+        public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
 
         #region Events
@@ -29,6 +44,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 AddNewReservationRequested?.Invoke();
             });
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
         #endregion
 
@@ -59,6 +75,28 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public override Task ApplyFiltersAsync()
         {
             throw new NotImplementedException();
+        }
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is ReservationsEntityForView selected)
+            {
+                var modal = new DeleteReservationModalView();
+                DeleteReservationModalViewModel deleteReservationModalViewModel = new DeleteReservationModalViewModel(
+                                            realEstateEntities.Reservations.First(r => r.ReservationID == SelectedItem.Id));
+                deleteReservationModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteReservationModalViewModel;
+                modal.Show();
+
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
         }
         #endregion
     }

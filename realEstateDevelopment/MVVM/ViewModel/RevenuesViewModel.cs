@@ -1,5 +1,7 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -11,8 +13,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class RevenuesViewModel : LoadAllViewModel<RevenuesEntityForView>
     {
 
+        #region Properties
+        private RevenuesEntityForView _selectedItem;
+        public RevenuesEntityForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
         #region Commands
         public RealyCommand OpenAddNewRevenueCommand { get; set; }
+        public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
 
         #region Events
@@ -26,6 +41,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 AddNewRevenueRequested?.Invoke();
             });
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
 
         #region Helpers
@@ -50,6 +66,28 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public override Task ApplyFiltersAsync()
         {
             throw new NotImplementedException();
+        }
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is RevenuesEntityForView selected)
+            {
+                var modal = new DeleteRevenueModalView();
+                DeleteRevenueModalViewModel deleteRevenueModalViewModel = new DeleteRevenueModalViewModel(
+                                            realEstateEntities.Revenues.First(r => r.RevenueID == SelectedItem.Id));
+                deleteRevenueModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteRevenueModalViewModel;
+                modal.Show();
+
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
         }
         #endregion
     }

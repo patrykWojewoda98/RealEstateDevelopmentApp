@@ -214,6 +214,11 @@
     <Compile Include="MVVM\ViewModel\Modals\DeleteMaintenanceRequestModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\DeleteMaterialModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\DeleteProjectModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeletePurchaseModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteReservationModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteRevenueModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteSaleModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteSupplierModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />

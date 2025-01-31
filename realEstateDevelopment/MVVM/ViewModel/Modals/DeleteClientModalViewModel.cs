@@ -100,6 +100,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
         #region Commands
         public RealyCommand ConfirmDeleteCommand { get; set; }
+        public RealyCommand CancelCommand { get; set; }
         #endregion
 
         #region Constructor
@@ -109,6 +110,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             item = client;
             estateEntities = new RealEstateEntities();
             ConfirmDeleteCommand = new RealyCommand(ExecuteDelete);
+            CancelCommand = new RealyCommand(CancelDelete);
         }
         #endregion
 
@@ -186,6 +188,10 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 var errorModal = new ErrorModalView($"Wystąpił błąd: {ex.Message}");
                 errorModal.ShowDialog();
             }
+        }
+        private void CancelDelete(object parameter)
+        {
+            base.OnRequestClose();
         }
         #endregion
     }

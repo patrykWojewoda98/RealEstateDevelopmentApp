@@ -18,10 +18,10 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is ReservationsViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedMaterial.Id;
+                    viewModel.SelectedItem = selectedMaterial;
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.Id);
                 }
             }
         }

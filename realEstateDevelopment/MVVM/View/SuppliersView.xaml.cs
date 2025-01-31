@@ -19,9 +19,9 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is SuppliersViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedSupplier.SupplierID;
+                    viewModel.SelectedItem = selectedSupplier;
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.SupplierID);
                 }
             }
         }

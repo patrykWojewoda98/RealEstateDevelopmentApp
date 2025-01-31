@@ -3,64 +3,70 @@ using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
-    public class DeleteConstructionScheduleModalViewModel : BaseDataDeleter<ConstructionSchedule>
+    public class DeleteSaleModalViewModel : BaseDataDeleter<Sales>
     {
         #region Properties
 
         private RealEstateEntities estateEntities;
 
-        public int ScheduleID
+        public int Id
         {
-            get => item.ScheduleID;
+            get => item.SaleID;
             set
             {
-                item.ScheduleID = value;
-                OnPropertyChanged(() => ScheduleID);
+                item.SaleID = value;
+                OnPropertyChanged(() => Id);
             }
         }
 
-        public string BuildingName
+        public string ApartmentNumber
         {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.BuildingId).BuildingName;
+            get => estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID)?.ApartmentNumber;
         }
 
         public string BuildingNumber
         {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.BuildingId).BuildingNumber;
-        }
-
-        public int Floors
-        {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.ProjectID)?.Floors ?? 0;
-        }
-
-        public int NumberOfApartments
-        {
-            get => estateEntities.Apartments.Count(a => a.BuildingID == item.ProjectID);
+            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID).BuildingID).BuildingNumber;
         }
 
         public string Address
         {
-            get => estateEntities.Projects.FirstOrDefault(p => p.ProjectID == item.ProjectID)?.Location;
+            get => estateEntities.Projects.FirstOrDefault(p => p.ProjectID == estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == estateEntities.Apartments.FirstOrDefault(a => a.ApartmentID == item.ApartmentID).BuildingID).BuildingID).Location;
         }
 
-        public DateTime StartDate
+        public string ClientName
         {
-            get => item.StartDate;
+            get => estateEntities.Clients.FirstOrDefault(c => c.ClientID == item.ClientID)?.FirstName;
+        }
+
+        public string ClientSurname
+        {
+            get => estateEntities.Clients.FirstOrDefault(c => c.ClientID == item.ClientID)?.LastName;
+        }
+
+        public decimal SalePrice
+        {
+            get => item.SalePrice;
             set
             {
-                item.StartDate = value;
-                OnPropertyChanged(() => StartDate);
+                item.SalePrice = value;
+                OnPropertyChanged(() => SalePrice);
             }
         }
 
+        public DateTime SaleDate
+        {
+            get => item.SaleDate;
+            set
+            {
+                item.SaleDate = value;
+                OnPropertyChanged(() => SaleDate);
+            }
+        }
 
         public string Status
         {
@@ -80,10 +86,10 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         #endregion
 
         #region Constructor
-        public DeleteConstructionScheduleModalViewModel(ConstructionSchedule schedule)
+        public DeleteSaleModalViewModel(Sales sale)
             : base()
         {
-            item = schedule;
+            item = sale;
             estateEntities = new RealEstateEntities();
             ConfirmDeleteCommand = new RealyCommand(ExecuteDelete);
             CancelCommand = new RealyCommand(CancelDelete);
@@ -93,15 +99,15 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         #region Helpers
         public override void Delete()
         {
-            var existingItem = estateEntities.ConstructionSchedule.FirstOrDefault(s => s.ScheduleID == item.ScheduleID);
+            var existingItem = estateEntities.Sales.FirstOrDefault(s => s.SaleID == item.SaleID);
             if (existingItem != null)
             {
-                estateEntities.ConstructionSchedule.Remove(existingItem);
+                estateEntities.Sales.Remove(existingItem);
                 estateEntities.SaveChanges();
             }
             else
             {
-                var errorModal = new ErrorModalView("Nie znaleziono harmonogramu do usunięcia.");
+                var errorModal = new ErrorModalView("Nie znaleziono sprzedaży do usunięcia.");
                 errorModal.ShowDialog();
             }
         }

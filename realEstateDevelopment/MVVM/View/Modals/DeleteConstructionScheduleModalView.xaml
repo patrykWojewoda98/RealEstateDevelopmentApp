@@ -45,9 +45,6 @@
             <TextBlock Text="Data rozpoczęcia: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
                 <Run Text="{Binding StartDate, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Text="Data zakończenia: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
-                <Run Text="{Binding EndDate, Mode=OneWay}" />
-            </TextBlock>
             <TextBlock Text="Status: " FontSize="14" Foreground="LightGray" Margin="10,5,0,0">
                 <Run Text="{Binding Status, Mode=OneWay}" />
             </TextBlock>

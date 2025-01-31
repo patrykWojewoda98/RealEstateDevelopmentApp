@@ -3,47 +3,29 @@ using realEstateDevelopment.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.View.Modals;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace realEstateDevelopment.MVVM.ViewModel.Modals
 {
-    public class DeleteConstructionScheduleModalViewModel : BaseDataDeleter<ConstructionSchedule>
+    public class DeleteRevenueModalViewModel : BaseDataDeleter<Revenues>
     {
         #region Properties
 
         private RealEstateEntities estateEntities;
 
-        public int ScheduleID
+        public int Id
         {
-            get => item.ScheduleID;
+            get => item.RevenueID;
             set
             {
-                item.ScheduleID = value;
-                OnPropertyChanged(() => ScheduleID);
+                item.RevenueID = value;
+                OnPropertyChanged(() => Id);
             }
         }
 
-        public string BuildingName
+        public string ProjectName
         {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.BuildingId).BuildingName;
-        }
-
-        public string BuildingNumber
-        {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.BuildingId).BuildingNumber;
-        }
-
-        public int Floors
-        {
-            get => estateEntities.Buildings.FirstOrDefault(b => b.BuildingID == item.ProjectID)?.Floors ?? 0;
-        }
-
-        public int NumberOfApartments
-        {
-            get => estateEntities.Apartments.Count(a => a.BuildingID == item.ProjectID);
+            get => estateEntities.Projects.FirstOrDefault(p => p.ProjectID == item.ProjectID)?.ProjectName;
         }
 
         public string Address
@@ -51,24 +33,33 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             get => estateEntities.Projects.FirstOrDefault(p => p.ProjectID == item.ProjectID)?.Location;
         }
 
-        public DateTime StartDate
+        public string RevenueType
         {
-            get => item.StartDate;
+            get => item.RevenueType;
             set
             {
-                item.StartDate = value;
-                OnPropertyChanged(() => StartDate);
+                item.RevenueType = value;
+                OnPropertyChanged(() => RevenueType);
             }
         }
 
-
-        public string Status
+        public decimal RevenueAmount
         {
-            get => item.Status;
+            get => item.Amount;
             set
             {
-                item.Status = value;
-                OnPropertyChanged(() => Status);
+                item.Amount = value;
+                OnPropertyChanged(() => RevenueAmount);
+            }
+        }
+
+        public DateTime RevenueDate
+        {
+            get => item.RevenueDate;
+            set
+            {
+                item.RevenueDate = value;
+                OnPropertyChanged(() => RevenueDate);
             }
         }
 
@@ -80,10 +71,10 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         #endregion
 
         #region Constructor
-        public DeleteConstructionScheduleModalViewModel(ConstructionSchedule schedule)
+        public DeleteRevenueModalViewModel(Revenues revenue)
             : base()
         {
-            item = schedule;
+            item = revenue;
             estateEntities = new RealEstateEntities();
             ConfirmDeleteCommand = new RealyCommand(ExecuteDelete);
             CancelCommand = new RealyCommand(CancelDelete);
@@ -93,15 +84,15 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
         #region Helpers
         public override void Delete()
         {
-            var existingItem = estateEntities.ConstructionSchedule.FirstOrDefault(s => s.ScheduleID == item.ScheduleID);
+            var existingItem = estateEntities.Revenues.FirstOrDefault(r => r.RevenueID == item.RevenueID);
             if (existingItem != null)
             {
-                estateEntities.ConstructionSchedule.Remove(existingItem);
+                estateEntities.Revenues.Remove(existingItem);
                 estateEntities.SaveChanges();
             }
             else
             {
-                var errorModal = new ErrorModalView("Nie znaleziono harmonogramu do usunięcia.");
+                var errorModal = new ErrorModalView("Nie znaleziono przychodu do usunięcia.");
                 errorModal.ShowDialog();
             }
         }

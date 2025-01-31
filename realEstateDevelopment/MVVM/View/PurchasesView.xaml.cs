@@ -18,10 +18,10 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is PurchasesViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedPurchase.PurchaseID;
+                    viewModel.SelectedItem = selectedPurchase;
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.PurchaseID);
                 }
             }
         }
