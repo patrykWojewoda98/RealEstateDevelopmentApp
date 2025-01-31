@@ -17,9 +17,9 @@ namespace realEstateDevelopment.MVVM.View
             {
                 if (DataContext is EmployeesViewModel viewModel)
                 {
-                    viewModel.SelectedItem = selectedMaterial.EmployeeId;
+                    viewModel.SelectedItem = selectedMaterial;
 
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.EmployeeId);
                 }
             }
         }

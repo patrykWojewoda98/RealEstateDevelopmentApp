@@ -57,9 +57,14 @@
                         Command="{Binding OpenAddNewEmployeeCommand}"
                         Style="{StaticResource CommonNormalButtonTheme}"/>
                 <Button Grid.Column="1"
-        Content="Odświerz"
-        Command="{Binding ReloadCommand}"
-        Style="{StaticResource CommonNormalButtonTheme}"/>
+                        Content="Odświerz"
+                        Command="{Binding ReloadCommand}"
+                        Style="{StaticResource CommonNormalButtonTheme}"/>
+                <Button Grid.Column="2"
+                        Content="Usuń Zaznaczony"
+                        Command="{Binding DeleteSelectedCommand}"
+                        Style="{StaticResource CommonNormalButtonTheme}"
+                        />
             </Grid>
 
 
