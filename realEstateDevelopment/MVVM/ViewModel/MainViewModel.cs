@@ -1,5 +1,9 @@
-﻿using realEstateDevelopment.Core;
+﻿using GalaSoft.MvvmLight.Messaging;
+using realEstateDevelopment.Core;
+using realEstateDevelopment.Helper;
+using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
+using System;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -41,6 +45,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public SalesViewModel SalesVM { get; set; }
         public PurchasesViewModel PurchasesVM { get; set; }
         public HistoryOfChangesViewModel HistoryOfChangesVM { get; set; }
+        public static EmployeesEntityForView employee;
 
 
         private object _currentView;
@@ -77,6 +82,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
 
             var updateModalShower = UpdateModalShower.Instance; // Tworzy instancję i rejestruje nasłuchiwanie
+            Messenger.Default.Register<LoginSucceedMessage>(this, OnLoginSucceeded);
 
 
 
@@ -290,6 +296,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
             CurrentView = addNewSaleRequestVM;
         }
 
+        private void OnLoginSucceeded(LoginSucceedMessage loginSucceedMessage)
+        {
+            employee = loginSucceedMessage.employee;
+
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
 
 
 

@@ -41,10 +41,7 @@ namespace realEstateDevelopment.MVVM.View
         private void OnLoginSucceeded(LoginSucceedMessage message)
         {
             // Zamknij okno logowan
-            this.Hide();
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
-            WindowState = WindowState.Minimized;
+            this.Hide();            WindowState = WindowState.Minimized;
             Console.WriteLine($"Zalogowano użytkownika: {message.employee.FirstName} {message.employee.LastName}");
             
         }

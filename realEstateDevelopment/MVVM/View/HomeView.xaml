@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <TextBlock Text="Witaj!"
+        <TextBlock Text="{Binding Welcome}"
                        Foreground="White"
                        FontSize="28"
                        HorizontalAlignment="Left"
