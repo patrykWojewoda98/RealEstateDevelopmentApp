@@ -211,6 +211,7 @@
     <Compile Include="MVVM\ViewModel\Modals\DeleteConstructionScheduleModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\DeleteEmployeeModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\DeleteExpenseModalViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Modals\DeleteMaintenanceRequestModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\ErrorModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateApartmentModalViewModel.cs" />
     <Compile Include="MVVM\ViewModel\Modals\UpdateBuildingConstructionScheduleModalViewModel.cs" />

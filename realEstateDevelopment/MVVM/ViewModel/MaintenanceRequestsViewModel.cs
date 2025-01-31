@@ -1,5 +1,7 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -10,8 +12,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class MaintenanceRequestsViewModel : LoadAllViewModel<MaintenanceRequestsEntityForView>
     {
+        #region Properties
+        private MaintenanceRequestsEntityForView _selectedItem;
+        public MaintenanceRequestsEntityForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
         #region Commands
         public RealyCommand OpenAddNewMaintenanceRequestsCommand { get; set; }
+        public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
 
         #region Events
@@ -26,6 +41,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 AddNewMaintenanceRequestsRequested?.Invoke();
             });
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
         #endregion
         #region Helpers
@@ -58,6 +74,30 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             throw new NotImplementedException();
         }
+
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is MaintenanceRequestsEntityForView selected)
+            {
+                var modal = new DeleteMaintenanceRequestModalView();
+                DeleteMaintenanceRequestModalViewModel deleteMaintenanceRequestModalViewModel = new DeleteMaintenanceRequestModalViewModel(
+                                            realEstateEntities.MaintenanceRequests.First(m => m.RequestID == SelectedItem.Id));
+                deleteMaintenanceRequestModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteMaintenanceRequestModalViewModel;
+                modal.Show();
+
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
+        }
         #endregion
+
     }
 }

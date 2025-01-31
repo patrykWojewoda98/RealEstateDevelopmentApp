@@ -19,10 +19,10 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is MaintenanceRequestsViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedMaintenanceRequest.Id;
+                    viewModel.SelectedItem = selectedMaintenanceRequest;
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.Id);
                 }
             }
         }
