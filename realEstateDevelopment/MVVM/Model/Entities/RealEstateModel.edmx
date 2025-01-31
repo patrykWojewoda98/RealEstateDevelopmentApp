@@ -88,7 +88,7 @@
           <Key>
             <PropertyRef Name="IdOfChange" />
           </Key>
-          <Property Name="IdOfChange" Type="int" Nullable="false" />
+          <Property Name="IdOfChange" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="Operation" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DateAndTimeOfChange" Type="datetime" Nullable="false" />
@@ -667,7 +667,7 @@
           <Key>
             <PropertyRef Name="IdOfChange" />
           </Key>
-          <Property Name="IdOfChange" Type="Int32" Nullable="false" />
+          <Property Name="IdOfChange" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <Property Name="Operation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateAndTimeOfChange" Type="DateTime" Nullable="false" Precision="3" />

@@ -134,6 +134,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
+                item.Status = "Do realizacji";
+                item.RequestDate = DateTime.Now;
                 SaveHistoryOfChanges();
                 estateEntities.MaintenanceRequests.Add(item);
                 estateEntities.SaveChanges();

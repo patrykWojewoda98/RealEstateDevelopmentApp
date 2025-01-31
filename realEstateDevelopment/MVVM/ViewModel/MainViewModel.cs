@@ -261,7 +261,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             var addNewMaintenanceRequestVM = new AddNewMaintenanceRequestsViewModel();
             addNewMaintenanceRequestVM.RequestClose += (sender, args) =>
             {
-                CurrentView = ReservationsVM;
+                CurrentView = MaintenanceRequestsVM;
             };
             CurrentView = addNewMaintenanceRequestVM;
         }

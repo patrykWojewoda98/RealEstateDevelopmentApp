@@ -3,69 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:realEstateDevelopment.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
+
+    <StackPanel Margin="20">
         <TextBlock Text="{Binding Welcome}"
-                       Foreground="White"
-                       FontSize="28"
-                       HorizontalAlignment="Left"
-                       Margin="0,0,0,20"/>
-        <StackPanel Orientation="Horizontal">
-            <Border Width="400"
-                    Height="200">
+                   Foreground="White"
+                   FontSize="28"
+                   HorizontalAlignment="Left"
+                   Margin="0,0,0,20"/>
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#FF7ACCFB" Offset="0.0"/>
-                        <GradientStop Color="#FF0080F7" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+        <TextBlock Text="Lista projektów:" 
+                   Foreground="White" 
+                   FontSize="20" 
+                   FontWeight="Bold"/>
+        <ComboBox ItemsSource="{Binding Projects}" 
+                  SelectedItem="{Binding SelectedProject}" 
+                  Width="300" 
+                  Margin="0,10,0,20"/>
 
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,200"/>
-                </Border.Clip>
+        <TextBlock Text="Liczba budynków w projekcie:" 
+                   Foreground="White" 
+                   FontSize="18"/>
+        <TextBlock Text="{Binding NumberOfBuildings}"
+                   Foreground="#FF2D55" 
+                   FontSize="22" 
+                   FontWeight="Bold" 
+                   Margin="0,5,0,20"/>
 
-                <Grid>
-                    <TextBlock Text="Co dziś budujemy?"
-                               Foreground="White"
-                               FontSize="28"
-                               HorizontalAlignment="Left"
-                               Margin="10,0,0,0"/>
-                    <Image
-                           Source="/Images/apartment_3938871.png" Margin="210,64,-34,0"/>
-                </Grid>
-            </Border>
-            <Border Width="250"
-                    Height="200"
-                    CornerRadius="10"
-                    Margin="45,0,0,0">
+        <TextBlock Text="Lista zgłoszeń konserwacyjnych (do realizacji):"
+                   Foreground="White" 
+                   FontSize="18"/>
+        <ListBox ItemsSource="{Binding MaintenanceRequests}" 
+                 Width="400" 
+                 Height="100" 
+                 Margin="0,10,0,20"/>
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#FF7ACCFB" Offset="0.0"/>
-                        <GradientStop Color="#FF0080F7" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Grid>
-
-                    <TextBlock Text="Zysk/Strata w tym miesiącu"
-                               HorizontalAlignment="Center"
-                               FontSize="20"
-                               Foreground="White"/>
-                    <TextBlock Text="12 380"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontSize="40"
-                               Foreground="White"/>
-
-                </Grid>
-
-            </Border>
-        </StackPanel>
+        <TextBlock Text="Twoje 3 Ostatnie zmiany:"
+                   Foreground="White" 
+                   FontSize="18"/>
+        <ListBox ItemsSource="{Binding RecentChanges}"
+                 Width="400"
+                 Height="100"
+                 Margin="0,10,0,20"/>
     </StackPanel>
 </UserControl>
