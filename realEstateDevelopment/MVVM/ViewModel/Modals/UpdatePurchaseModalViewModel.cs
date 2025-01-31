@@ -117,6 +117,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.PurchaseDate = item.PurchaseDate;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

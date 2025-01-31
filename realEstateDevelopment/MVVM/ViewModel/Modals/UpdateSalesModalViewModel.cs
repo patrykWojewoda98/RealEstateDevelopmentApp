@@ -184,6 +184,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.Status = item.Status;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

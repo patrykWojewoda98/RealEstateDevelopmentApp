@@ -129,6 +129,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 item.SaleDate = DateTime.Now;
                 item.Status = "Sprzedano";
+                SaveHistoryOfChanges();
                 estateEntities.Sales.Add(item);
                 estateEntities.SaveChanges();
             }

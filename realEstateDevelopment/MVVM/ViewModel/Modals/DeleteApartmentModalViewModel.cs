@@ -184,7 +184,8 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 estateEntities.Apartments.Remove(existingItem);
 
                  estateEntities.SaveChanges();
-             }
+                SaveHistoryOfChanges();
+            }
              else
              {
                  var errorModal = new ErrorModalView("Nie znaleziono elementu do aktualizacji.");

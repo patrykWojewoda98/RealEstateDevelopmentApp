@@ -106,6 +106,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                     apartment.Status = "Zarezerwowano";
                     estateEntities.SaveChanges();
                 }
+                SaveHistoryOfChanges();
                 estateEntities.Reservations.Add(item);
                 estateEntities.SaveChanges();
             }

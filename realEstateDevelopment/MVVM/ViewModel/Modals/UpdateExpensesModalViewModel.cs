@@ -171,6 +171,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.ProjectID = item.ProjectID;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

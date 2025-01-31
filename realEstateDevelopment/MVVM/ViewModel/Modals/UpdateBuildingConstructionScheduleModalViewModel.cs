@@ -138,6 +138,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.EndDate = item.EndDate;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

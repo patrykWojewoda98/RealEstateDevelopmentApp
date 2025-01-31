@@ -115,6 +115,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 // Usuń pracownika
                 estateEntities.Employees.Remove(existingItem);
                 estateEntities.SaveChanges();
+                SaveHistoryOfChanges();
             }
             else
             {

@@ -168,6 +168,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingEmployee.Password = item.Password;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

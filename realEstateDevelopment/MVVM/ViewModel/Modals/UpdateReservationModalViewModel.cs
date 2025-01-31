@@ -137,6 +137,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.ReservationDate = item.ReservationDate;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

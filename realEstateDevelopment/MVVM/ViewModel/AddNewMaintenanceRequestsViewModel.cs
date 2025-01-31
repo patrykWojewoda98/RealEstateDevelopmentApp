@@ -134,6 +134,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
+                SaveHistoryOfChanges();
                 estateEntities.MaintenanceRequests.Add(item);
                 estateEntities.SaveChanges();
             }

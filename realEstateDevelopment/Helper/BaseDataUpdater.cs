@@ -1,6 +1,7 @@
 ﻿using MVVMFirma.Helper;
 using realEstateDevelopment.MVVM.Model.Entities;
 using realEstateDevelopment.MVVM.ViewModel;
+using System;
 using System.Windows.Input;
 
 namespace realEstateDevelopment.Helper
@@ -57,6 +58,15 @@ namespace realEstateDevelopment.Helper
         {
             Update();
             base.OnRequestClose();
+        }
+        public virtual void SaveHistoryOfChanges()
+        {
+            var change = new HistoryOfChanges();
+            change.EmployeeId = MainViewModel.employee.EmployeeId;
+            change.Operation = this.GetType().Name;
+            change.DateAndTimeOfChange = DateTime.Now;
+            estateEntities.HistoryOfChanges.Add(change);
+            estateEntities.SaveChanges();
         }
         #endregion
 

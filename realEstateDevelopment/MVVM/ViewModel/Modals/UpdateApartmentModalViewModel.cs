@@ -180,6 +180,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.BuildingID = item.BuildingID;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

@@ -156,6 +156,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 estateEntities.Buildings.Remove(existingItem);
 
                 estateEntities.SaveChanges();
+                SaveHistoryOfChanges();
             }
             else
             {

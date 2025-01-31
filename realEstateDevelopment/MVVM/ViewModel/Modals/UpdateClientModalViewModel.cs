@@ -197,7 +197,8 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 existingItem.IdCardSeries = item.IdCardSeries;
 
                 estateEntities.SaveChanges();
-            }
+                    SaveHistoryOfChanges();
+                }
             else
             {
                 var errorModal = new ErrorModalView("Nie znaleziono elementu do aktualizacji.");

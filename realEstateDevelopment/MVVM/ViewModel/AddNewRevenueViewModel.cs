@@ -140,6 +140,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
+                SaveHistoryOfChanges();
                 estateEntities.Revenues.Add(item);
                 estateEntities.SaveChanges();
             }

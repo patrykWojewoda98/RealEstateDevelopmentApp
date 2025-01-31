@@ -186,6 +186,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.SupplierID = item.SupplierID;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

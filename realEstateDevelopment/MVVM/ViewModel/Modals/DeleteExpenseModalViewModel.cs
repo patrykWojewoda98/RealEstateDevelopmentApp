@@ -92,6 +92,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
             {
                 estateEntities.Expenses.Remove(existingItem);
                 estateEntities.SaveChanges();
+                SaveHistoryOfChanges();
             }
             else
             {

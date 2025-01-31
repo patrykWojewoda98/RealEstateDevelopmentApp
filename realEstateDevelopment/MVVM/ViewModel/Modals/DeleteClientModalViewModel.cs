@@ -168,6 +168,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                 // Usuń klienta
                 estateEntities.Clients.Remove(existingItem);
                 estateEntities.SaveChanges();
+                SaveHistoryOfChanges();
             }
             else
             {

@@ -169,8 +169,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
-                    // Tworzenie nowego budynku
-                    var newBuilding = new Buildings
+                SaveHistoryOfChanges();
+                // Tworzenie nowego budynku
+                var newBuilding = new Buildings
                     {
                         ProjectID = SelectedProject.ProjectId,
                         BuildingName = BuildingName,

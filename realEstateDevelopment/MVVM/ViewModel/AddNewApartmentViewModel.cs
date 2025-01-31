@@ -200,6 +200,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             Validate();
             if (isDataCorrect)
             {
+                SaveHistoryOfChanges();
                 estateEntities.Apartments.Add(item);
                 estateEntities.SaveChanges();
             }

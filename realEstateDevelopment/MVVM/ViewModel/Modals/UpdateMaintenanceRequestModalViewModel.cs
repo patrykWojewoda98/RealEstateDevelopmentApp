@@ -192,6 +192,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
                     existingItem.RequestDate = item.RequestDate;
 
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {

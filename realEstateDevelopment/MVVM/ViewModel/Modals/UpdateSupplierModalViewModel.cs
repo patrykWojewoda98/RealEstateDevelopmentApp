@@ -135,6 +135,7 @@ namespace realEstateDevelopment.MVVM.ViewModel.Modals
 
                     // Zapisz zmiany w bazie danych
                     estateEntities.SaveChanges();
+                    SaveHistoryOfChanges();
                 }
                 else
                 {
