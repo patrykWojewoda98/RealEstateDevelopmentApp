@@ -20,11 +20,11 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is ConstructionScheduleViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedconstructionSchedule.ScheduleID;
+                    viewModel.SelectedItem = selectedconstructionSchedule;
                     Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.ScheduleID);
                 }
             }
         }

@@ -1,5 +1,7 @@
 ﻿using realEstateDevelopment.Core;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
@@ -10,10 +12,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ConstructionScheduleViewModel : LoadAllViewModel<ConstructionScheduleEntityForView>
     {
+        #region Properties
+        private ConstructionScheduleEntityForView _selectedItem;
+        public ConstructionScheduleEntityForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
+
         #region Commands
         public RealyCommand OpenScheduleNewConstructionCommand { get; set; }
         #endregion
         public event Action ScheduleNewConstructionRequested;
+        public RealyCommand DeleteSelectedCommand { get; set; }
 
 
 
@@ -26,6 +42,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 ScheduleNewConstructionRequested?.Invoke();
             });
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
         }
         #endregion
 
@@ -60,6 +77,29 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public override Task ApplyFiltersAsync()
         {
             throw new NotImplementedException();
+        }
+
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is ConstructionScheduleEntityForView selectedConstruction)
+            {
+                var modal = new DeleteConstructionScheduleModalView();
+                DeleteConstructionScheduleModalViewModel deleteConstructionModalViewModel = new DeleteConstructionScheduleModalViewModel(
+                                            realEstateEntities.ConstructionSchedule.First(c => c.ScheduleID == selectedConstruction.ScheduleID));
+                deleteConstructionModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteConstructionModalViewModel;
+                modal.Show();
+
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
         }
         #endregion
     }
