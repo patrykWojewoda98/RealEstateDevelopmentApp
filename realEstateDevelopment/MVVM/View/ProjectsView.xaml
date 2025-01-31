@@ -107,6 +107,12 @@
                     Content="Odświerz"
                     Command="{Binding ReloadCommand}"
                     Style="{StaticResource CommonNormalButtonTheme}"/>
+            <Button Grid.Row="3"
+                    Grid.Column="1"
+                    Content="Usuń Zaznaczony"
+                    Command="{Binding DeleteSelectedCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}"
+                    />
         </Grid>
     </Grid>
 </UserControl>

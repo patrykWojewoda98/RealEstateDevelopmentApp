@@ -18,10 +18,10 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is MaterialsViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedMaterial.MaterialId;
+                    viewModel.SelectedItem = selectedMaterial;
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.MaterialId);
                 }
             }
         }

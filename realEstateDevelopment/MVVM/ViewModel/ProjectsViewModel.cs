@@ -4,17 +4,33 @@ using System.Threading.Tasks;
 using System;
 using System.Linq;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
+using realEstateDevelopment.MVVM.View.Modals;
+using realEstateDevelopment.MVVM.ViewModel.Modals;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
     public class ProjectsViewModel: LoadAllViewModel<ProjectEntityForView>
     {
-    #region Commands
-        public RealyCommand OpenAddNewProjectCommand { get; set; }
-    #endregion
+        #region Properties
+        private ProjectEntityForView _selectedItem;
+        public ProjectEntityForView SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(() => SelectedItem);
+            }
+        }
+        #endregion
 
-    #region Events
-    public event Action AddNewProjectRequested;
+        #region Commands
+        public RealyCommand OpenAddNewProjectCommand { get; set; }
+        public RealyCommand DeleteSelectedCommand { get; set; }
+        #endregion
+
+        #region Events
+        public event Action AddNewProjectRequested;
     #endregion
 
 
@@ -26,7 +42,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             AddNewProjectRequested?.Invoke();
         });
-    }
+            DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+        }
     #endregion
 
 
@@ -52,7 +69,28 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             throw new NotImplementedException();
         }
+        private void ExecuteDeleteSelected(object parameter)
+        {
+            if (SelectedItem is ProjectEntityForView selected)
+            {
+                var modal = new DeleteProjectModalView();
+                DeleteProjectModalViewModel deleteProjectModalViewModel = new DeleteProjectModalViewModel(
+                                            realEstateEntities.Projects.First(p => p.ProjectID == SelectedItem.ProjectId));
+                deleteProjectModalViewModel.RequestClose += (obj, sender) =>
+                {
+                    modal.Close();
+                };
+                modal.DataContext = deleteProjectModalViewModel;
+                modal.Show();
 
+            }
+        }
+
+
+        private bool CanExecuteDeleteSelected(object parameter)
+        {
+            return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
+        }
 
         #endregion
     }

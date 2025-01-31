@@ -197,6 +197,12 @@
       <DataTemplate DataType="{x:Type modalViewModel:DeleteMaintenanceRequestModalViewModel}">
           <modalView:DeleteMaintenanceRequestModalView />
       </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteMaterialModalViewModel}">
+          <modalView:DeleteMaterialModalView />
+      </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteProjectModalViewModel}">
+          <modalView:DeleteProjectModalView />
+      </DataTemplate>
         </ResourceDictionary>
   </Application.Resources>
 </Application>

@@ -19,11 +19,11 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is ProjectsViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedProject.ProjectId;
+                    viewModel.SelectedItem = selectedProject;
                     Console.WriteLine("Wybrane ID: " + viewModel.SelectedItem);
 
                     // Wywołaj Update
-                    viewModel.Update(viewModel.SelectedItem);
+                    viewModel.Update(viewModel.SelectedItem.ProjectId);
                 }
             }
         }
