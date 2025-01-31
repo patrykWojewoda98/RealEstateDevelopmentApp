@@ -191,6 +191,9 @@
       <DataTemplate DataType="{x:Type modalViewModel:DeleteEmployeeModalViewModel}">
           <modalView:DeleteEmployeeModalView />
       </DataTemplate>
+      <DataTemplate DataType="{x:Type modalViewModel:DeleteExpenseModalViewModel}">
+          <modalView:DeleteExpenseModalView />
+      </DataTemplate>
         </ResourceDictionary>
   </Application.Resources>
 </Application>

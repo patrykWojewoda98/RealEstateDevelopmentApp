@@ -20,7 +20,7 @@ namespace realEstateDevelopment.MVVM.View
                 if (DataContext is ExpensesViewModel viewModel)
                 {
                     // Ustaw ID w ViewModelu na podstawie wybranego obiektu
-                    viewModel.SelectedItem = selectedOperation.Id;
+                    viewModel.SelectedItem = selectedOperation;
                     var updateMessage = new UpdateMessage("ExpenceUpdate", selectedOperation.Id);
                     Messenger.Default.Send(updateMessage);
                     
