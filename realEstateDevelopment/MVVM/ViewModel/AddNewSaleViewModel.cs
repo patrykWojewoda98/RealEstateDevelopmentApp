@@ -131,6 +131,10 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 item.Status = "Sprzedano";
                 SaveHistoryOfChanges();
                 estateEntities.Sales.Add(item);
+                var apartment = estateEntities.Apartments.FirstOrDefault(a =>a.ApartmentID == item.ApartmentID);
+                apartment.Status = "Sprzedano";
+                apartment.ClientID = item.ClientID;
+
                 estateEntities.SaveChanges();
             }
             else

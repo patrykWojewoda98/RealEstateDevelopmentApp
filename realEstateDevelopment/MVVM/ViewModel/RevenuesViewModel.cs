@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -24,8 +25,68 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private decimal? _filterAmountFrom;
+        public decimal? FilterAmountFrom
+        {
+            get => _filterAmountFrom;
+            set
+            {
+                _filterAmountFrom = value;
+                OnPropertyChanged(() => FilterAmountFrom);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private decimal? _filterAmountTo;
+        public decimal? FilterAmountTo
+        {
+            get => _filterAmountTo;
+            set
+            {
+                _filterAmountTo = value;
+                OnPropertyChanged(() => FilterAmountTo);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime? _filterDate;
+        public DateTime? FilterDate
+        {
+            get => _filterDate;
+            set
+            {
+                _filterDate = value;
+                OnPropertyChanged(() => FilterDate);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterProjectName;
+        public string FilterProjectName
+        {
+            get => _filterProjectName;
+            set
+            {
+                _filterProjectName = value;
+                OnPropertyChanged(() => FilterProjectName);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<RevenuesEntityForView> _filteredList;
+        public ObservableCollection<RevenuesEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
         #region Commands
+        public RealyCommand ApplyFiltersCommand { get; set; }
         public RealyCommand OpenAddNewRevenueCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
@@ -37,11 +98,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public RevenuesViewModel()
             : base()
         {
+            _filterAmountTo = realEstateEntities.Revenues.Max(r => r.Amount);
             OpenAddNewRevenueCommand = new RealyCommand(o =>
             {
                 AddNewRevenueRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
 
         #region Helpers
@@ -63,9 +126,26 @@ namespace realEstateDevelopment.MVVM.ViewModel
             List = new ObservableCollection<RevenuesEntityForView>(result);
         }
 
+       
+
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            var filtered = List.Where(item =>
+                (!FilterAmountFrom.HasValue || item.RevenueAmount >= FilterAmountFrom.Value) &&
+                (!FilterAmountTo.HasValue || item.RevenueAmount <= FilterAmountTo.Value) &&
+                (!FilterDate.HasValue || item.RevenueDate <= FilterDate) &&
+                (string.IsNullOrEmpty(FilterProjectName) || item.ProjectName.Contains(FilterProjectName))
+            );
+
+            FilteredList = new ObservableCollection<RevenuesEntityForView>(filtered);
+
+            List.Clear();
+            foreach (var item in FilteredList)
+            {
+                List.Add(item);
+            }
+
+            return Task.CompletedTask;
         }
         private void ExecuteDeleteSelected(object parameter)
         {

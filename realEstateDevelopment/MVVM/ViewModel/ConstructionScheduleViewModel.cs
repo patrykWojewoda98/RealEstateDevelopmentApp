@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -23,6 +24,64 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+        private string _filterBuildingName;
+        public string FilterBuildingName
+        {
+            get => _filterBuildingName;
+            set
+            {
+                _filterBuildingName = value;
+                OnPropertyChanged(() => FilterBuildingName);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterBuildingNumber;
+        public string FilterBuildingNumber
+        {
+            get => _filterBuildingNumber;
+            set
+            {
+                _filterBuildingNumber = value;
+                OnPropertyChanged(() => FilterBuildingNumber);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime _filterStartDate;
+        public DateTime FilterStartDate
+        {
+            get => _filterStartDate;
+            set
+            {
+                _filterStartDate = value;
+                OnPropertyChanged(() => FilterStartDate);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime _filterEndDate;
+        public DateTime FilterEndDate
+        {
+            get => _filterEndDate;
+            set
+            {
+                _filterEndDate = value;
+                OnPropertyChanged(() => FilterEndDate);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<ConstructionScheduleEntityForView> _filteredList;
+        public ObservableCollection<ConstructionScheduleEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
 
         #region Commands
@@ -30,6 +89,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         #endregion
         public event Action ScheduleNewConstructionRequested;
         public RealyCommand DeleteSelectedCommand { get; set; }
+        public RealyCommand ApplyFiltersCommand { get; set; }
 
 
 
@@ -43,6 +103,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 ScheduleNewConstructionRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
         #endregion
 
@@ -76,7 +137,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            FilteredList = new ObservableCollection<ConstructionScheduleEntityForView>(
+                List.Where(c =>
+                    (string.IsNullOrEmpty(FilterBuildingName) || c.BuildingName.Contains(FilterBuildingName)) &&
+                    (string.IsNullOrEmpty(FilterBuildingNumber) || c.BuildingNumber.Contains(FilterBuildingNumber)) &&
+                    (FilterStartDate == DateTime.MinValue || c.StartDate >= FilterStartDate) &&
+                    (FilterEndDate == DateTime.MinValue || c.EndDate <= FilterEndDate)
+                ));
+            List.Clear();
+            foreach (var item in FilteredList)
+            {
+                List.Add(item);
+            }
+            return Task.CompletedTask;
         }
 
         private void ExecuteDeleteSelected(object parameter)
@@ -101,6 +174,8 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             return SelectedItem != null; // Polecenie dostępne tylko, jeśli coś jest zaznaczone.
         }
+
+
         #endregion
     }
 }

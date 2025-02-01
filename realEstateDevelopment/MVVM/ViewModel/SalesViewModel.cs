@@ -7,6 +7,7 @@ using realEstateDevelopment.Core;
 using System;
 using realEstateDevelopment.MVVM.View.Modals;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -23,8 +24,68 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private decimal? _filterAmountFrom;
+        public decimal? FilterAmountFrom
+        {
+            get => _filterAmountFrom;
+            set
+            {
+                _filterAmountFrom = value;
+                OnPropertyChanged(() => FilterAmountFrom);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private decimal? _filterAmountTo;
+        public decimal? FilterAmountTo
+        {
+            get => _filterAmountTo;
+            set
+            {
+                _filterAmountTo = value;
+                OnPropertyChanged(() => FilterAmountTo);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterClientName;
+        public string FilterClientName
+        {
+            get => _filterClientName;
+            set
+            {
+                _filterClientName = value;
+                OnPropertyChanged(() => FilterClientName);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterApartmentNumber;
+        public string FilterApartmentNumber
+        {
+            get => _filterApartmentNumber;
+            set
+            {
+                _filterApartmentNumber = value;
+                OnPropertyChanged(() => FilterApartmentNumber);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<SalesEntityForView> _filteredList;
+        public ObservableCollection<SalesEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
         #region Commands
+        public RealyCommand ApplyFiltersCommand { get; set; }
         public RealyCommand OpenAddNewSaleCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
@@ -37,11 +98,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public SalesViewModel()
             : base()
         {
+            _filterAmountTo = realEstateEntities.Sales.Max(s => s.SalePrice);
             OpenAddNewSaleCommand = new RealyCommand(o =>
             {
                 AddNewSaleRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
         #endregion
 
@@ -71,8 +134,26 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            var filtered = List.Where(s =>
+                (!FilterAmountFrom.HasValue || s.SalePrice >= FilterAmountFrom.Value) &&
+                (!FilterAmountTo.HasValue || s.SalePrice <= FilterAmountTo.Value) &&
+                (string.IsNullOrEmpty(FilterClientName) ||
+                 (!string.IsNullOrEmpty(s.ClientName) && s.ClientName.Contains(FilterClientName))) &&
+                (string.IsNullOrEmpty(FilterApartmentNumber) ||
+                 (!string.IsNullOrEmpty(s.ApartmentNumber) && s.ApartmentNumber.Contains(FilterApartmentNumber)))
+            );
+
+            FilteredList = new ObservableCollection<SalesEntityForView>(filtered);
+
+            List.Clear();
+            foreach (var item in FilteredList)
+            {
+                List.Add(item);
+            }
+
+            return Task.CompletedTask;
         }
+
         private void ExecuteDeleteSelected(object parameter)
         {
             if (SelectedItem is SalesEntityForView selected)

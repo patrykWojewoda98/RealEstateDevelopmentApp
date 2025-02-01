@@ -10,6 +10,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -26,8 +27,68 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private DateTime? _filterReservationDateFrom;
+        public DateTime? FilterReservationDateFrom
+        {
+            get => _filterReservationDateFrom;
+            set
+            {
+                _filterReservationDateFrom = value;
+                OnPropertyChanged(() => FilterReservationDateFrom);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime? _filterReservationDateTo;
+        public DateTime? FilterReservationDateTo
+        {
+            get => _filterReservationDateTo;
+            set
+            {
+                _filterReservationDateTo = value;
+                OnPropertyChanged(() => FilterReservationDateTo);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterBuildingNumber;
+        public string FilterBuildingNumber
+        {
+            get => _filterBuildingNumber;
+            set
+            {
+                _filterBuildingNumber = value;
+                OnPropertyChanged(() => FilterBuildingNumber);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterClientName;
+        public string FilterClientName
+        {
+            get => _filterClientName;
+            set
+            {
+                _filterClientName = value;
+                OnPropertyChanged(() => FilterClientName);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<ReservationsEntityForView> _filteredList;
+        public ObservableCollection<ReservationsEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
         #region Commands
+        public RealyCommand ApplyFiltersCommand { get; set; }
         public RealyCommand OpenAddNewReservationCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
@@ -45,6 +106,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 AddNewReservationRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
         #endregion
 
@@ -74,7 +136,19 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            FilteredList = new ObservableCollection<ReservationsEntityForView>(
+                List.Where(r =>
+                    (!FilterReservationDateFrom.HasValue || r.ReservationDate >= FilterReservationDateFrom) &&
+                    (!FilterReservationDateTo.HasValue || r.ReservationDate <= FilterReservationDateTo) &&
+                    (string.IsNullOrEmpty(FilterBuildingNumber) || r.BuildingNumber.Contains(FilterBuildingNumber)) &&
+                    (string.IsNullOrEmpty(FilterClientName) || r.ClientName.Contains(FilterClientName))
+                ));
+            List.Clear();
+            foreach (var item in FilteredList) 
+            {
+                List.Add(item);
+            }
+            return Task.CompletedTask;
         }
         private void ExecuteDeleteSelected(object parameter)
         {

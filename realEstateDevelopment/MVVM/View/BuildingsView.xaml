@@ -36,24 +36,15 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
-            <Grid Height="50" VerticalAlignment="Top" Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Filtry" Grid.Column="0" Foreground="White"/>
-                <Button Grid.Column="1" Content="Zastosuj" Command="{Binding ApplyFiltersCommand}" 
-                        Style="{StaticResource CommonNormalButtonTheme}"/>
-            </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
@@ -85,11 +76,11 @@
                 
             </Grid>
 
-            <Button x:Name="AddNewBuildind" Grid.Row="2" Grid.Column="0" Content="Dodaj nowy budynek" 
+            <Button x:Name="AddNewBuildind" Grid.Row="1" Grid.Column="0" Content="Dodaj nowy budynek" 
                     Command="{Binding OpenAddNewBuildingCommand}" Style="{StaticResource CommonNormalButtonTheme}"/>
-            <Button Grid.Row="3" Grid.Column="0" Content="Odświerz" Command="{Binding ReloadCommand}" 
+            <Button Grid.Row="2" Grid.Column="0" Content="Odświerz" Command="{Binding ReloadCommand}" 
                     Style="{StaticResource CommonNormalButtonTheme}"/>
-            <Button Grid.Row="4"
+            <Button Grid.Row="3"
                     Grid.Column="0"
                     Content="Usuń Zaznaczony"
                     Click="DeleteCommand"

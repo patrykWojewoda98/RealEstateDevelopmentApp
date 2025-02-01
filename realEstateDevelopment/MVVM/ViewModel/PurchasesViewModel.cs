@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -26,8 +27,80 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private string _typeOfPurchaseFilter;
+        public string TypeOfPurchaseFilter
+        {
+            get => _typeOfPurchaseFilter;
+            set
+            {
+                _typeOfPurchaseFilter = value;
+                OnPropertyChanged(() => TypeOfPurchaseFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private decimal? _minAmount;
+        public decimal? MinAmount
+        {
+            get => _minAmount;
+            set
+            {
+                _minAmount = value;
+                OnPropertyChanged(() => MinAmount);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private decimal? _maxAmount;
+        public decimal? MaxAmount
+        {
+            get => _maxAmount;
+            set
+            {
+                _maxAmount = value;
+                OnPropertyChanged(() => MaxAmount);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime? _purchaseDateFromFilter;
+        public DateTime? PurchaseDateFromFilter
+        {
+            get => _purchaseDateFromFilter;
+            set
+            {
+                _purchaseDateFromFilter = value;
+                OnPropertyChanged(() => PurchaseDateFromFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private DateTime? _purchaseDateToFilter;
+        public DateTime? PurchaseDateToFilter
+        {
+            get => _purchaseDateToFilter;
+            set
+            {
+                _purchaseDateToFilter = value;
+                OnPropertyChanged(() => PurchaseDateToFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<PurchasesEntityForView> _filteredList;
+        public ObservableCollection<PurchasesEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
         #region Commands
+        public RealyCommand ApplyFiltersCommand { get; set; }
         public RealyCommand OpenAddNewPurchaseCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
         #endregion
@@ -40,11 +113,13 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public PurchasesViewModel()
             :base()
         {
+            _maxAmount = realEstateEntities.Purchases.Max(p => p.Amount);
             OpenAddNewPurchaseCommand = new RealyCommand(o =>
             {
                 AddNewPurchaseRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
         #endregion
         public override async Task LoadAsync()
@@ -62,8 +137,21 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            FilteredList = new ObservableCollection<PurchasesEntityForView>(
+                List.Where(p =>
+                    (string.IsNullOrEmpty(TypeOfPurchaseFilter) || p.TypeOfPurchase.Contains(TypeOfPurchaseFilter)) &&
+                    (!MinAmount.HasValue || p.Amount >= MinAmount) &&
+                    (!MaxAmount.HasValue || p.Amount <= MaxAmount) 
+                ));
+            List.Clear();
+            foreach(var item  in FilteredList)
+            {
+                List.Add(item);
+            }
+            return Task.CompletedTask;
         }
+
+        
         private void ExecuteDeleteSelected(object parameter)
         {
             if (SelectedItem is PurchasesEntityForView selected)

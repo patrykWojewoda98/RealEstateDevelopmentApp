@@ -13,6 +13,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class ApartmentsViewModel : LoadAllViewModel<ApartmentsEntitiesForView>
     {
         #region Properties
+        private ObservableCollection<ApartmentsEntitiesForView> _filteredList;
+        public ObservableCollection<ApartmentsEntitiesForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         private ApartmentsEntitiesForView _selectedItem;
         public ApartmentsEntitiesForView SelectedItem
         {
@@ -42,6 +52,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _minArea = value;
                 OnPropertyChanged(() => MinArea);
+                ApplyFiltersAsync();
             }
         }
 
@@ -53,6 +64,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _maxArea = value;
                 OnPropertyChanged(() => MaxArea);
+                ApplyFiltersAsync();
             }
         }
 
@@ -64,6 +76,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _minFloor = value;
                 OnPropertyChanged(() => MinFloor);
+                ApplyFiltersAsync();
             }
         }
 
@@ -75,6 +88,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _maxFloor = value;
                 OnPropertyChanged(() => MaxFloor);
+                ApplyFiltersAsync();
             }
         }
 
@@ -86,6 +100,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _minRoomsNumber = value;
                 OnPropertyChanged(() => MinRoomsNumber);
+                ApplyFiltersAsync();
             }
         }
 
@@ -97,6 +112,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _maxRoomsNumber = value;
                 OnPropertyChanged(() => MaxRoomsNumber);
+                ApplyFiltersAsync();
             }
         }
 
@@ -108,6 +124,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _status = value;
                 OnPropertyChanged(() => Status);
+                ApplyFiltersAsync();
             }
         }
         #endregion
@@ -124,6 +141,9 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public ApartmentsViewModel()
             : base()
         {
+            _maxFloor = realEstateEntities.Apartments.Max(a => a.Floor);
+            _maxRoomsNumber = realEstateEntities.Apartments.Max(a => a.RoomCount);
+            _maxArea = realEstateEntities.Apartments.Max(a => a.Area);
             LoadAsync();
             OpenAddNewApartmentCommand = new RealyCommand(o =>
             {
@@ -163,26 +183,27 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         }
 
-        public override async Task ApplyFiltersAsync()
+        public override Task ApplyFiltersAsync()
         {
             var filtered = List.Where(item =>
-                (item.Area >= MinArea) &&
-                (item.Area <= MaxArea) &&
-                (item.Floor >= MinFloor) &&
-                (item.Floor <= MaxFloor) &&
-                (item.RoomCount >= MinRoomsNumber) &&
-                (item.RoomCount <= MaxRoomsNumber) &&
-                (string.IsNullOrWhiteSpace(Status) ||
-                 (item.Status != null && item.Status.IndexOf(Status, StringComparison.OrdinalIgnoreCase) >= 0))).ToList();
+                (MinArea == 0 || item.Area >= MinArea) &&
+                (MaxArea == 0 || item.Area <= MaxArea) &&
+                (MinFloor == 0 || item.Floor >= MinFloor) &&
+                (MaxFloor == 0 || item.Floor <= MaxFloor) &&
+                (MinRoomsNumber == 0 || item.RoomCount >= MinRoomsNumber) &&
+                (MaxRoomsNumber == 0 || item.RoomCount <= MaxRoomsNumber) &&
+                (string.IsNullOrEmpty(Status) || item.Status.Contains(Status))
+            );
 
+            FilteredList = new ObservableCollection<ApartmentsEntitiesForView>(filtered);
 
-            
             List.Clear();
-
-            foreach (var item in filtered)
+            foreach (var item in FilteredList)
             {
-                List.Add(item);
+                List.Add(item); 
             }
+
+            return Task.CompletedTask;
         }
 
         private void ExecuteDeleteSelected(object parameter)

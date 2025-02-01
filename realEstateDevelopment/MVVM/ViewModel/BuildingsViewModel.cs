@@ -14,6 +14,16 @@ namespace realEstateDevelopment.MVVM.ViewModel
     public class BuildingsViewModel : LoadAllViewModel<BuildingsEntityForView>
     {
         #region Properties
+        private ObservableCollection<BuildingsEntityForView> _filteredList;
+        public ObservableCollection<BuildingsEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         private BuildingsEntityForView _selectedItem;
         public BuildingsEntityForView SelectedItem
         {
@@ -33,6 +43,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _address = value;
                 OnPropertyChanged(() => Address);
+                ApplyFiltersAsync();
             }
         }
 
@@ -46,6 +57,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _minFloors = value;
                 OnPropertyChanged(() => MinFloors);
+                ApplyFiltersAsync();
             }
         }
 
@@ -57,6 +69,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _maxFloors = value;
                 OnPropertyChanged(() => MaxFloors);
+                ApplyFiltersAsync();
             }
         }
 
@@ -68,6 +81,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
             {
                 _status = value;
                 OnPropertyChanged(() => Status);
+                ApplyFiltersAsync();
             }
         }
 
@@ -87,6 +101,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         public BuildingsViewModel()
             : base()
         {
+            _maxFloors = realEstateEntities.Buildings.Max(b => b.Floors);
             OpenAddNewBuildingCommand = new RealyCommand(o =>
             {
                 AddNewBuildingRequested?.Invoke();
@@ -115,25 +130,24 @@ namespace realEstateDevelopment.MVVM.ViewModel
             List = new ObservableCollection<BuildingsEntityForView>(result);
         }
 
-        public override async Task ApplyFiltersAsync()
+        public override Task ApplyFiltersAsync()
         {
             var filtered = List.Where(item =>
-                
-                (item.Floors >= MinFloors) &&
-                (item.Floors <= MaxFloors) &&
-                (string.IsNullOrWhiteSpace(Address) ||
-                 (item.Localization != null && item.Localization.IndexOf(Address, StringComparison.OrdinalIgnoreCase) >= 0)) &&
-                 (string.IsNullOrWhiteSpace(Status) ||
-                 (item.Status != null && item.Status.IndexOf(Status, StringComparison.OrdinalIgnoreCase) >= 0))).ToList();
+                (string.IsNullOrEmpty(Address) || item.Localization.Contains(Address)) &&
+                (MinFloors == 0 || item.Floors >= MinFloors) &&
+                (MaxFloors == 0 || item.Floors <= MaxFloors) &&
+                (string.IsNullOrEmpty(Status) || item.Status.Contains(Status))
+            );
 
-
+            FilteredList = new ObservableCollection<BuildingsEntityForView>(filtered);
 
             List.Clear();
-
-            foreach (var item in filtered)
+            foreach (var item in FilteredList)
             {
                 List.Add(item);
             }
+
+            return Task.CompletedTask;
         }
 
         private void ExecuteDeleteSelected(object parameter)

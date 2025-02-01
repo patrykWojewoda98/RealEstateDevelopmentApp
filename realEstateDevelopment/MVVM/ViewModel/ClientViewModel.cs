@@ -7,6 +7,7 @@ using System.Linq;
 using realEstateDevelopment.MVVM.Model.EntitiesForView;
 using realEstateDevelopment.MVVM.View.Modals;
 using realEstateDevelopment.MVVM.ViewModel.Modals;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -23,11 +24,71 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private string _filterName;
+        public string FilterName
+        {
+            get => _filterName;
+            set
+            {
+                _filterName = value;
+                OnPropertyChanged(() => FilterName);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterSurname;
+        public string FilterSurname
+        {
+            get => _filterSurname;
+            set
+            {
+                _filterSurname = value;
+                OnPropertyChanged(() => FilterSurname);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterPesel;
+        public string FilterPesel
+        {
+            get => _filterPesel;
+            set
+            {
+                _filterPesel = value;
+                OnPropertyChanged(() => FilterPesel);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _filterEmail;
+        public string FilterEmail
+        {
+            get => _filterEmail;
+            set
+            {
+                _filterEmail = value;
+                OnPropertyChanged(() => FilterEmail);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<ClientForView> _filteredList;
+        public ObservableCollection<ClientForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
 
         #region Commands
         public RealyCommand OpenAddNewClientCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
+        public RealyCommand ApplyFiltersCommand { get; set; }
         #endregion
 
         #region Events
@@ -44,6 +105,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 AddNewClientRequested?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(o => ApplyFiltersAsync());
         }
         #endregion
 
@@ -69,7 +131,20 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            FilteredList = new ObservableCollection<ClientForView>(
+                List.Where(c =>
+                    (string.IsNullOrEmpty(FilterName) || c.Name.Contains(FilterName)) &&
+                    (string.IsNullOrEmpty(FilterSurname) || c.Surname.Contains(FilterSurname)) &&
+                    (string.IsNullOrEmpty(FilterPesel) || c.Pesel.Contains(FilterPesel)) &&
+                     (string.IsNullOrEmpty(FilterEmail) || (!string.IsNullOrEmpty(c.Email) && c.Email.Contains(FilterEmail)))
+                ));
+            List.Clear();
+            foreach (var item in FilteredList)
+            {
+                List.Add(item);
+            }
+            Console.WriteLine("Prubuje");
+            return Task.CompletedTask;
         }
 
         private void ExecuteDeleteSelected(object parameter)

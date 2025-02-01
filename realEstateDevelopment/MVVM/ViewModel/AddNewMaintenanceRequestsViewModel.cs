@@ -170,7 +170,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
         {
             AvailableApartments.Clear();
             var apartments = (from a in estateEntities.Apartments
-                              where (a.ClientID == clientId && a.Status == "Zarezerwowano") || (a.ClientID == clientId && a.Status == "Wynajęto")
+                              where (a.ClientID == clientId && a.Status == "Zarezerwowano") || (a.ClientID == clientId && a.Status == "Wynajęto") || (a.ClientID == clientId && a.Status == "Sprzedano")
                               join b in estateEntities.Buildings on a.BuildingID equals b.BuildingID
                               join p in estateEntities.Projects on b.ProjectID equals p.ProjectID
                               select new ApartmentForView

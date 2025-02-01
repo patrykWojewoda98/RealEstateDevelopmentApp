@@ -11,15 +11,16 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" 
+
+        <DataGrid Grid.Row="2" 
                   Background="Transparent" 
                   AutoGenerateColumns="False" 
-                  ItemsSource="{Binding List}" 
-                  CanUserAddRows="False" 
-                  IsReadOnly="True" 
+                  ItemsSource="{Binding List}"
+                  CanUserAddRows="False" IsReadOnly="True" 
                   CanUserDeleteRows="False"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   MouseDoubleClick="DataGrid_MouseDoubleClick">
@@ -28,9 +29,9 @@
                 <DataGridTextColumn Header="Numer Mieszkania" Binding="{Binding ApartmentNumber}"/>
                 <DataGridTextColumn Header="Numer Budynku" Binding="{Binding BuildingNumber}"/>
                 <DataGridTextColumn Header="Adres" Binding="{Binding Address}"/>
-                <DataGridTextColumn Header="Opis rządania " Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Opis żądania" Binding="{Binding Description}"/>
                 <DataGridTextColumn Header="Data złożenia" Binding="{Binding RequestDate}"/>
-                <DataGridTextColumn Header="Imię " Binding="{Binding ClientName}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding ClientName}"/>
                 <DataGridTextColumn Header="Nazwisko" Binding="{Binding ClientSurname}"/>
                 <DataGridTextColumn Header="Kontakt" Binding="{Binding ClientPhoneNumber}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
@@ -42,38 +43,60 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="140"/>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Filtry"
-                Grid.Column="0"
-                Foreground="White"/>
-            <Grid Grid.Row="1">
+
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
-                <Button Grid.Column="0"
-                        Content="Zgłos nowe żądanie konserwacji"
-                        Command="{Binding OpenAddNewMaintenanceRequestsCommand}"
-                        Style="{StaticResource CommonNormalButtonTheme}"
-                        />
-                <Button Grid.Column="1"
-                        Content="Odświerz"
-                        Command="{Binding ReloadCommand}"
-                        Style="{StaticResource CommonNormalButtonTheme}"/>
-                <Button Grid.Column="2"
-                        Content="Usuń Zaznaczony"
-                        Command="{Binding DeleteSelectedCommand}"
-                        Style="{StaticResource CommonNormalButtonTheme}"
-                        />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Data żądania od" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                <DatePicker Grid.Column="0" Grid.Row="1" SelectedDate="{Binding FilterRequestDateFrom, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Data żądania do" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                <DatePicker Grid.Column="1" Grid.Row="1" SelectedDate="{Binding FilterRequestDateTo, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Imię" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                <TextBox Grid.Column="2" Grid.Row="1" Margin="0,8,0,8" Style="{StaticResource FilterTextBox}" Text="{Binding FilterClientName, UpdateSourceTrigger=PropertyChanged}" />
+
+                <TextBlock Text="Status" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" />
+                <TextBox Grid.Column="3" Grid.Row="1" Margin="0,8,0,8" Style="{StaticResource FilterTextBox}" Text="{Binding FilterStatus, UpdateSourceTrigger=PropertyChanged}" />
+
             </Grid>
+        </Grid>
 
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
+            <Button x:Name="AddNewMaintenanceRequest"
+                    Grid.Column="0"
+                    Content="Zgłoś nowe żądanie konserwacji"
+                    Command="{Binding OpenAddNewMaintenanceRequestsCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}" />
 
+            <Button Grid.Column="1"
+                    Content="Odśwież"
+                    Command="{Binding ReloadCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}" />
+
+            <Button Grid.Column="2"
+                    Content="Usuń Zaznaczony"
+                    Command="{Binding DeleteSelectedCommand}"
+                    Style="{StaticResource CommonNormalButtonTheme}" />
         </Grid>
     </Grid>
 </UserControl>

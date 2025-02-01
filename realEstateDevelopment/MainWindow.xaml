@@ -134,16 +134,6 @@
                 </MenuItem>
             </Menu>
 
-
-            <TextBox Width="250"
-                Height="40"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="10"
-                Grid.Column="1"
-                Style="{StaticResource SearchBox}"
-             />
-
             <ContentControl Grid.Row="2"
                             Grid.Column="1"
                             Margin="10"

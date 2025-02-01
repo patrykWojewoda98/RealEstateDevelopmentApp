@@ -11,7 +11,6 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <DataGrid Grid.Row="1" Background="Transparent" AutoGenerateColumns="False" ItemsSource="{Binding List}" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False">
@@ -23,8 +22,6 @@
                 <DataGridTextColumn Header="Data i czas zmiany" Binding="{Binding DateAndTimeOfChange}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock Text="Tu będą filtry"
-                   Grid.Row="0"
-                   Foreground="White"/>
+        
     </Grid>
 </UserControl>

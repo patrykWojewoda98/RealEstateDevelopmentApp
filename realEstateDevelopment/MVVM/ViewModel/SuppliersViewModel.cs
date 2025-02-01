@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace realEstateDevelopment.MVVM.ViewModel
 {
@@ -24,11 +25,59 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 OnPropertyChanged(() => SelectedItem);
             }
         }
+
+        private string _companyNameFilter;
+        public string CompanyNameFilter
+        {
+            get => _companyNameFilter;
+            set
+            {
+                _companyNameFilter = value;
+                OnPropertyChanged(() => CompanyNameFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _contactFilter;
+        public string ContactFilter
+        {
+            get => _contactFilter;
+            set
+            {
+                _contactFilter = value;
+                OnPropertyChanged(() => ContactFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private string _addressFilter;
+        public string AddressFilter
+        {
+            get => _addressFilter;
+            set
+            {
+                _addressFilter = value;
+                OnPropertyChanged(() => AddressFilter);
+                ApplyFiltersAsync();
+            }
+        }
+
+        private ObservableCollection<SuppliersEntityForView> _filteredList;
+        public ObservableCollection<SuppliersEntityForView> FilteredList
+        {
+            get => _filteredList;
+            set
+            {
+                _filteredList = value;
+                OnPropertyChanged(() => FilteredList);
+            }
+        }
         #endregion
 
         #region Commands
         public RealyCommand OpenAddNewSupplierCommand { get; set; }
         public RealyCommand DeleteSelectedCommand { get; set; }
+        public RealyCommand ApplyFiltersCommand { get; set; }
         #endregion
 
         #region Events
@@ -44,6 +93,7 @@ namespace realEstateDevelopment.MVVM.ViewModel
                 AddNewSupplierRequest?.Invoke();
             });
             DeleteSelectedCommand = new RealyCommand(ExecuteDeleteSelected, CanExecuteDeleteSelected);
+            ApplyFiltersCommand = new RealyCommand(_ => ApplyFiltersAsync());
         }
 
         #endregion
@@ -68,7 +118,18 @@ namespace realEstateDevelopment.MVVM.ViewModel
 
         public override Task ApplyFiltersAsync()
         {
-            throw new NotImplementedException();
+            FilteredList = new ObservableCollection<SuppliersEntityForView>(
+                List.Where(s =>
+                    (string.IsNullOrEmpty(CompanyNameFilter) || s.CompanyName.Contains(CompanyNameFilter)) &&
+                    (string.IsNullOrEmpty(ContactFilter) || s.Contact.Contains(ContactFilter)) &&
+                    (string.IsNullOrEmpty(AddressFilter) || s.Address.Contains(AddressFilter))
+                ));
+            List.Clear();
+            foreach (var item in FilteredList)
+            {
+                List.Add(item);
+            }
+            return Task.CompletedTask;
         }
         private void ExecuteDeleteSelected(object parameter)
         {
